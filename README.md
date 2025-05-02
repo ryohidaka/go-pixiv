@@ -9,6 +9,12 @@ Inspired by [pixivpy](https://github.com/upbit/pixivpy/tree/master)
 >
 > Please check [pixivpy's README](https://github.com/upbit/pixivpy/tree/master) for instructions on how to obtain a refresh token.
 
+## Installation
+
+```bash
+go get github.com/ryohidaka/go-pixiv
+```
+
 ## API functions
 
 ### App-API (6.0 - app-api.pixiv.net)
