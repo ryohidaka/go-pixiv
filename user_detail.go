@@ -1,6 +1,6 @@
 package pixiv
 
-import "go-pixiv/models"
+import "github.com/ryohidaka/go-pixiv/models"
 
 // UserDetailOptions defines optional parameters for retrieving user details.
 type UserDetailOptions struct {

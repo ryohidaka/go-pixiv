@@ -1,7 +1,7 @@
 package testutil
 
 import (
-	"go-pixiv"
+	"github.com/ryohidaka/go-pixiv"
 )
 
 // CreateAuthSession returns a new instance of AuthSession,

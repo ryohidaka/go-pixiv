@@ -1,4 +1,4 @@
-module go-pixiv
+module github.com/ryohidaka/go-pixiv
 
 go 1.24.2
 

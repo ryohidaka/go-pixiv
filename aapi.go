@@ -3,11 +3,12 @@ package pixiv
 import (
 	"encoding/json"
 	"fmt"
-	"go-pixiv/models"
+
 	"net/http"
 	"net/url"
 
 	"github.com/google/go-querystring/query"
+	"github.com/ryohidaka/go-pixiv/models"
 )
 
 // AppPixivAPI handles Pixiv App API operations using OAuth authentication.

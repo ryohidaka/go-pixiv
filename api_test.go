@@ -1,11 +1,12 @@
 package pixiv_test
 
 import (
-	"go-pixiv"
-	"go-pixiv/models"
-	"go-pixiv/testutil"
 	"testing"
 	"time"
+
+	"github.com/ryohidaka/go-pixiv"
+	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/testutil"
 
 	"github.com/stretchr/testify/assert"
 )

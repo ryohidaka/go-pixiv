@@ -3,11 +3,12 @@ package pixiv
 import (
 	"encoding/json"
 	"fmt"
-	"go-pixiv/models"
 	"net/http"
 	"net/url"
 	"strings"
 	"time"
+
+	"github.com/ryohidaka/go-pixiv/models"
 )
 
 // AuthSession holds the authentication state and provides methods to
