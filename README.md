@@ -1,5 +1,11 @@
 # go-pixiv
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/ryohidaka/go-pixiv.svg)](https://pkg.go.dev/github.com/ryohidaka/go-pixiv)
+![GitHub Release](https://img.shields.io/github/v/release/ryohidaka/go-pixiv)
+[![codecov](https://codecov.io/gh/ryohidaka/go-pixiv/graph/badge.svg?token=Q7U8FMv9bn)](https://codecov.io/gh/ryohidaka/go-pixiv)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ryohidaka/go-pixiv)](https://goreportcard.com/report/github.com/ryohidaka/go-pixiv)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 Pixiv API for Golang
 
 Inspired by [pixivpy](https://github.com/upbit/pixivpy/tree/master)
