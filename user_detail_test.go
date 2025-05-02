@@ -1,12 +1,32 @@
 package pixiv_test
 
 import (
+	"fmt"
 	"go-pixiv"
 	"go-pixiv/testutil"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
+
+func ExampleAppPixivAPI_UserDetail() {
+	// Get the refresh token used for authentication
+	refreshToken := testutil.GetRefreshToken()
+
+	// Create a new Pixiv App API client
+	app, _ := pixiv.NewApp(refreshToken)
+
+	// Fetch user details for user ID 11 (Pixiv official account)
+	user, _ := app.UserDetail(11, nil)
+
+	// Print the user's name and account
+	fmt.Println("Name:", user.User.Name)
+	fmt.Println("Account:", user.User.Account)
+
+	// Output:
+	// Name: pixiv事務局
+	// Account: pixiv
+}
 
 func TestUserDetail(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
