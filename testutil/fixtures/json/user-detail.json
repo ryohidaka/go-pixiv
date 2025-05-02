@@ -1,0 +1,62 @@
+{
+  "user": {
+    "id": 11,
+    "name": "pixiv事務局",
+    "account": "pixiv",
+    "profile_image_urls": {
+      "medium": "https://i.pximg.net/user-profile/img/2025/01/28/14/59/33/26898736_058dfc75acb3b71f4cdce3fdb7a9da87_170.jpg"
+    },
+    "comment": "pixiv(ピクシブ)は、「作品を介したコミュニケーション」にフォーカスしているクリエイターとそのファンのためのSNSです。\r\n\r\nあなたが投稿した作品(イラスト、漫画、小説)やブックマークした作品そのものがプロフィールを形成し、それが中心となって作品によるコミュニケーションが行われています。\r\n\r\npixivには幅広いジャンルの作品が投稿されユーザー発のイラスト企画やメーカー公認のコンテストが頻繁に開催されています。\r\nそしてユーザー同士が協力しあい新たな作品が生まれる協創(co-creation)のプラットフォームとして活用されています。\r\n\r\n「お絵かきがもっと楽しくなる場所」\r\n\r\npixivは、そんな場所を目指しています。\r\n\r\npixivのご利用方法、ご不明点、その他のご連絡・お問い合わせについては、以下のお問い合わせフォームをご利用ください。\r\n\r\nお問い合わせフォーム https://www.pixiv.net/support.php",
+    "is_followed": false,
+    "is_access_blocking_user": false
+  },
+  "profile": {
+    "webpage": "https://www.pixiv.net/",
+    "gender": "",
+    "birth": "",
+    "birth_day": "",
+    "birth_year": 0,
+    "region": "日本 東京都",
+    "address_id": 13,
+    "country_code": "",
+    "job": "",
+    "job_id": 0,
+    "total_follow_users": 0,
+    "total_mypixiv_users": 0,
+    "total_illusts": 1538,
+    "total_manga": 641,
+    "total_novels": 258,
+    "total_illust_bookmarks_public": 0,
+    "total_illust_series": 0,
+    "total_novel_series": 7,
+    "background_image_url": "https://i.pximg.net/c/1200x600_90_a2_g5/background/img/2018/10/01/16/59/56/11_7ab625928a2138eff12f2851476a06fa_master1200.jpg",
+    "twitter_account": "pixiv",
+    "twitter_url": "https://twitter.com/pixiv",
+    "pawoo_url": "https://pawoo.net/oauth_authentications/11?provider=pixiv",
+    "is_premium": true,
+    "is_using_custom_profile_image": true
+  },
+  "profile_publicity": {
+    "gender": "public",
+    "region": "public",
+    "birth_day": "public",
+    "birth_year": "public",
+    "job": "public",
+    "pawoo": true
+  },
+  "workspace": {
+    "pc": "",
+    "monitor": "",
+    "tool": "",
+    "scanner": "",
+    "tablet": "",
+    "mouse": "",
+    "printer": "",
+    "desktop": "",
+    "music": "",
+    "desk": "",
+    "chair": "",
+    "comment": "",
+    "workspace_image_url": null
+  }
+}
