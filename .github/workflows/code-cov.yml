@@ -1,0 +1,30 @@
+name: Test and coverage
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "stable"
+
+      - name: Gather dependencies
+        run: go mod download
+
+      - name: Generate .env file
+        run: |
+          echo "PIXIV_REFRESH_TOKEN=${{ secrets.PIXIV_REFRESH_TOKEN }}" > .env
+
+      - name: Run coverage
+        run: go test -coverprofile=coverage.txt
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
