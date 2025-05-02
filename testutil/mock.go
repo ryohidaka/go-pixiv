@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"testing"
 
 	"github.com/jarcoal/httpmock"
 )
@@ -38,4 +39,19 @@ func MockResponseFromFile(method, url, fileName string) error {
 		httpmock.NewStringResponder(200, string(data)))
 
 	return nil
+}
+
+// WithMockHTTP activates httpmock for the duration of the test function and then deactivates it.
+// It ensures that HTTP requests are intercepted and handled using registered mock responders.
+//
+// Parameters:
+//   - t: The testing context, used for cleanup and reporting test failures.
+//   - testFunc: A function containing the test logic to execute while httpmock is active.
+//
+// Returns:
+//   - None (this function executes the given testFunc inline).
+func WithMockHTTP(t *testing.T, testFunc func()) {
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+	testFunc()
 }
