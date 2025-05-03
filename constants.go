@@ -20,3 +20,6 @@ const (
 	AppVersion   string = "7.13.3"
 	UserAgent    string = "PixivIOSApp/7.13.3 (iOS 14.6; iPhone13,2)"
 )
+
+// Pagination
+const OffsetFieldOffset string = "offset"
