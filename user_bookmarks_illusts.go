@@ -31,7 +31,8 @@ type userBookmarkIllustsParams struct {
 //   - error: Any error encountered during the API request or pagination parsing.
 func (a *AppPixivAPI) UserBookmarksIllust(uid uint64, opts *UserBookmarksIllustOptions) ([]models.Illust, int, error) {
 	params := userBookmarkIllustsParams{
-		UserID: uid,
+		UserID:   uid,
+		Restrict: models.Public,
 	}
 
 	// Populate optional parameters if opts is provided
@@ -40,9 +41,6 @@ func (a *AppPixivAPI) UserBookmarksIllust(uid uint64, opts *UserBookmarksIllustO
 		params.Filter = opts.Filter
 		params.MaxBookmarkID = opts.MaxBookmarkID
 		params.Tag = opts.Tag
-	} else {
-		// Use default restrict level if options are not provided
-		params.Restrict = models.Public
 	}
 
 	// Perform the API request and unmarshal the response into the IllustsResponse struct
