@@ -10,7 +10,7 @@ type UserBookmarksIllustOptions struct {
 	Tag           *string
 }
 
-type userBookmarkIllustsParams struct {
+type userBookmarksIllustParams struct {
 	UserID        uint64          `url:"user_id,omitempty"`
 	Restrict      models.Restrict `url:"restrict,omitempty"`
 	Filter        *string         `url:"filter,omitempty"`
@@ -30,7 +30,7 @@ type userBookmarkIllustsParams struct {
 //   - int: The offset for the next page (based on max_bookmark_id), or 0 if there is no next page.
 //   - error: Any error encountered during the API request or pagination parsing.
 func (a *AppPixivAPI) UserBookmarksIllust(uid uint64, opts *UserBookmarksIllustOptions) ([]models.Illust, int, error) {
-	params := userBookmarkIllustsParams{
+	params := userBookmarksIllustParams{
 		UserID:   uid,
 		Restrict: models.Public,
 	}
