@@ -38,6 +38,9 @@ UserIllusts(uid uint64, opts *UserIllustsOptions) ([]models.Illust, int, error) 
 
 // 用户收藏作品列表
 UserBookmarksIllust(uid uint64, opts *UserBookmarksIllustOptions) ([]models.Illust, int, error) {...}
+
+// 关注用户的新作
+IllustFollow(opts *IllustFollowOptions) ([]models.Illust, int, error) {...}
 ```
 
 ## Usage
@@ -54,6 +57,9 @@ illusts, next, err := app.UserIllusts(11, nil)
 
 // Fetch user bookmarks illust
 illusts, next, err := app.UserBookmarksIllust(11, nil)
+
+// Fetch illust from user follows
+illusts, next, err := app.IllustFollow(nil)
 ```
 
 ## Link
