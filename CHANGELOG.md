@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/ryohidaka/go-pixiv/compare/v0.3.1...v0.4.0) (2025-05-03)
+
+
+### Features
+
+* **api:** Add IllustFollow() ([d71e454](https://github.com/ryohidaka/go-pixiv/commit/d71e454a5b343897eaca9e27747efd30f3f0e393))
+
 ## [0.3.1](https://github.com/ryohidaka/go-pixiv/compare/v0.3.0...v0.3.1) (2025-05-03)
 
 
