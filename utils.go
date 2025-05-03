@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log/slog"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -26,7 +27,9 @@ func genClientHash(clientTime string) string {
 	h := md5.New()
 	io.WriteString(h, clientTime)
 	io.WriteString(h, ClientHashSecret)
-	return hex.EncodeToString(h.Sum(nil))
+	hash := hex.EncodeToString(h.Sum(nil))
+	slog.Debug("generated client hash", "client_time", clientTime, "hash", hash)
+	return hash
 }
 
 // setHeaders sets custom HTTP headers to the provided request.
@@ -37,6 +40,7 @@ func genClientHash(clientTime string) string {
 func setHeaders(req *http.Request, headers map[string]string) {
 	for k, v := range headers {
 		req.Header.Set(k, v)
+		slog.Debug("set header", "key", k, "value", v)
 	}
 }
 
@@ -51,8 +55,10 @@ func setHeaders(req *http.Request, headers map[string]string) {
 func readResponse(resp *http.Response) ([]byte, error) {
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
+		slog.Error("failed to read response body", "error", err)
 		return nil, fmt.Errorf("failed to read response: %w", err)
 	}
+	slog.Debug("read response body", "length", len(body))
 	return body, nil
 }
 
@@ -66,8 +72,10 @@ func readResponse(resp *http.Response) ([]byte, error) {
 //   - An error if JSON unmarshalling fails.
 func decodeJSON(body []byte, out any) error {
 	if err := json.Unmarshal(body, out); err != nil {
+		slog.Error("failed to unmarshal JSON", "error", err)
 		return fmt.Errorf("failed to unmarshal response: %w", err)
 	}
+	slog.Debug("successfully decoded JSON")
 	return nil
 }
 
@@ -79,7 +87,9 @@ func decodeJSON(body []byte, out any) error {
 // Returns:
 //   - time.Time: The time when the access token will expire.
 func getExpiresAt(expiredIn int) time.Time {
-	return time.Now().Add(time.Duration(expiredIn) * time.Second)
+	expiresAt := time.Now().Add(time.Duration(expiredIn) * time.Second)
+	slog.Debug("calculated token expiration time", "expires_in", expiredIn, "expires_at", expiresAt)
+	return expiresAt
 }
 
 // parseNextPageOffset extracts the offset value from the query parameters of a given URL string.
@@ -94,33 +104,39 @@ func getExpiresAt(expiredIn int) time.Time {
 func parseNextPageOffset(s, field string) (int, error) {
 	// If the input string is empty, return 0 as a default offset.
 	if s == "" {
+		slog.Debug("URL string is empty, defaulting offset to 0")
 		return 0, nil
 	}
 
 	// Parse the input string into a URL structure.
 	u, err := url.Parse(s)
 	if err != nil {
+		slog.Error("failed to parse URL", "url", s, "error", err)
 		return 0, fmt.Errorf("failed to parse URL: %s {%s}", s, err)
 	}
 
 	// Parse the raw query string from the URL.
 	queryParams, err := url.ParseQuery(u.RawQuery)
 	if err != nil {
+		slog.Error("failed to parse query parameters", "url", s, "error", err)
 		return 0, fmt.Errorf("failed to parse query parameters: %s {%s}", s, err)
 	}
 
 	// Retrieve the offset value from the query parameters using the specified field name.
 	offsetParam := queryParams.Get(field)
 	if offsetParam == "" {
+		slog.Error("missing query parameter", "param", field)
 		return 0, fmt.Errorf("missing query parameter: %s", field)
 	}
 
 	// Convert the offset parameter from string to integer.
 	offset, err := strconv.Atoi(offsetParam)
 	if err != nil {
+		slog.Error("invalid offset value", "value", offsetParam, "error", err)
 		return 0, fmt.Errorf("invalid offset value: %s {%s}", offsetParam, err)
 	}
 
+	slog.Debug("parsed next page offset", "offset", offset)
 	return offset, nil
 }
 
@@ -135,8 +151,10 @@ func parseNextPageOffset(s, field string) (int, error) {
 func getRestrict(r *models.Restrict) models.Restrict {
 	// Check if the pointer is non-nil and the value is not an empty string
 	if r != nil && *r != "" {
+		slog.Debug("using custom restrict value", "value", *r)
 		return *r
 	}
 	// Return the default value when the pointer is nil or empty
+	slog.Debug("using default restrict value: public")
 	return models.Public
 }
