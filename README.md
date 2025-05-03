@@ -28,18 +28,22 @@ go get github.com/ryohidaka/go-pixiv
 ```go
 // 用户详情
 UserDetail(uid uint64, opts *UserDetailOptions) (*models.UserDetail, error) {...}
+
+// 用户作品列表
+UserIllusts(uid uint64, opts *UserIllustsOptions) ([]models.Illust, int, error) {...}
 ```
 
 ## Usage
 
 ```go
 // Create a new Pixiv App API client
-app, _ := pixiv.NewApp("<YOUR_REFRESH_TOKEN>")
+app, err := pixiv.NewApp("<YOUR_REFRESH_TOKEN>")
 
 // Fetch user details
-user, _ := app.UserDetail(11)
-fmt.Println("Name:", user.User.Name)
-// Outputs: pixiv事務局
+user, err := app.UserDetail(11)
+
+// Fetch user illusts
+illusts, next, err := app.UserIllusts(11, nil)
 ```
 
 ## Link
