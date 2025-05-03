@@ -1,6 +1,7 @@
 package pixiv_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/ryohidaka/go-pixiv"
@@ -8,6 +9,22 @@ import (
 	"github.com/ryohidaka/go-pixiv/testutil"
 	"github.com/stretchr/testify/assert"
 )
+
+func ExampleAppPixivAPI_UserIllusts() {
+	// Get the refresh token used for authentication
+	refreshToken := testutil.GetRefreshToken()
+
+	// Create a new Pixiv App API client
+	app, _ := pixiv.NewApp(refreshToken)
+
+	// Fetch user illusts for user ID 11 (Pixiv official account)
+	illusts, _, _ := app.UserIllusts(11, nil)
+
+	for _, v := range illusts {
+		// Print the illust title
+		fmt.Println("Title:", v.Title)
+	}
+}
 
 func TestUserIllust(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
