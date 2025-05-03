@@ -1,6 +1,7 @@
 package pixiv_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/ryohidaka/go-pixiv"
@@ -8,6 +9,25 @@ import (
 	"github.com/ryohidaka/go-pixiv/testutil"
 	"github.com/stretchr/testify/assert"
 )
+
+func ExampleAppPixivAPI_IllustDetail() {
+	// Get the refresh token used for authentication
+	refreshToken := testutil.GetRefreshToken()
+
+	// Create a new Pixiv App API client
+	app, _ := pixiv.NewApp(refreshToken)
+
+	// Fetch illust details for illust ID 129899459
+	illust, _ := app.IllustDetail(129899459)
+
+	// Print the illust title and type
+	fmt.Println("Title:", illust.Title)
+	fmt.Println("Type:", illust.Type)
+
+	// Output:
+	// Title: 「出張版！アクション月例漫画賞」いよいよ開催！
+	// Type: illust
+}
 
 func TestIllustDetail(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
