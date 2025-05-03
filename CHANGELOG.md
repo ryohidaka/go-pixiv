@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.0](https://github.com/ryohidaka/go-pixiv/compare/v0.4.0...v0.5.0) (2025-05-03)
+
+
+### Features
+
+* **api:** Add IllustDetail() ([1c7a32b](https://github.com/ryohidaka/go-pixiv/commit/1c7a32b6577695f23723e3d59f95c82b75b54b0f))
+* **api:** Add IllustDetail() ([e917ee5](https://github.com/ryohidaka/go-pixiv/commit/e917ee5b79fe9e3bdd101dc04a85509f66abf25f))
+
 ## [0.4.0](https://github.com/ryohidaka/go-pixiv/compare/v0.3.1...v0.4.0) (2025-05-03)
 
 
