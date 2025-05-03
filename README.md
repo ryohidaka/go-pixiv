@@ -41,6 +41,9 @@ UserBookmarksIllust(uid uint64, opts *UserBookmarksIllustOptions) ([]models.Illu
 
 // 关注用户的新作
 IllustFollow(opts *IllustFollowOptions) ([]models.Illust, int, error) {...}
+
+// 作品详情 (类似PAPI.works(),iOS中未使用)
+IllustDetail(id uint64) (*models.Illust, error) {...}
 ```
 
 ## Usage
@@ -60,6 +63,9 @@ illusts, next, err := app.UserBookmarksIllust(11, nil)
 
 // Fetch illust from user follows
 illusts, next, err := app.IllustFollow(nil)
+
+// Fetch illust details
+illust, err := app.IllustDetail(129899459)
 ```
 
 ## Link
