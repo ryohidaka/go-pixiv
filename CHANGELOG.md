@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0](https://github.com/ryohidaka/go-pixiv/compare/v0.2.0...v0.3.0) (2025-05-03)
+
+
+### Features
+
+* **api:** Add UserBookmarksIllust() ([2a430c8](https://github.com/ryohidaka/go-pixiv/commit/2a430c8dbe1a51e2c8c1cac1b3f9aa136a180366))
+* **utils:** Add getRestrict() ([527c991](https://github.com/ryohidaka/go-pixiv/commit/527c9913c2a53a49252cce1b99f100cc20ceb8b9))
+
 ## [0.2.0](https://github.com/ryohidaka/go-pixiv/compare/v0.1.0...v0.2.0) (2025-05-03)
 
 
