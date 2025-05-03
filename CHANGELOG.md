@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/ryohidaka/go-pixiv/compare/v0.5.1...v0.6.0) (2025-05-03)
+
+
+### Features
+
+* **api:** Added log output with slog ([711c265](https://github.com/ryohidaka/go-pixiv/commit/711c2653167382876576e12eb43c02ef458b1194))
+
 ## [0.5.1](https://github.com/ryohidaka/go-pixiv/compare/v0.5.0...v0.5.1) (2025-05-03)
 
 
