@@ -7,6 +7,10 @@ type IllustsResponse struct {
 	NextURL string   `json:"next_url"`
 }
 
+type IllustResponse struct {
+	Illust Illust `json:"illust"`
+}
+
 type Illust struct {
 	ID             uint64          `json:"id"`
 	Title          string          `json:"title"`
