@@ -21,6 +21,10 @@ Inspired by [pixivpy](https://github.com/upbit/pixivpy/tree/master)
 go get github.com/ryohidaka/go-pixiv
 ```
 
+## Documentation
+
+Read [GoDoc](https://pkg.go.dev/github.com/ryohidaka/go-pixiv)
+
 ## API functions
 
 ### App-API (6.0 - app-api.pixiv.net)
