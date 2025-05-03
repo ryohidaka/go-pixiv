@@ -10,6 +10,8 @@ import (
 	"net/url"
 	"strconv"
 	"time"
+
+	"github.com/ryohidaka/go-pixiv/models"
 )
 
 // genClientHash returns an MD5 hash generated from the given clientTime and a predefined secret.
@@ -120,4 +122,21 @@ func parseNextPageOffset(s, field string) (int, error) {
 	}
 
 	return offset, nil
+}
+
+// getRestrict safely dereferences a *Restrict pointer and returns its value.
+// If the pointer is nil or the value is an empty string, it returns models.Public.
+//
+// Parameters:
+//   - r: A pointer to a models.Restrict value. It may be nil or point to an empty string.
+//
+// Returns:
+//   - models.Restrict: The dereferenced value if valid, or models.Public as the default.
+func getRestrict(r *models.Restrict) models.Restrict {
+	// Check if the pointer is non-nil and the value is not an empty string
+	if r != nil && *r != "" {
+		return *r
+	}
+	// Return the default value when the pointer is nil or empty
+	return models.Public
 }
