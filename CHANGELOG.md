@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/ryohidaka/go-pixiv/compare/v0.5.0...v0.5.1) (2025-05-03)
+
+
+### Bug Fixes
+
+* Rename user_bookmarks_illust.go ([6af1c49](https://github.com/ryohidaka/go-pixiv/commit/6af1c4999d979e286741791ea2c9e5efc40845aa))
+
 ## [0.5.0](https://github.com/ryohidaka/go-pixiv/compare/v0.4.0...v0.5.0) (2025-05-03)
 
 
