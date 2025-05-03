@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.0](https://github.com/ryohidaka/go-pixiv/compare/v0.1.0...v0.2.0) (2025-05-03)
+
+
+### Features
+
+* **api:** Add UserIllusts() ([6b5dc86](https://github.com/ryohidaka/go-pixiv/commit/6b5dc869ad06ebd9dfe4c194deb4a4ca02b0ccdb))
+* **utils:** Add parseNextPageOffset() ([3efaa4f](https://github.com/ryohidaka/go-pixiv/commit/3efaa4f1d212fc9d8da6b431e738014c2ab09865))
+
 ## 0.1.0 (2025-05-02)
 
 
