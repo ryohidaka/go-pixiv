@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.1](https://github.com/ryohidaka/go-pixiv/compare/v0.3.0...v0.3.1) (2025-05-03)
+
+
+### Bug Fixes
+
+* Fix type name ([1d08fb9](https://github.com/ryohidaka/go-pixiv/commit/1d08fb920707f1e8ced7be53c64edef41b426f93))
+* **model:** Add Restrict type. ([085a0f1](https://github.com/ryohidaka/go-pixiv/commit/085a0f138e0915dac5c498eb7b6b44128c4b0ef5))
+
 ## [0.3.0](https://github.com/ryohidaka/go-pixiv/compare/v0.2.0...v0.3.0) (2025-05-03)
 
 
