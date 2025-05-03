@@ -35,6 +35,9 @@ UserDetail(uid uint64, opts *UserDetailOptions) (*models.UserDetail, error) {...
 
 // 用户作品列表
 UserIllusts(uid uint64, opts *UserIllustsOptions) ([]models.Illust, int, error) {...}
+
+// 用户收藏作品列表
+UserBookmarksIllust(uid uint64, opts *UserBookmarksIllustOptions) ([]models.Illust, int, error) {...}
 ```
 
 ## Usage
@@ -48,6 +51,9 @@ user, err := app.UserDetail(11)
 
 // Fetch user illusts
 illusts, next, err := app.UserIllusts(11, nil)
+
+// Fetch user bookmarks illust
+illusts, next, err := app.UserBookmarksIllust(11, nil)
 ```
 
 ## Link
