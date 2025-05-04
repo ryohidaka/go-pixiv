@@ -8,7 +8,7 @@ type UserFollowingOptions struct {
 	Offset   *int             // Offset for pagination
 }
 
-type userFollowStatsParams struct {
+type userFollowingParams struct {
 	UserID   uint64          `url:"user_id,omitempty"`
 	Restrict models.Restrict `url:"restrict,omitempty"`
 	Offset   *int            `url:"offset,omitempty"`
@@ -28,7 +28,7 @@ func (a *AppPixivAPI) UserFollowing(userID uint64, opts *UserFollowingOptions) (
 	const path = "v1/user/following"
 
 	// Construct request parameters
-	params := &userFollowStatsParams{
+	params := &userFollowingParams{
 		UserID:   userID,
 		Restrict: models.Public,
 	}
