@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.0](https://github.com/ryohidaka/go-pixiv/compare/v0.6.0...v0.7.0) (2025-05-04)
+
+
+### Features
+
+* **api:** Add IllustBookmarkDetail() ([3c11009](https://github.com/ryohidaka/go-pixiv/commit/3c110098c7ed4b5f2ccba6967d4cab931e31c4c5))
+* **api:** Add IllustBookmarkDetail() ([85f8cbf](https://github.com/ryohidaka/go-pixiv/commit/85f8cbff25b9c7939814d9a6fe3d00b176ee36d1))
+
 ## [0.6.0](https://github.com/ryohidaka/go-pixiv/compare/v0.5.1...v0.6.0) (2025-05-03)
 
 
