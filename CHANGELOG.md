@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/ryohidaka/go-pixiv/compare/v0.10.0...v0.11.0) (2025-05-04)
+
+
+### Features
+
+* **api:** Add FetchAllBookmarkedIllusts() ([e327c71](https://github.com/ryohidaka/go-pixiv/commit/e327c71a50f3ff88e10c55bd12aaf58a4ae4c54e))
+
 ## [0.10.0](https://github.com/ryohidaka/go-pixiv/compare/v0.9.0...v0.10.0) (2025-05-04)
 
 
