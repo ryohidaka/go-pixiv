@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.9.0](https://github.com/ryohidaka/go-pixiv/compare/v0.8.0...v0.9.0) (2025-05-04)
+
+
+### Features
+
+* **api:** Add UserFollower() ([ad0c8e5](https://github.com/ryohidaka/go-pixiv/commit/ad0c8e55d56490091820eac6be85838188216c98))
+
+
+### Bug Fixes
+
+* **api:** Modified type name ([a24f6f0](https://github.com/ryohidaka/go-pixiv/commit/a24f6f0798503fadec1f6571aa686dd5369bb967))
+
 ## [0.8.0](https://github.com/ryohidaka/go-pixiv/compare/v0.7.1...v0.8.0) (2025-05-04)
 
 
