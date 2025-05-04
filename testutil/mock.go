@@ -16,13 +16,13 @@ import (
 // Parameters:
 // - method: The HTTP method (e.g., "GET", "POST")
 // - url: The URL path for which the mock response will be registered
-// - fileName: The name of the JSON file that contains the mock response data
+// - path: The name of the JSON file that contains the mock response data
 //
 // Returns:
 // - An error if there is an issue reading the file or registering the mock response
-func MockResponseFromFile(method, url, fileName string) error {
+func MockResponseFromFile(method, url, path string) error {
 	// Open the JSON file for reading
-	file, err := os.Open("testutil/fixtures/json/" + fileName)
+	file, err := os.Open("testutil/fixtures/json/" + path + ".json")
 	if err != nil {
 		return fmt.Errorf("could not open mock response file: %v", err)
 	}

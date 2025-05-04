@@ -26,11 +26,11 @@ func ExampleAppPixivAPI_IllustBookmarkDetail() {
 func TestIllustBookmarkDetail(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth.json")
+		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
 
 		// Mock the user illusts response
 		url := pixiv.AppHosts + "v2/illust/bookmark/detail?illust_id=129899459"
-		err := testutil.MockResponseFromFile("GET", url, "illust-bookmark-detail.json")
+		err := testutil.MockResponseFromFile("GET", url, "v2/illust/bookmark/detail")
 		assert.NoError(t, err)
 
 		// Initialize the AppPixivAPI instance

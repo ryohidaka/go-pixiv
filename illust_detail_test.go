@@ -32,11 +32,11 @@ func ExampleAppPixivAPI_IllustDetail() {
 func TestIllustDetail(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth.json")
+		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
 
 		// Mock the user illusts response
 		url := pixiv.AppHosts + "v1/illust/detail?illust_id=129899459"
-		err := testutil.MockResponseFromFile("GET", url, "illust-detail.json")
+		err := testutil.MockResponseFromFile("GET", url, "v1/illust/detail")
 		assert.NoError(t, err)
 
 		// Initialize the AppPixivAPI instance

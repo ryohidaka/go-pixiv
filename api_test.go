@@ -14,7 +14,7 @@ import (
 // TestAuthenticate tests the Authenticate method in AuthSession.
 func TestAuthenticate(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
-		err := testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth.json")
+		err := testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
 		if err != nil {
 			t.Fatalf("Failed to mock response: %v", err)
 		}
@@ -46,7 +46,7 @@ func TestAuthenticate(t *testing.T) {
 func TestRefreshAuth(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the Pixiv API response for refreshing the token.
-		err := testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth.json")
+		err := testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
 		if err != nil {
 			t.Fatalf("Failed to mock response: %v", err)
 		}

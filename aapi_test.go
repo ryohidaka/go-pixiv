@@ -13,7 +13,7 @@ import (
 func TestNewApp(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		err := testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth.json")
+		err := testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
 		assert.NoError(t, err)
 
 		// Create a new AppPixivAPI instance
@@ -27,12 +27,12 @@ func TestNewApp(t *testing.T) {
 func TestAppPixivAPIRequest(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		err := testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth.json")
+		err := testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
 		assert.NoError(t, err)
 
 		// Mock API endpoint response
 		apiURL := pixiv.AppHosts + "v1/user/detail?user_id=123"
-		err = testutil.MockResponseFromFile("GET", apiURL, "user-detail.json")
+		err = testutil.MockResponseFromFile("GET", apiURL, "v1/user/detail")
 		assert.NoError(t, err)
 
 		// Initialize AppPixivAPI
