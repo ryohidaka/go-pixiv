@@ -1,12 +1,27 @@
 package pixiv_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/ryohidaka/go-pixiv"
 	"github.com/ryohidaka/go-pixiv/testutil"
 	"github.com/stretchr/testify/assert"
 )
+
+func ExampleAppPixivAPI_IllustBookmarkDetail() {
+	// Get the refresh token used for authentication
+	refreshToken := testutil.GetRefreshToken()
+
+	// Create a new Pixiv App API client
+	app, _ := pixiv.NewApp(refreshToken)
+
+	// Fetch illust bookmark details for illust ID 129899459
+	bookmark, _ := app.IllustBookmarkDetail(129899459)
+
+	// Print the illust title and type
+	fmt.Println("IsBookmarked:", bookmark.BookmarkDetail.IsBookmarked)
+}
 
 func TestIllustBookmarkDetail(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
