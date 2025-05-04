@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/ryohidaka/go-pixiv/compare/v0.9.0...v0.10.0) (2025-05-04)
+
+
+### Features
+
+* **api:** Add FetchAllUserIllusts() ([f876a9c](https://github.com/ryohidaka/go-pixiv/commit/f876a9c7062336e363b3806699a0c92fd5199cdb))
+
 ## [0.9.0](https://github.com/ryohidaka/go-pixiv/compare/v0.8.0...v0.9.0) (2025-05-04)
 
 
