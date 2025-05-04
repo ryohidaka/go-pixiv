@@ -55,6 +55,8 @@ UserFollowing(userID uint64, opts *UserFollowingOptions) ([]models.UserPreview, 
 UserFollower(userID uint64, opts *UserFollowerOptions) ([]models.UserPreview, int, error) {...}
 
 FetchAllUserIllusts(uid uint64, opts *UserIllustsOptions, sleepMs ...int) ([]models.Illust, error)
+
+FetchAllBookmarkedIllusts(uid uint64, opts *UserBookmarksIllustOptions, sleepMs ...int) ([]models.Illust, error)
 ```
 
 ## Usage
@@ -89,6 +91,9 @@ users, next, err := api.UserFollower(11, nil)
 
 // Fetch all user illusts
 illusts, err := app.FetchAllUserIllusts(11, nil)
+
+// Fetch all user bookmarks illust
+illusts, err := app.FetchAllBookmarkedIllusts(11, nil)
 ```
 
 ## Link
