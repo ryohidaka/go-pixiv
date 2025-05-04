@@ -24,7 +24,9 @@ type illustFollowParams struct {
 //   - An integer indicating the offset for the next page, or 0 if there is no next page.
 //   - An error if the request fails or the response cannot be parsed.
 func (a *AppPixivAPI) IllustFollow(opts *IllustFollowOptions) ([]models.Illust, int, error) {
-	path := "v2/illust/follow"
+	const path = "v2/illust/follow"
+
+	// Construct request parameters
 	params := &illustFollowParams{
 		Restrict: models.Private, // Default to private if not specified
 	}

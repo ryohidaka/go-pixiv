@@ -17,7 +17,7 @@ type illustDetailParams struct {
 //   - A pointer to an Illust object containing detailed information about the illustration.
 //   - An error if the request fails or the response is invalid.
 func (a *AppPixivAPI) IllustDetail(id uint64) (*models.Illust, error) {
-	path := "v1/illust/detail"
+	const path = "v1/illust/detail"
 
 	// Construct request parameters
 	params := &illustDetailParams{

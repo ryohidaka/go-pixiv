@@ -30,6 +30,9 @@ type userBookmarksIllustParams struct {
 //   - int: The offset for the next page (based on max_bookmark_id), or 0 if there is no next page.
 //   - error: Any error encountered during the API request or pagination parsing.
 func (a *AppPixivAPI) UserBookmarksIllust(uid uint64, opts *UserBookmarksIllustOptions) ([]models.Illust, int, error) {
+	const path = "v1/user/bookmarks/illust"
+
+	// Construct request parameters
 	params := userBookmarksIllustParams{
 		UserID:   uid,
 		Restrict: models.Public,
@@ -45,7 +48,7 @@ func (a *AppPixivAPI) UserBookmarksIllust(uid uint64, opts *UserBookmarksIllustO
 
 	// Perform the API request and unmarshal the response into the IllustsResponse struct
 	data := &models.IllustsResponse{}
-	if err := a.Request("v1/user/bookmarks/illust", params, data); err != nil {
+	if err := a.Request(path, params, data); err != nil {
 		return nil, 0, err
 	}
 

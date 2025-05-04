@@ -28,7 +28,7 @@ type userIllustsParams struct {
 //   - int: The offset for the next page, if available (0 if not present).
 //   - error: An error if the API request or offset parsing fails.
 func (a *AppPixivAPI) UserIllusts(uid uint64, opts *UserIllustsOptions) ([]models.Illust, int, error) {
-	path := "v1/user/illusts"
+	const path = "v1/user/illusts"
 
 	// Prepare parameters with required UserID.
 	params := &userIllustsParams{

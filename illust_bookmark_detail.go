@@ -18,7 +18,7 @@ type illustBookmarkDetailParams struct {
 //   - A pointer to IllustBookmarkDetail containing the bookmark info.
 //   - An error if the API request fails.
 func (a *AppPixivAPI) IllustBookmarkDetail(id uint64) (*models.IllustBookmarkDetail, error) {
-	path := "v2/illust/bookmark/detail"
+	const path = "v2/illust/bookmark/detail"
 
 	// Construct request parameters
 	params := &illustBookmarkDetailParams{
