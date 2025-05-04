@@ -47,6 +47,9 @@ IllustDetail(id uint64) (*models.Illust, error) {...}
 
 // 作品收藏详情
 IllustBookmarkDetail(id uint64) (*models.IllustBookmarkDetail, error) {...}
+
+// Following用户列表
+UserFollowing(userID uint64, opts *UserFollowingOptions) ([]models.UserPreview, int, error) {...}
 ```
 
 ## Usage
@@ -72,6 +75,9 @@ illust, err := app.IllustDetail(129899459)
 
 // Fetch illust bookmark details
 bookmark, err := app.IllustBookmarkDetail(129899459)
+
+// Fetch user following
+users, next, err := api.UserFollowing(11, nil)
 ```
 
 ## Link
