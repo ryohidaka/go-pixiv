@@ -53,6 +53,8 @@ UserFollowing(userID uint64, opts *UserFollowingOptions) ([]models.UserPreview, 
 
 // Followers用户列表
 UserFollower(userID uint64, opts *UserFollowerOptions) ([]models.UserPreview, int, error) {...}
+
+FetchAllUserIllusts(uid uint64, opts *UserIllustsOptions, sleepMs ...int) ([]models.Illust, error)
 ```
 
 ## Usage
@@ -84,6 +86,9 @@ users, next, err := api.UserFollowing(11, nil)
 
 // Fetch user follower
 users, next, err := api.UserFollower(11, nil)
+
+// Fetch all user illusts
+illusts, err := app.FetchAllUserIllusts(11, nil)
 ```
 
 ## Link
