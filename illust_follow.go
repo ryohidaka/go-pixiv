@@ -37,9 +37,10 @@ func (a *AppPixivAPI) IllustFollow(opts *IllustFollowOptions) ([]models.Illust, 
 		params.Offset = opts.Offset
 	}
 
+	// Initialize the response model
 	data := &models.IllustsResponse{}
 
-	// Send the API request with the constructed parameters
+	// Send the API request
 	if err := a.Request(path, params, data); err != nil {
 		return nil, 0, err
 	}

@@ -46,8 +46,10 @@ func (a *AppPixivAPI) UserBookmarksIllust(uid uint64, opts *UserBookmarksIllustO
 		params.Tag = opts.Tag
 	}
 
-	// Perform the API request and unmarshal the response into the IllustsResponse struct
+	// Initialize the response model
 	data := &models.IllustsResponse{}
+
+	// Send the API request
 	if err := a.Request(path, params, data); err != nil {
 		return nil, 0, err
 	}

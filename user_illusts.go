@@ -42,10 +42,10 @@ func (a *AppPixivAPI) UserIllusts(uid uint64, opts *UserIllustsOptions) ([]model
 		params.Offset = opts.Offset
 	}
 
-	// Allocate response container.
+	// Initialize the response model
 	data := &models.IllustsResponse{}
 
-	// Perform the API request.
+	// Send the API request
 	if err := a.Request(path, params, data); err != nil {
 		return nil, 0, err
 	}

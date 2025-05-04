@@ -28,7 +28,7 @@ func (a *AppPixivAPI) IllustBookmarkDetail(id uint64) (*models.IllustBookmarkDet
 	// Initialize the response model
 	data := &models.IllustBookmarkDetail{}
 
-	// Perform the API request with the specified path and parameters
+	// Send the API request
 	if err := a.Request(path, params, data); err != nil {
 		return nil, err
 	}
