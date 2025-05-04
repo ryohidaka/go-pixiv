@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.1](https://github.com/ryohidaka/go-pixiv/compare/v0.7.0...v0.7.1) (2025-05-04)
+
+
+### Bug Fixes
+
+* **model:** Remove unused model. ([c9c8971](https://github.com/ryohidaka/go-pixiv/commit/c9c897176efcdc92ab0e00e1f456a632d5863327))
+
 ## [0.7.0](https://github.com/ryohidaka/go-pixiv/compare/v0.6.0...v0.7.0) (2025-05-04)
 
 
