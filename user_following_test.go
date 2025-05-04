@@ -1,6 +1,7 @@
 package pixiv_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/ryohidaka/go-pixiv"
@@ -8,6 +9,22 @@ import (
 	"github.com/ryohidaka/go-pixiv/testutil"
 	"github.com/stretchr/testify/assert"
 )
+
+func ExampleAppPixivAPI_UserFollowing() {
+	// Get the refresh token used for authentication
+	refreshToken := testutil.GetRefreshToken()
+
+	// Create a new Pixiv App API client
+	app, _ := pixiv.NewApp(refreshToken)
+
+	// Fetch user following for user ID 11 (Pixiv official account)
+	users, _, _ := app.UserFollowing(11, nil)
+
+	for _, v := range users {
+		// Print the user name
+		fmt.Println("Name:", v.User.Name)
+	}
+}
 
 func TestUserFollowing(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
