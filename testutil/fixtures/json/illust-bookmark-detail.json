@@ -1,0 +1,39 @@
+{
+  "bookmark_detail": {
+    "is_bookmarked": true,
+    "tags": [
+      {
+        "name": "漫画",
+        "is_registered": false
+      },
+      {
+        "name": "公式企画",
+        "is_registered": false
+      },
+      {
+        "name": "企画目録",
+        "is_registered": false
+      },
+      {
+        "name": "公式コンテスト",
+        "is_registered": false
+      },
+      {
+        "name": "推し",
+        "is_registered": false
+      },
+      {
+        "name": "漫画アクション",
+        "is_registered": false
+      },
+      {
+        "name": "webアクション",
+        "is_registered": false
+      },
+      {
+        "name": "出張版アクション月例漫画賞",
+        "is_registered": false
+      }
+    ]
+  }
+}
