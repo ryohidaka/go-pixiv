@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/ryohidaka/go-pixiv/compare/v0.7.1...v0.8.0) (2025-05-04)
+
+
+### Features
+
+* **api:** Add UserFollowing() ([2e3cf7b](https://github.com/ryohidaka/go-pixiv/commit/2e3cf7b6eaddf2d0b948e1c9c4de1c86b433cbd2))
+
 ## [0.7.1](https://github.com/ryohidaka/go-pixiv/compare/v0.7.0...v0.7.1) (2025-05-04)
 
 
