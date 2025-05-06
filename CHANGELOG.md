@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.0](https://github.com/ryohidaka/go-pixiv/compare/v0.13.0...v0.14.0) (2025-05-06)
+
+
+### Features
+
+* **api:** Add FetchAllUserFollowers() ([7f47db5](https://github.com/ryohidaka/go-pixiv/commit/7f47db5077590b9749f0aa2ae602270c654d7fcb))
+* **api:** Modified userID to uid ([b08d176](https://github.com/ryohidaka/go-pixiv/commit/b08d176923c9b17553506beacfe986c9ad00c81f))
+
 ## [0.13.0](https://github.com/ryohidaka/go-pixiv/compare/v0.12.0...v0.13.0) (2025-05-06)
 
 
