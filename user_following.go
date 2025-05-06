@@ -1,6 +1,12 @@
 package pixiv
 
-import "github.com/ryohidaka/go-pixiv/models"
+import (
+	"log/slog"
+	"os"
+	"time"
+
+	"github.com/ryohidaka/go-pixiv/models"
+)
 
 // UserFollowingOptions defines optional parameters for retrieving the list of followed users.
 type UserFollowingOptions struct {
@@ -50,4 +56,59 @@ func (a *AppPixivAPI) UserFollowing(userID uint64, opts *UserFollowingOptions) (
 	// Parse the next page offset from the response's NextURL field
 	next, err := parseNextPageOffset(data.NextURL, OffsetFieldOffset)
 	return data.UserPreviews, next, err
+}
+
+// FetchAllUserFollowing retrieves all users followed by the specified user by paginating.
+//
+// Parameters:
+//   - userID: Pixiv user ID of the target user.
+//   - opts: Optional parameters such as Restrict. Offset will be managed internally.
+//   - sleepMs: Optional sleep duration between requests in milliseconds (default: 1000ms).
+//
+// Returns:
+//   - []models.UserPreview: A complete list of followed users.
+//   - error: Any error encountered during the request.
+func (a *AppPixivAPI) FetchAllUserFollowing(userID uint64, opts *UserFollowingOptions, sleepMs ...int) ([]models.UserPreview, error) {
+	var allUsers []models.UserPreview
+	var next int
+	var err error
+
+	// Use default sleep duration of 1000ms unless specified
+	sleepDuration := 1000 * time.Millisecond
+	if len(sleepMs) > 0 {
+		sleepDuration = time.Duration(sleepMs[0]) * time.Millisecond
+	}
+
+	// Logger setup
+	handler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{})
+	logger := slog.New(handler)
+
+	logger.Info("Fetching all followed users", "userID", userID)
+
+	for {
+		var users []models.UserPreview
+		users, next, err = a.UserFollowing(userID, opts)
+
+		logger.Info("Fetched users", "count", len(users), "nextOffset", next)
+
+		allUsers = append(allUsers, users...)
+		if err != nil {
+			logger.Error("Error fetching followed users", "error", err)
+			return allUsers, err
+		}
+
+		if next == 0 {
+			logger.Info("No more pages to fetch, exiting")
+			break
+		}
+
+		opts.Offset = &next
+
+		logger.Info("Sleeping before next request", "sleepDuration", sleepDuration)
+		time.Sleep(sleepDuration)
+	}
+
+	logger.Info("Total followed users fetched", "total", len(allUsers))
+
+	return allUsers, nil
 }
