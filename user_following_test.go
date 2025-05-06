@@ -58,3 +58,41 @@ func TestUserFollowing(t *testing.T) {
 		assert.Equal(t, "pixiv事務局", user.User.Name)
 	})
 }
+
+func TestFetchAllUserFollowing(t *testing.T) {
+	testutil.WithMockHTTP(t, func() {
+		// Mock: authentication response
+		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
+
+		// Mock: page 1 of user following
+		urlPage1 := pixiv.AppHosts + "v1/user/following?restrict=public&user_id=11"
+		err := testutil.MockResponseFromFile("GET", urlPage1, "v1/user/following")
+		assert.NoError(t, err)
+
+		// Mock: page 2 of user following (with offset)
+		urlPage2 := pixiv.AppHosts + "v1/user/following?offset=30&restrict=public&user_id=11"
+		err = testutil.MockResponseFromFile("GET", urlPage2, "v1/user/following_end")
+		assert.NoError(t, err)
+
+		// Initialize API instance
+		api, err := pixiv.NewApp("dummy-refresh-token")
+		assert.NoError(t, err)
+
+		// Prepare options
+		public := models.Public
+		opts := &pixiv.UserFollowingOptions{
+			Restrict: &public,
+		}
+
+		// Call the main function (no sleep between requests)
+		users, err := api.FetchAllUserFollowing(11, opts)
+		assert.NoError(t, err)
+		assert.Len(t, users, 2) // One user per page
+
+		// Verify contents of each user
+		assert.Equal(t, uint64(11), users[0].User.ID)
+		assert.Equal(t, uint64(11), users[1].User.ID)
+		assert.Equal(t, "pixiv事務局", users[0].User.Name)
+		assert.Equal(t, "pixiv事務局", users[1].User.Name)
+	})
+}
