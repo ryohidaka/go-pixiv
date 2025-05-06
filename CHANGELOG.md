@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.0](https://github.com/ryohidaka/go-pixiv/compare/v0.12.0...v0.13.0) (2025-05-06)
+
+
+### Features
+
+* **api:** Add FetchAllUserFollowing() ([a856d0e](https://github.com/ryohidaka/go-pixiv/commit/a856d0effc9806d4baad192cac14da71b7a2600c))
+
 ## [0.12.0](https://github.com/ryohidaka/go-pixiv/compare/v0.11.0...v0.12.0) (2025-05-06)
 
 
