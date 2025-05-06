@@ -60,3 +60,41 @@ func TestIllustFollow(t *testing.T) {
 		assert.Equal(t, "https://i.pximg.net/c/600x1200_90/img-master/img/2025/05/01/11/19/11/129899459_p0_master1200.jpg", illust.ImageURLs.Large)
 	})
 }
+
+func TestFetchAllIllustFollows(t *testing.T) {
+	testutil.WithMockHTTP(t, func() {
+		// Mock: authentication response
+		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
+
+		// Mock: page 1 of illust follow
+		urlPage1 := pixiv.AppHosts + "v2/illust/follow?restrict=public"
+		err := testutil.MockResponseFromFile("GET", urlPage1, "v2/illust/follow")
+		assert.NoError(t, err)
+
+		// Mock: page 2 of illust follow (with offset)
+		urlPage2 := pixiv.AppHosts + "v2/illust/follow?offset=30&restrict=public"
+		err = testutil.MockResponseFromFile("GET", urlPage2, "v2/illust/follow_end")
+		assert.NoError(t, err)
+
+		// Initialize API instance
+		api, err := pixiv.NewApp("dummy-refresh-token")
+		assert.NoError(t, err)
+
+		// Prepare options
+		public := models.Public
+		opts := &pixiv.IllustFollowOptions{
+			Restrict: &public,
+		}
+
+		// Call the main function (no sleep between requests)
+		illusts, err := api.FetchAllIllustFollows(opts)
+		assert.NoError(t, err)
+		assert.Len(t, illusts, 2) // One illustration per page
+
+		// Verify contents of each illustration
+		assert.Equal(t, uint64(129899459), illusts[0].ID)
+		assert.Equal(t, uint64(129899459), illusts[1].ID)
+		assert.Equal(t, "「出張版！アクション月例漫画賞」いよいよ開催！", illusts[0].Title)
+		assert.Equal(t, "「出張版！アクション月例漫画賞」いよいよ開催！", illusts[1].Title)
+	})
+}
