@@ -108,7 +108,7 @@ illusts, err := app.FetchAllIllustFollows(nil)
 users, err := app.FetchAllUserFollowing(11, nil)
 
 // Fetch all user follower
-users, err := app.FetchAllUserFollower(11, nil)
+users, err := app.FetchAllUserFollowers(11, nil)
 ```
 
 ## Link
