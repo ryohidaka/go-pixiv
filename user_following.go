@@ -23,19 +23,19 @@ type userFollowingParams struct {
 // UserFollowing fetches the list of users followed by the specified user.
 //
 // Parameters:
-//   - userID: Pixiv user ID of the target user.
+//   - uid: Pixiv user ID of the target user.
 //   - opts: Optional parameters for restricting visibility or paginating results.
 //
 // Returns:
 //   - A pointer to models.UserFollowList containing the list of followed users.
 //   - An integer indicating the offset for the next page, or 0 if there is no next page.
 //   - An error if the request fails.
-func (a *AppPixivAPI) UserFollowing(userID uint64, opts *UserFollowingOptions) ([]models.UserPreview, int, error) {
+func (a *AppPixivAPI) UserFollowing(uid uint64, opts *UserFollowingOptions) ([]models.UserPreview, int, error) {
 	const path = "v1/user/following"
 
 	// Construct request parameters
 	params := &userFollowingParams{
-		UserID:   userID,
+		UserID:   uid,
 		Restrict: models.Public,
 	}
 
@@ -61,14 +61,14 @@ func (a *AppPixivAPI) UserFollowing(userID uint64, opts *UserFollowingOptions) (
 // FetchAllUserFollowing retrieves all users followed by the specified user by paginating.
 //
 // Parameters:
-//   - userID: Pixiv user ID of the target user.
+//   - uid: Pixiv user ID of the target user.
 //   - opts: Optional parameters such as Restrict. Offset will be managed internally.
 //   - sleepMs: Optional sleep duration between requests in milliseconds (default: 1000ms).
 //
 // Returns:
 //   - []models.UserPreview: A complete list of followed users.
 //   - error: Any error encountered during the request.
-func (a *AppPixivAPI) FetchAllUserFollowing(userID uint64, opts *UserFollowingOptions, sleepMs ...int) ([]models.UserPreview, error) {
+func (a *AppPixivAPI) FetchAllUserFollowing(uid uint64, opts *UserFollowingOptions, sleepMs ...int) ([]models.UserPreview, error) {
 	var allUsers []models.UserPreview
 	var next int
 	var err error
@@ -83,11 +83,11 @@ func (a *AppPixivAPI) FetchAllUserFollowing(userID uint64, opts *UserFollowingOp
 	handler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{})
 	logger := slog.New(handler)
 
-	logger.Info("Fetching all followed users", "userID", userID)
+	logger.Info("Fetching all followed users", "userID", uid)
 
 	for {
 		var users []models.UserPreview
-		users, next, err = a.UserFollowing(userID, opts)
+		users, next, err = a.UserFollowing(uid, opts)
 
 		logger.Info("Fetched users", "count", len(users), "nextOffset", next)
 

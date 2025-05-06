@@ -49,10 +49,10 @@ IllustDetail(id uint64) (*models.Illust, error) {...}
 IllustBookmarkDetail(id uint64) (*models.IllustBookmarkDetail, error) {...}
 
 // Following用户列表
-UserFollowing(userID uint64, opts *UserFollowingOptions) ([]models.UserPreview, int, error) {...}
+UserFollowing(uid uint64, opts *UserFollowingOptions) ([]models.UserPreview, int, error) {...}
 
 // Followers用户列表
-UserFollower(userID uint64, opts *UserFollowerOptions) ([]models.UserPreview, int, error) {...}
+UserFollower(uid uint64, opts *UserFollowerOptions) ([]models.UserPreview, int, error) {...}
 
 FetchAllUserIllusts(uid uint64, opts *UserIllustsOptions, sleepMs ...int) ([]models.Illust, error)
 
@@ -60,7 +60,7 @@ FetchAllBookmarkedIllusts(uid uint64, opts *UserBookmarksIllustOptions, sleepMs 
 
 FetchAllIllustFollows(opts *IllustFollowOptions, sleepMs ...int) ([]models.Illust, error)
 
-FetchAllUserFollowing(userID uint64, opts *UserFollowingOptions, sleepMs ...int) ([]models.UserPreview, error)
+FetchAllUserFollowing(uid uint64, opts *UserFollowingOptions, sleepMs ...int) ([]models.UserPreview, error)
 ```
 
 ## Usage
