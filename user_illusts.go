@@ -77,12 +77,6 @@ func (a *AppPixivAPI) FetchAllUserIllusts(uid uint64, opts *UserIllustsOptions, 
 	var next int
 	var err error
 
-	// Use default sleep duration of 1000ms unless explicitly specified
-	sleepDuration := 1000 * time.Millisecond
-	if len(sleepMs) > 0 {
-		sleepDuration = time.Duration(sleepMs[0]) * time.Millisecond
-	}
-
 	// Initialize the slog logger
 	handler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{})
 	logger := slog.New(handler)
@@ -113,6 +107,8 @@ func (a *AppPixivAPI) FetchAllUserIllusts(uid uint64, opts *UserIllustsOptions, 
 		// Update offset for pagination
 		opts.Offset = &next
 
+		// Sleep between requests to avoid rate limits
+		sleepDuration := getSleepDuration(sleepMs...)
 		logger.Info("Sleeping before next request", "sleepDuration", sleepDuration)
 		time.Sleep(sleepDuration)
 	}

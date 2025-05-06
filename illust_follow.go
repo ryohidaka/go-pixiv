@@ -70,12 +70,6 @@ func (a *AppPixivAPI) FetchAllIllustFollows(opts *IllustFollowOptions, sleepMs .
 	var next int
 	var err error
 
-	// Use default sleep duration of 1000ms unless explicitly specified
-	sleepDuration := 1000 * time.Millisecond
-	if len(sleepMs) > 0 {
-		sleepDuration = time.Duration(sleepMs[0]) * time.Millisecond
-	}
-
 	// Set up the logger
 	handler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{})
 	logger := slog.New(handler)
@@ -101,6 +95,8 @@ func (a *AppPixivAPI) FetchAllIllustFollows(opts *IllustFollowOptions, sleepMs .
 
 		opts.Offset = &next
 
+		// Sleep between requests to avoid rate limits
+		sleepDuration := getSleepDuration(sleepMs...)
 		logger.Info("Sleeping before next request", "sleepDuration", sleepDuration)
 		time.Sleep(sleepDuration)
 	}

@@ -80,12 +80,6 @@ func (a *AppPixivAPI) FetchAllBookmarkedIllusts(uid uint64, opts *UserBookmarksI
 	var next int
 	var err error
 
-	// Use default sleep duration of 1000ms unless explicitly specified
-	sleepDuration := 1000 * time.Millisecond
-	if len(sleepMs) > 0 {
-		sleepDuration = time.Duration(sleepMs[0]) * time.Millisecond
-	}
-
 	// Initialize the slog logger with options
 	handler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{})
 	logger := slog.New(handler)
@@ -119,6 +113,7 @@ func (a *AppPixivAPI) FetchAllBookmarkedIllusts(uid uint64, opts *UserBookmarksI
 		opts.MaxBookmarkID = &next
 
 		// Sleep between requests to avoid rate limits
+		sleepDuration := getSleepDuration(sleepMs...)
 		logger.Info("Sleeping before next request", "sleepDuration", sleepDuration)
 		time.Sleep(sleepDuration)
 	}

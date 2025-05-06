@@ -73,12 +73,6 @@ func (a *AppPixivAPI) FetchAllUserFollowers(uid uint64, opts *UserFollowerOption
 	var next int
 	var err error
 
-	// Set default sleep duration (1000ms) or use provided value
-	sleepDuration := 1000 * time.Millisecond
-	if len(sleepMs) > 0 {
-		sleepDuration = time.Duration(sleepMs[0]) * time.Millisecond
-	}
-
 	// Logger setup
 	handler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{})
 	logger := slog.New(handler)
@@ -104,6 +98,8 @@ func (a *AppPixivAPI) FetchAllUserFollowers(uid uint64, opts *UserFollowerOption
 
 		opts.Offset = &next
 
+		// Sleep between requests to avoid rate limits
+		sleepDuration := getSleepDuration(sleepMs...)
 		logger.Info("Sleeping before next request", "sleepDuration", sleepDuration)
 		time.Sleep(sleepDuration)
 	}
