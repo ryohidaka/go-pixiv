@@ -26,6 +26,22 @@ func ExampleAppPixivAPI_UserFollower() {
 	}
 }
 
+func ExampleAppPixivAPI_FetchAllUserFollowers() {
+	// Get the refresh token used for authentication
+	refreshToken := testutil.GetRefreshToken()
+
+	// Create a new Pixiv App API client
+	app, _ := pixiv.NewApp(refreshToken)
+
+	// Fetch all user folower for user ID 11 (Pixiv official account)
+	users, _ := app.FetchAllUserFollowers(11, nil)
+
+	for _, v := range users {
+		// Print the user name
+		fmt.Println("Name:", v.User.Name)
+	}
+}
+
 func TestUserFollower(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the authentication response
