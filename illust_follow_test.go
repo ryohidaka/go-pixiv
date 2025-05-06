@@ -26,6 +26,22 @@ func ExampleAppPixivAPI_IllustFollow() {
 	}
 }
 
+func ExampleAppPixivAPI_FetchAllIllustFollows() {
+	// Get the refresh token used for authentication
+	refreshToken := testutil.GetRefreshToken()
+
+	// Create a new Pixiv App API client
+	app, _ := pixiv.NewApp(refreshToken)
+
+	// Fetch all illust from user follows
+	illusts, _ := app.FetchAllIllustFollows(nil)
+
+	for _, v := range illusts {
+		// Print the illust title
+		fmt.Println("Title:", v.Title)
+	}
+}
+
 func TestIllustFollow(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the authentication response
