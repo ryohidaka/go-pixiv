@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0](https://github.com/ryohidaka/go-pixiv/compare/v0.11.0...v0.12.0) (2025-05-06)
+
+
+### Features
+
+* **api:** Add FetchAllIllustFollows() ([f8f0294](https://github.com/ryohidaka/go-pixiv/commit/f8f0294a0991592cbfd2e3de3407e85f6fedce98))
+
 ## [0.11.0](https://github.com/ryohidaka/go-pixiv/compare/v0.10.0...v0.11.0) (2025-05-04)
 
 
