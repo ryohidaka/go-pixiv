@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.1](https://github.com/ryohidaka/go-pixiv/compare/v0.14.0...v0.14.1) (2025-05-08)
+
+
+### Bug Fixes
+
+* **models:** Add missing fields for User struct. ([39e2cae](https://github.com/ryohidaka/go-pixiv/commit/39e2caeef018367c77ad06b952cd7e755a6c15fb))
+* **models:** Modified Comment in User struct to be optional. ([c3f3c1a](https://github.com/ryohidaka/go-pixiv/commit/c3f3c1a9530a096a883a6e4b6f686eaa278e9c8c))
+
 ## [0.14.0](https://github.com/ryohidaka/go-pixiv/compare/v0.13.0...v0.14.0) (2025-05-06)
 
 
