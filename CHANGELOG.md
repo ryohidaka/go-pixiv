@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.14.2](https://github.com/ryohidaka/go-pixiv/compare/v0.14.1...v0.14.2) (2025-05-08)
+
+
+### Bug Fixes
+
+* **models:** Add missing fields for Illust struct. ([dc8611d](https://github.com/ryohidaka/go-pixiv/commit/dc8611de6c4d62009c4d67e5dcd13c9cf83e8d04))
+* **models:** Add request fields for Illust struct. ([31a56b1](https://github.com/ryohidaka/go-pixiv/commit/31a56b18a0e668293f258abd56de317d0580e2ad))
+* **models:** Fixed Illust.Type types to IllustType ([54800c1](https://github.com/ryohidaka/go-pixiv/commit/54800c1faaeab415c3b59ae528daf2f0590a31ff))
+* **models:** Fixed Tag.TranslatedName types to nullable ([f5826e2](https://github.com/ryohidaka/go-pixiv/commit/f5826e2d8f073cbda579276d23c62d022402ac90))
+
 ## [0.14.1](https://github.com/ryohidaka/go-pixiv/compare/v0.14.0...v0.14.1) (2025-05-08)
 
 
