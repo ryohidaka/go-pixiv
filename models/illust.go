@@ -47,8 +47,8 @@ type Images struct {
 }
 
 type Tag struct {
-	Name           string `json:"name"`
-	TranslatedName string `json:"translated_name"`
+	Name           string  `json:"name"`
+	TranslatedName *string `json:"translated_name"`
 }
 
 type Series struct {
