@@ -4,9 +4,9 @@ type User struct {
 	ID            uint64      `json:"id"`
 	Name          string      `json:"name"`
 	Account       string      `json:"account"`
+	ProfileImages *UserImages `json:"profile_image_urls"`
 	Comment       string      `json:"comment"`
 	IsFollowed    bool        `json:"is_followed"`
-	ProfileImages *UserImages `json:"profile_image_urls"`
 }
 
 type UserImages struct {
