@@ -14,7 +14,7 @@ type IllustResponse struct {
 type Illust struct {
 	ID             uint64          `json:"id"`
 	Title          string          `json:"title"`
-	Type           string          `json:"type"`
+	Type           IllustType      `json:"type"`
 	ImageURLs      *Images         `json:"image_urls"`
 	Caption        string          `json:"caption"`
 	Restrict       int             `json:"restrict"`
@@ -77,4 +77,5 @@ type IllustType string
 const (
 	IllustTypeIllust IllustType = "illust"
 	IllustTypeManga  IllustType = "manga"
+	IllustTypeUgoira IllustType = "ugoira"
 )
