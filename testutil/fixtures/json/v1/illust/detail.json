@@ -74,7 +74,30 @@
     "total_comments": 1,
     "illust_ai_type": 1,
     "illust_book_style": 0,
-    "request": null,
+    "request": {
+      "request_info": {
+        "fan_user_id": 129899459,
+        "collaborate_status": {
+          "collaborating": true,
+          "collaborate_anonymous_flag": true,
+          "collaborate_user_samples": []
+        },
+        "role": "others"
+      },
+      "request_users": [
+        {
+          "id": 129899459,
+          "name": "pixiv事務局",
+          "account": "pixiv",
+          "profile_image_urls": {
+            "medium": "https://s.pximg.net/common/images/no_profile.png"
+          },
+          "is_followed": false,
+          "is_access_blocking_user": false,
+          "is_accept_request": false
+        }
+      ]
+    },
     "comment_access_control": 0
   }
 }
