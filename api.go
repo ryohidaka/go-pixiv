@@ -145,7 +145,7 @@ func (s *AuthSession) RefreshAuth(force bool) (*models.Account, error) {
 		return nil, fmt.Errorf("missing refresh token")
 	}
 	if !force && time.Now().Before(s.ExpiresAt) {
-		slog.Info("No need to refresh token", slog.Time("expires_at", s.ExpiresAt))
+		slog.Debug("No need to refresh token", slog.Time("expires_at", s.ExpiresAt))
 		return nil, nil
 	}
 
