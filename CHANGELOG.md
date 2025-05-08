@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.3](https://github.com/ryohidaka/go-pixiv/compare/v0.14.2...v0.14.3) (2025-05-08)
+
+
+### Bug Fixes
+
+* **api:** Change log level. ([1e85f3e](https://github.com/ryohidaka/go-pixiv/commit/1e85f3e1d82e450361c4fc25887729aa6cd130bc))
+* **models:** Fixed Illust.Caption to optional ([cb5e4e2](https://github.com/ryohidaka/go-pixiv/commit/cb5e4e26e63ec670a3dcbd86b9f300eba4f3cd35))
+
 ## [0.14.2](https://github.com/ryohidaka/go-pixiv/compare/v0.14.1...v0.14.2) (2025-05-08)
 
 
