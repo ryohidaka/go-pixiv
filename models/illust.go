@@ -16,7 +16,7 @@ type Illust struct {
 	Title                string          `json:"title"`
 	Type                 IllustType      `json:"type"`
 	ImageURLs            *Images         `json:"image_urls"`
-	Caption              string          `json:"caption"`
+	Caption              *string         `json:"caption"`
 	Restrict             int             `json:"restrict"`
 	User                 *User           `json:"user"`
 	Tags                 []Tag           `json:"tags"`
