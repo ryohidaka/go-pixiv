@@ -38,6 +38,7 @@ type Illust struct {
 	TotalComments        int             `json:"total_comments"`
 	IllustAIType         IllustAIType    `json:"illust_ai_type"`
 	IllustBookStyle      int             `json:"illust_book_style"`
+	Request              *Request        `json:"request"`
 	CommentAccessControl *int            `json:"comment_access_control"` // `CommentAccessControl` is used only in IllustDetail
 }
 
