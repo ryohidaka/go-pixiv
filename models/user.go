@@ -5,7 +5,7 @@ type User struct {
 	Name          string      `json:"name"`
 	Account       string      `json:"account"`
 	ProfileImages *UserImages `json:"profile_image_urls"`
-	Comment       string      `json:"comment"`
+	Comment       *string     `json:"comment,omitempty"` // `Comment` is used only in UserDetail
 	IsFollowed    bool        `json:"is_followed"`
 }
 
