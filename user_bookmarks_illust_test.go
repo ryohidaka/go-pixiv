@@ -2,6 +2,7 @@ package pixiv_test
 
 import (
 	"fmt"
+	"os"
 	"testing"
 
 	"github.com/ryohidaka/go-pixiv"
@@ -12,7 +13,7 @@ import (
 
 func ExampleAppPixivAPI_UserBookmarksIllust() {
 	// Get the refresh token used for authentication
-	refreshToken := testutil.GetRefreshToken()
+	refreshToken := os.Getenv("PIXIV_REFRESH_TOKEN")
 
 	// Create a new Pixiv App API client
 	app, _ := pixiv.NewApp(refreshToken)
@@ -28,7 +29,7 @@ func ExampleAppPixivAPI_UserBookmarksIllust() {
 
 func ExampleAppPixivAPI_FetchAllBookmarkedIllusts() {
 	// Get the refresh token used for authentication
-	refreshToken := testutil.GetRefreshToken()
+	refreshToken := os.Getenv("PIXIV_REFRESH_TOKEN")
 
 	// Create a new Pixiv App API client
 	app, _ := pixiv.NewApp(refreshToken)

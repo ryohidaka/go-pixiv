@@ -17,12 +17,10 @@ jobs:
       - name: Gather dependencies
         run: go mod download
 
-      - name: Generate .env file
-        run: |
-          echo "PIXIV_REFRESH_TOKEN=${{ secrets.PIXIV_REFRESH_TOKEN }}" > .env
-
       - name: Run coverage
         run: go test -coverprofile=coverage.txt
+        env:
+          PIXIV_REFRESH_TOKEN: ${{ secrets.PIXIV_REFRESH_TOKEN }}
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5

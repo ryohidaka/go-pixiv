@@ -2,6 +2,7 @@ package pixiv_test
 
 import (
 	"fmt"
+	"os"
 
 	"testing"
 
@@ -13,7 +14,7 @@ import (
 
 func ExampleAppPixivAPI_UserDetail() {
 	// Get the refresh token used for authentication
-	refreshToken := testutil.GetRefreshToken()
+	refreshToken := os.Getenv("PIXIV_REFRESH_TOKEN")
 
 	// Create a new Pixiv App API client
 	app, _ := pixiv.NewApp(refreshToken)
