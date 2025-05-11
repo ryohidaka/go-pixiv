@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.0](https://github.com/ryohidaka/go-pixiv/compare/v0.14.3...v0.15.0) (2025-05-11)
+
+
+### Features
+
+* **api:** Changed the method of obtaining refresh tokens. ([cb14c52](https://github.com/ryohidaka/go-pixiv/commit/cb14c5278cfebc919c06512a6d339636269f6b7a))
+
 ## [0.14.3](https://github.com/ryohidaka/go-pixiv/compare/v0.14.2...v0.14.3) (2025-05-08)
 
 
