@@ -25,49 +25,11 @@ go get github.com/ryohidaka/go-pixiv
 
 Read [GoDoc](https://pkg.go.dev/github.com/ryohidaka/go-pixiv)
 
-## API functions
-
-### App-API (6.0 - app-api.pixiv.net)
-
-```go
-// 用户详情
-UserDetail(uid uint64, opts *UserDetailOptions) (*models.UserDetail, error) {...}
-
-// 用户作品列表
-UserIllusts(uid uint64, opts *UserIllustsOptions) ([]models.Illust, int, error) {...}
-
-// 用户收藏作品列表
-UserBookmarksIllust(uid uint64, opts *UserBookmarksIllustOptions) ([]models.Illust, int, error) {...}
-
-// 关注用户的新作
-IllustFollow(opts *IllustFollowOptions) ([]models.Illust, int, error) {...}
-
-// 作品详情 (类似PAPI.works(),iOS中未使用)
-IllustDetail(id uint64) (*models.Illust, error) {...}
-
-// 作品收藏详情
-IllustBookmarkDetail(id uint64) (*models.IllustBookmarkDetail, error) {...}
-
-// Following用户列表
-UserFollowing(uid uint64, opts *UserFollowingOptions) ([]models.UserPreview, int, error) {...}
-
-// Followers用户列表
-UserFollower(uid uint64, opts *UserFollowerOptions) ([]models.UserPreview, int, error) {...}
-
-FetchAllUserIllusts(uid uint64, opts *UserIllustsOptions, sleepMs ...int) ([]models.Illust, error)
-
-FetchAllBookmarkedIllusts(uid uint64, opts *UserBookmarksIllustOptions, sleepMs ...int) ([]models.Illust, error)
-
-FetchAllIllustFollows(opts *IllustFollowOptions, sleepMs ...int) ([]models.Illust, error)
-
-FetchAllUserFollowing(uid uint64, opts *UserFollowingOptions, sleepMs ...int) ([]models.UserPreview, error)
-
-FetchAllUserFollowers(uid uint64, opts *UserFollowerOptions, sleepMs ...int) ([]models.UserPreview, error)
-```
-
 ## Usage
 
 ```go
+import "github.com/ryohidaka/go-pixiv"
+
 // Create a new Pixiv App API client
 app, err := pixiv.NewApp("<YOUR_REFRESH_TOKEN>")
 
@@ -109,6 +71,46 @@ users, err := app.FetchAllUserFollowing(11, nil)
 
 // Fetch all user follower
 users, err := app.FetchAllUserFollowers(11, nil)
+```
+
+## API functions
+
+### App-API (6.0 - app-api.pixiv.net)
+
+```go
+// 用户详情
+UserDetail(uid uint64, opts *UserDetailOptions) (*models.UserDetail, error) {...}
+
+// 用户作品列表
+UserIllusts(uid uint64, opts *UserIllustsOptions) ([]models.Illust, int, error) {...}
+
+// 用户收藏作品列表
+UserBookmarksIllust(uid uint64, opts *UserBookmarksIllustOptions) ([]models.Illust, int, error) {...}
+
+// 关注用户的新作
+IllustFollow(opts *IllustFollowOptions) ([]models.Illust, int, error) {...}
+
+// 作品详情 (类似PAPI.works(),iOS中未使用)
+IllustDetail(id uint64) (*models.Illust, error) {...}
+
+// 作品收藏详情
+IllustBookmarkDetail(id uint64) (*models.IllustBookmarkDetail, error) {...}
+
+// Following用户列表
+UserFollowing(uid uint64, opts *UserFollowingOptions) ([]models.UserPreview, int, error) {...}
+
+// Followers用户列表
+UserFollower(uid uint64, opts *UserFollowerOptions) ([]models.UserPreview, int, error) {...}
+
+FetchAllUserIllusts(uid uint64, opts *UserIllustsOptions, sleepMs ...int) ([]models.Illust, error)
+
+FetchAllBookmarkedIllusts(uid uint64, opts *UserBookmarksIllustOptions, sleepMs ...int) ([]models.Illust, error)
+
+FetchAllIllustFollows(opts *IllustFollowOptions, sleepMs ...int) ([]models.Illust, error)
+
+FetchAllUserFollowing(uid uint64, opts *UserFollowingOptions, sleepMs ...int) ([]models.UserPreview, error)
+
+FetchAllUserFollowers(uid uint64, opts *UserFollowerOptions, sleepMs ...int) ([]models.UserPreview, error)
 ```
 
 ## Link
