@@ -37,13 +37,13 @@ app, err := pixiv.NewApp("<YOUR_REFRESH_TOKEN>")
 user, err := app.UserDetail(11)
 
 // Fetch user illusts
-illusts, next, err := app.UserIllusts(11, nil)
+illusts, next, err := app.UserIllusts(11)
 
 // Fetch user bookmarks illust
-illusts, next, err := app.UserBookmarksIllust(11, nil)
+illusts, next, err := app.UserBookmarksIllust(11)
 
 // Fetch illust from user follows
-illusts, next, err := app.IllustFollow(nil)
+illusts, next, err := app.IllustFollow()
 
 // Fetch illust details
 illust, err := app.IllustDetail(129899459)
@@ -52,25 +52,25 @@ illust, err := app.IllustDetail(129899459)
 bookmark, err := app.IllustBookmarkDetail(129899459)
 
 // Fetch user following
-users, next, err := api.UserFollowing(11, nil)
+users, next, err := api.UserFollowing(11)
 
 // Fetch user follower
-users, next, err := api.UserFollower(11, nil)
+users, next, err := api.UserFollower(11)
 
 // Fetch all user illusts
-illusts, err := app.FetchAllUserIllusts(11, nil)
+illusts, err := app.FetchAllUserIllusts(11)
 
 // Fetch all user bookmarks illust
-illusts, err := app.FetchAllBookmarkedIllusts(11, nil)
+illusts, err := app.FetchAllBookmarkedIllusts(11)
 
 // Fetch all user follow illust
-illusts, err := app.FetchAllIllustFollows(nil)
+illusts, err := app.FetchAllIllustFollows()
 
 // Fetch all user following
-users, err := app.FetchAllUserFollowing(11, nil)
+users, err := app.FetchAllUserFollowing(11)
 
 // Fetch all user follower
-users, err := app.FetchAllUserFollowers(11, nil)
+users, err := app.FetchAllUserFollowers(11)
 ```
 
 ## API functions
@@ -79,16 +79,16 @@ users, err := app.FetchAllUserFollowers(11, nil)
 
 ```go
 // 用户详情
-UserDetail(uid uint64, opts *UserDetailOptions) (*models.UserDetail, error) {...}
+UserDetail(uid uint64, opts ...UserDetailOptions) (*models.UserDetail, error) {...}
 
 // 用户作品列表
-UserIllusts(uid uint64, opts *UserIllustsOptions) ([]models.Illust, int, error) {...}
+UserIllusts(uid uint64, opts ...UserIllustsOptions) ([]models.Illust, int, error) {...}
 
 // 用户收藏作品列表
-UserBookmarksIllust(uid uint64, opts *UserBookmarksIllustOptions) ([]models.Illust, int, error) {...}
+UserBookmarksIllust(uid uint64, opts ...UserBookmarksIllustOptions) ([]models.Illust, int, error) {...}
 
 // 关注用户的新作
-IllustFollow(opts *IllustFollowOptions) ([]models.Illust, int, error) {...}
+IllustFollow(opts ...IllustFollowOptions) ([]models.Illust, int, error) {...}
 
 // 作品详情 (类似PAPI.works(),iOS中未使用)
 IllustDetail(id uint64) (*models.Illust, error) {...}
@@ -97,10 +97,10 @@ IllustDetail(id uint64) (*models.Illust, error) {...}
 IllustBookmarkDetail(id uint64) (*models.IllustBookmarkDetail, error) {...}
 
 // Following用户列表
-UserFollowing(uid uint64, opts *UserFollowingOptions) ([]models.UserPreview, int, error) {...}
+UserFollowing(uid uint64, opts ...UserFollowingOptions) ([]models.UserPreview, int, error) {...}
 
 // Followers用户列表
-UserFollower(uid uint64, opts *UserFollowerOptions) ([]models.UserPreview, int, error) {...}
+UserFollower(uid uint64, opts ...UserFollowerOptions) ([]models.UserPreview, int, error) {...}
 
 FetchAllUserIllusts(uid uint64, opts *UserIllustsOptions, sleepMs ...int) ([]models.Illust, error)
 
