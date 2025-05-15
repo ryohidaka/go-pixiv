@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.16.0](https://github.com/ryohidaka/go-pixiv/compare/v0.15.0...v0.16.0) (2025-05-15)
+
+
+### Features
+
+* **api:** Change query parameter to variable argument ([426c73a](https://github.com/ryohidaka/go-pixiv/commit/426c73a3ebe8fa17fe0ae966e080d07099304c90))
+
 ## [0.15.0](https://github.com/ryohidaka/go-pixiv/compare/v0.14.3...v0.15.0) (2025-05-11)
 
 
