@@ -35,7 +35,7 @@ type userBookmarksIllustParams struct {
 //   - []models.Illust: A list of illustrations.
 //   - int: The offset for the next page (based on max_bookmark_id), or 0 if there is no next page.
 //   - error: Any error encountered during the API request or pagination parsing.
-func (a *AppPixivAPI) UserBookmarksIllust(uid uint64, opts *UserBookmarksIllustOptions) ([]models.Illust, int, error) {
+func (a *AppPixivAPI) UserBookmarksIllust(uid uint64, opts ...UserBookmarksIllustOptions) ([]models.Illust, int, error) {
 	const path = "v1/user/bookmarks/illust"
 
 	// Construct request parameters
@@ -46,10 +46,11 @@ func (a *AppPixivAPI) UserBookmarksIllust(uid uint64, opts *UserBookmarksIllustO
 
 	// Populate optional parameters if opts is provided
 	if opts != nil {
-		params.Restrict = getRestrict(opts.Restrict)
-		params.Filter = opts.Filter
-		params.MaxBookmarkID = opts.MaxBookmarkID
-		params.Tag = opts.Tag
+		opt := opts[0]
+		params.Restrict = getRestrict(opt.Restrict)
+		params.Filter = opt.Filter
+		params.MaxBookmarkID = opt.MaxBookmarkID
+		params.Tag = opt.Tag
 	}
 
 	// Initialize the response model
@@ -90,7 +91,7 @@ func (a *AppPixivAPI) FetchAllBookmarkedIllusts(uid uint64, opts *UserBookmarksI
 	for {
 		// Retrieve a page of bookmarked illustrations
 		var illusts []models.Illust
-		illusts, next, err = a.UserBookmarksIllust(uid, opts)
+		illusts, next, err = a.UserBookmarksIllust(uid, []UserBookmarksIllustOptions{*opts}...)
 
 		// Log the number of illustrations fetched in this request
 		logger.Info("Fetched illustrations", "count", len(illusts), "nextBookmarkID", next)

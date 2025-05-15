@@ -33,7 +33,7 @@ type userIllustsParams struct {
 //   - []models.Illust: A slice of illustrations returned by the API.
 //   - int: The offset for the next page, if available (0 if not present).
 //   - error: An error if the API request or offset parsing fails.
-func (a *AppPixivAPI) UserIllusts(uid uint64, opts *UserIllustsOptions) ([]models.Illust, int, error) {
+func (a *AppPixivAPI) UserIllusts(uid uint64, opts ...UserIllustsOptions) ([]models.Illust, int, error) {
 	const path = "v1/user/illusts"
 
 	// Prepare parameters with required UserID.
@@ -43,9 +43,10 @@ func (a *AppPixivAPI) UserIllusts(uid uint64, opts *UserIllustsOptions) ([]model
 
 	// Apply optional parameters if provided.
 	if opts != nil {
-		params.Filter = opts.Filter
-		params.Type = opts.Type
-		params.Offset = opts.Offset
+		opt := opts[0]
+		params.Filter = opt.Filter
+		params.Type = opt.Type
+		params.Offset = opt.Offset
 	}
 
 	// Initialize the response model
@@ -86,7 +87,7 @@ func (a *AppPixivAPI) FetchAllUserIllusts(uid uint64, opts *UserIllustsOptions, 
 	for {
 		// Fetch a single page
 		var illusts []models.Illust
-		illusts, next, err = a.UserIllusts(uid, opts)
+		illusts, next, err = a.UserIllusts(uid, []UserIllustsOptions{*opts}...)
 
 		logger.Info("Fetched illustrations", "count", len(illusts), "nextOffset", next)
 

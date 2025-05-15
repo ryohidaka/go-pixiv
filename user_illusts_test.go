@@ -19,7 +19,7 @@ func ExampleAppPixivAPI_UserIllusts() {
 	app, _ := pixiv.NewApp(refreshToken)
 
 	// Fetch user illusts for user ID 11 (Pixiv official account)
-	illusts, _, _ := app.UserIllusts(11, nil)
+	illusts, _, _ := app.UserIllusts(11)
 
 	for _, v := range illusts {
 		// Print the illust title
@@ -59,7 +59,7 @@ func TestUserIllust(t *testing.T) {
 
 		// Prepare options
 		filter := "for_ios"
-		opts := &pixiv.UserIllustsOptions{
+		opts := pixiv.UserIllustsOptions{
 			Filter: &filter,
 		}
 

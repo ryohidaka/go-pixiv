@@ -30,7 +30,7 @@ type userFollowingParams struct {
 //   - A pointer to models.UserFollowList containing the list of followed users.
 //   - An integer indicating the offset for the next page, or 0 if there is no next page.
 //   - An error if the request fails.
-func (a *AppPixivAPI) UserFollowing(uid uint64, opts *UserFollowingOptions) ([]models.UserPreview, int, error) {
+func (a *AppPixivAPI) UserFollowing(uid uint64, opts ...UserFollowingOptions) ([]models.UserPreview, int, error) {
 	const path = "v1/user/following"
 
 	// Construct request parameters
@@ -41,8 +41,9 @@ func (a *AppPixivAPI) UserFollowing(uid uint64, opts *UserFollowingOptions) ([]m
 
 	// Populate optional parameters if opts is provided
 	if opts != nil {
-		params.Restrict = getRestrict(opts.Restrict)
-		params.Offset = opts.Offset
+		opt := opts[0]
+		params.Restrict = getRestrict(opt.Restrict)
+		params.Offset = opt.Offset
 	}
 
 	// Initialize the response model
@@ -81,7 +82,7 @@ func (a *AppPixivAPI) FetchAllUserFollowing(uid uint64, opts *UserFollowingOptio
 
 	for {
 		var users []models.UserPreview
-		users, next, err = a.UserFollowing(uid, opts)
+		users, next, err = a.UserFollowing(uid, []UserFollowingOptions{*opts}...)
 
 		logger.Info("Fetched users", "count", len(users), "nextOffset", next)
 

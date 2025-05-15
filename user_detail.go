@@ -21,7 +21,7 @@ type userDetailParams struct {
 // Returns:
 //   - A pointer to a models.UserDetail struct containing the user's information.
 //   - An error if the request fails or the response cannot be parsed.
-func (a *AppPixivAPI) UserDetail(uid uint64, opts *UserDetailOptions) (*models.UserDetail, error) {
+func (a *AppPixivAPI) UserDetail(uid uint64, opts ...UserDetailOptions) (*models.UserDetail, error) {
 	const path = "v1/user/detail"
 
 	// Construct request parameters
@@ -29,7 +29,8 @@ func (a *AppPixivAPI) UserDetail(uid uint64, opts *UserDetailOptions) (*models.U
 		UserID: uid,
 	}
 	if opts != nil {
-		params.Filter = opts.Filter
+		opt := opts[0]
+		params.Filter = opt.Filter
 	}
 
 	// Initialize the response model

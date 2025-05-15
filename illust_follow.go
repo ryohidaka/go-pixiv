@@ -29,7 +29,7 @@ type illustFollowParams struct {
 //   - A slice of Illust representing the retrieved illustrations.
 //   - An integer indicating the offset for the next page, or 0 if there is no next page.
 //   - An error if the request fails or the response cannot be parsed.
-func (a *AppPixivAPI) IllustFollow(opts *IllustFollowOptions) ([]models.Illust, int, error) {
+func (a *AppPixivAPI) IllustFollow(opts ...IllustFollowOptions) ([]models.Illust, int, error) {
 	const path = "v2/illust/follow"
 
 	// Construct request parameters
@@ -39,8 +39,9 @@ func (a *AppPixivAPI) IllustFollow(opts *IllustFollowOptions) ([]models.Illust, 
 
 	// Override default parameters if options are provided
 	if opts != nil {
-		params.Restrict = getRestrict(opts.Restrict)
-		params.Offset = opts.Offset
+		opt := opts[0]
+		params.Restrict = getRestrict(opt.Restrict)
+		params.Offset = opt.Offset
 	}
 
 	// Initialize the response model
@@ -78,7 +79,7 @@ func (a *AppPixivAPI) FetchAllIllustFollows(opts *IllustFollowOptions, sleepMs .
 
 	for {
 		var illusts []models.Illust
-		illusts, next, err = a.IllustFollow(opts)
+		illusts, next, err = a.IllustFollow([]IllustFollowOptions{*opts}...)
 
 		logger.Info("Fetched illustrations", "count", len(illusts), "nextOffset", next)
 

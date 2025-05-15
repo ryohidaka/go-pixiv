@@ -20,7 +20,7 @@ func ExampleAppPixivAPI_UserDetail() {
 	app, _ := pixiv.NewApp(refreshToken)
 
 	// Fetch user details for user ID 11 (Pixiv official account)
-	user, _ := app.UserDetail(11, nil)
+	user, _ := app.UserDetail(11)
 
 	// Print the user's name and account
 	fmt.Println("Name:", user.User.Name)
@@ -47,7 +47,7 @@ func TestUserDetail(t *testing.T) {
 		filter := "for_ios"
 
 		// Call the UserDetail method
-		detail, err := api.UserDetail(11, &pixiv.UserDetailOptions{
+		detail, err := api.UserDetail(11, pixiv.UserDetailOptions{
 			Filter: &filter,
 		})
 		assert.NoError(t, err)

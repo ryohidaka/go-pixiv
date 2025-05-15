@@ -19,7 +19,7 @@ func ExampleAppPixivAPI_IllustFollow() {
 	app, _ := pixiv.NewApp(refreshToken)
 
 	// Fetch illust from user follows
-	illusts, _, _ := app.IllustFollow(nil)
+	illusts, _, _ := app.IllustFollow()
 
 	for _, v := range illusts {
 		// Print the illust title
@@ -59,7 +59,7 @@ func TestIllustFollow(t *testing.T) {
 
 		// Prepare options
 		public := models.Public
-		opts := &pixiv.IllustFollowOptions{
+		opts := pixiv.IllustFollowOptions{
 			Restrict: &public,
 		}
 

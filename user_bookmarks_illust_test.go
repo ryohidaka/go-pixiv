@@ -19,7 +19,7 @@ func ExampleAppPixivAPI_UserBookmarksIllust() {
 	app, _ := pixiv.NewApp(refreshToken)
 
 	// Fetch user bookmarks illust for user ID 11 (Pixiv official account)
-	illusts, _, _ := app.UserBookmarksIllust(11, nil)
+	illusts, _, _ := app.UserBookmarksIllust(11)
 
 	for _, v := range illusts {
 		// Print the illust title
@@ -60,7 +60,7 @@ func TestUserBookmarksIllust(t *testing.T) {
 		// Prepare options
 		filter := "for_ios"
 		public := models.Public
-		opts := &pixiv.UserBookmarksIllustOptions{
+		opts := pixiv.UserBookmarksIllustOptions{
 			Filter:   &filter,
 			Restrict: &public,
 		}

@@ -19,7 +19,7 @@ func ExampleAppPixivAPI_UserFollower() {
 	app, _ := pixiv.NewApp(refreshToken)
 
 	// Fetch user followers for user ID 11 (Pixiv official account)
-	users, _, _ := app.UserFollower(11, nil)
+	users, _, _ := app.UserFollower(11)
 
 	for _, v := range users {
 		// Print the user name
@@ -59,7 +59,7 @@ func TestUserFollower(t *testing.T) {
 
 		// Prepare options
 		public := models.Public
-		opts := &pixiv.UserFollowerOptions{
+		opts := pixiv.UserFollowerOptions{
 			Restrict: &public,
 		}
 
