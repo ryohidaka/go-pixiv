@@ -63,25 +63,25 @@ users, next, err := api.UserFollower(11)
 ### Crawler
 
 ```go
-import "github.com/ryohidaka/go-pixiv"
+import "github.com/ryohidaka/go-pixiv/crawler"
 
-// Create a new Pixiv App API client
-app, err := pixiv.NewApp("<YOUR_REFRESH_TOKEN>")
+// Create a new Pixiv Crawler
+crawler, err := crawler.NewCrawler(refreshToken)
 
 // Fetch all user illusts
-illusts, err := app.FetchAllUserIllusts(11)
+illusts, err := crawler.FetchAllUserIllusts(11)
 
 // Fetch all user bookmarks illust
-illusts, err := app.FetchAllBookmarkedIllusts(11)
+illusts, err := crawler.FetchAllBookmarkedIllusts(11)
 
 // Fetch all user follow illust
-illusts, err := app.FetchAllIllustFollows()
+illusts, err := crawler.FetchAllIllustFollows()
 
 // Fetch all user following
-users, err := app.FetchAllUserFollowing(11)
+users, err := crawler.FetchAllUserFollowing(11)
 
 // Fetch all user follower
-users, err := app.FetchAllUserFollowers(11)
+users, err := crawler.FetchAllUserFollowers(11)
 ```
 
 ## API functions
