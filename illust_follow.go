@@ -1,10 +1,6 @@
 package pixiv
 
 import (
-	"log/slog"
-	"os"
-	"time"
-
 	"github.com/ryohidaka/go-pixiv/models"
 )
 
@@ -55,54 +51,4 @@ func (a *AppPixivAPI) IllustFollow(opts ...IllustFollowOptions) ([]models.Illust
 	// Parse the next page offset from the response's NextURL field
 	next, err := parseNextPageOffset(data.NextURL, OffsetFieldOffset)
 	return data.Illusts, next, err
-}
-
-// FetchAllIllustFollows retrieves all illustrations from followed users by paginating.
-//
-// Parameters:
-//   - opts: Optional parameters for the follow illust request (e.g. Restrict).
-//   - sleepMs: Optional sleep duration between requests in milliseconds (default: 1000ms).
-//
-// Returns:
-//   - []models.Illust: A combined list of all retrieved follow illustrations.
-//   - error: Any error encountered during the API request.
-func (a *AppPixivAPI) FetchAllIllustFollows(opts *IllustFollowOptions, sleepMs ...int) ([]models.Illust, error) {
-	var allIllusts []models.Illust
-	var next int
-	var err error
-
-	// Set up the logger
-	handler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{})
-	logger := slog.New(handler)
-
-	logger.Info("Fetching followed users' illustrations")
-
-	for {
-		var illusts []models.Illust
-		illusts, next, err = a.IllustFollow([]IllustFollowOptions{*opts}...)
-
-		logger.Info("Fetched illustrations", "count", len(illusts), "nextOffset", next)
-
-		allIllusts = append(allIllusts, illusts...)
-		if err != nil {
-			logger.Error("Error fetching follow illustrations", "error", err)
-			return allIllusts, err
-		}
-
-		if next == 0 {
-			logger.Info("No more pages to fetch, exiting")
-			break
-		}
-
-		opts.Offset = &next
-
-		// Sleep between requests to avoid rate limits
-		sleepDuration := getSleepDuration(sleepMs...)
-		logger.Info("Sleeping before next request", "sleepDuration", sleepDuration)
-		time.Sleep(sleepDuration)
-	}
-
-	logger.Info("Total illustrations fetched", "total", len(allIllusts))
-
-	return allIllusts, nil
 }
