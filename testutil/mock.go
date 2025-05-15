@@ -17,12 +17,21 @@ import (
 // - method: The HTTP method (e.g., "GET", "POST")
 // - url: The URL path for which the mock response will be registered
 // - path: The name of the JSON file that contains the mock response data
+// - isSubDir (optional): If true, looks for file in ../testutil; default is false (testutil)
 //
 // Returns:
 // - An error if there is an issue reading the file or registering the mock response
-func MockResponseFromFile(method, url, path string) error {
+func MockResponseFromFile(method, url, path string, isSubDir ...bool) error {
+	basePath := "testutil"
+	if len(isSubDir) > 0 && isSubDir[0] {
+		basePath = "../testutil"
+	}
+
+	// Build full file path
+	filePath := fmt.Sprintf("%s/fixtures/json/%s.json", basePath, path)
+
 	// Open the JSON file for reading
-	file, err := os.Open("testutil/fixtures/json/" + path + ".json")
+	file, err := os.Open(filePath)
 	if err != nil {
 		return fmt.Errorf("could not open mock response file: %v", err)
 	}
