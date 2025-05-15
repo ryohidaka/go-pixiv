@@ -27,6 +27,8 @@ Read [GoDoc](https://pkg.go.dev/github.com/ryohidaka/go-pixiv)
 
 ## Usage
 
+### API functions
+
 ```go
 import "github.com/ryohidaka/go-pixiv"
 
@@ -56,6 +58,15 @@ users, next, err := api.UserFollowing(11)
 
 // Fetch user follower
 users, next, err := api.UserFollower(11)
+```
+
+### Crawler
+
+```go
+import "github.com/ryohidaka/go-pixiv"
+
+// Create a new Pixiv App API client
+app, err := pixiv.NewApp("<YOUR_REFRESH_TOKEN>")
 
 // Fetch all user illusts
 illusts, err := app.FetchAllUserIllusts(11)
@@ -101,7 +112,11 @@ UserFollowing(uid uint64, opts ...UserFollowingOptions) ([]models.UserPreview, i
 
 // Followers用户列表
 UserFollower(uid uint64, opts ...UserFollowerOptions) ([]models.UserPreview, int, error) {...}
+```
 
+## Crawler
+
+```go
 FetchAllUserIllusts(uid uint64, opts *UserIllustsOptions, sleepMs ...int) ([]models.Illust, error)
 
 FetchAllBookmarkedIllusts(uid uint64, opts *UserBookmarksIllustOptions, sleepMs ...int) ([]models.Illust, error)
