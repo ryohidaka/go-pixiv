@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.17.0](https://github.com/ryohidaka/go-pixiv/compare/v0.16.0...v0.17.0) (2025-05-15)
+
+
+### Features
+
+* **crawler:** Add NewCrawler() ([8c1e2a2](https://github.com/ryohidaka/go-pixiv/commit/8c1e2a202b89b671d2f1bf6f27caebb7dbd909a9))
+* **crawler:** Move FetchAllBookmarkedIllusts() to crawler ([f855374](https://github.com/ryohidaka/go-pixiv/commit/f8553749b2850b66cb65e67c5852f2f1ad340a87))
+* **crawler:** Move FetchAllIllustFollows() to crawler ([cb17c4d](https://github.com/ryohidaka/go-pixiv/commit/cb17c4d3fbd32d635e8c66539648e51af32132a0))
+* **crawler:** Move FetchAllUserFollowers() to crawler ([988b413](https://github.com/ryohidaka/go-pixiv/commit/988b413cc02e6d8c1f986a22a6924106e1062bbb))
+* **crawler:** Move FetchAllUserFollowing() to crawler ([4e9a96a](https://github.com/ryohidaka/go-pixiv/commit/4e9a96a3e3f3c670df793eb2dc80f015d03cc366))
+* **crawler:** Move FetchAllUserIllusts() to crawler ([c50f7c2](https://github.com/ryohidaka/go-pixiv/commit/c50f7c29db8114df264f6af14db8ffea5a98a4fb))
+* **crawler:** Move getSleepDuration() to crawler ([c70e540](https://github.com/ryohidaka/go-pixiv/commit/c70e540a3f33660dd13b18bd4c6c7a4eeaff92ef))
+
 ## [0.16.0](https://github.com/ryohidaka/go-pixiv/compare/v0.15.0...v0.16.0) (2025-05-15)
 
 
