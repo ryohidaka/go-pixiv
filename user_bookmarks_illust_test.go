@@ -19,7 +19,7 @@ func ExampleAppPixivAPI_UserBookmarksIllust() {
 	app, _ := pixiv.NewApp(refreshToken)
 
 	// Fetch user bookmarks illust for user ID 11 (Pixiv official account)
-	illusts, _, _ := app.UserIllusts(11, nil)
+	illusts, _, _ := app.UserBookmarksIllust(11, nil)
 
 	for _, v := range illusts {
 		// Print the illust title
