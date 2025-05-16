@@ -58,6 +58,9 @@ users, next, err := api.UserFollowing(11)
 
 // Fetch user follower
 users, next, err := api.UserFollower(11)
+
+// Follow user with user ID
+ok, err := api.UserFollowAdd(11)
 ```
 
 ### Crawler
@@ -112,6 +115,9 @@ UserFollowing(uid uint64, opts ...UserFollowingOptions) ([]models.UserPreview, i
 
 // Followers用户列表
 UserFollower(uid uint64, opts ...UserFollowerOptions) ([]models.UserPreview, int, error) {...}
+
+// 关注用户
+UserFollowAdd(uid uint64, restrict ...models.Restrict) {...}
 ```
 
 ## Crawler
