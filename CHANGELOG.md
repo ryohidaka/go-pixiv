@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.19.0](https://github.com/ryohidaka/go-pixiv/compare/v0.18.0...v0.19.0) (2025-05-16)
+
+
+### Features
+
+* **api:** Add UserFollowAdd() ([5c8b745](https://github.com/ryohidaka/go-pixiv/commit/5c8b74580702faf7d2c7122670e471512c5b0974))
+* **api:** Add UserFollowDelete() ([14852d3](https://github.com/ryohidaka/go-pixiv/commit/14852d317d04a8dec7c228397c8582e3e44ef8a1))
+
+
+### Bug Fixes
+
+* **api:** Support for empty API responses ([6c444ad](https://github.com/ryohidaka/go-pixiv/commit/6c444ade919a8dc8d57b9089584bf393ce866a6d))
+
 ## [0.18.0](https://github.com/ryohidaka/go-pixiv/compare/v0.17.0...v0.18.0) (2025-05-16)
 
 
