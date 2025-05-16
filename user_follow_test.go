@@ -54,3 +54,34 @@ func TestUserFollowAdd(t *testing.T) {
 		}
 	})
 }
+
+// TestUserFollowDelete tests the UserFollowDelete method of AppPixivAPI
+func TestUserFollowDelete(t *testing.T) {
+	testutil.WithMockHTTP(t, func() {
+		// Mock the authentication response
+		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
+
+		// Mock the user follower response
+		url := pixiv.AppHosts + "v1/user/follow/delete"
+		err := testutil.MockResponseFromFile("POST", url, "empty")
+		assert.NoError(t, err)
+
+		// Initialize the AppPixivAPI instance
+		api, err := pixiv.NewApp("dummy-refresh-token")
+		assert.NoError(t, err)
+
+		// Call UserFollowDelete with a specific userID
+		userID := uint64(12345678)
+
+		ok, err := api.UserFollowDelete(userID)
+		assert.NoError(t, err)
+		assert.True(t, ok, "UserFollowDelete should return true on success")
+
+		// Verify request was made as expected
+		info := httpmock.GetCallCountInfo()
+		key := fmt.Sprintf("POST %s", url)
+		if info[key] != 1 {
+			t.Errorf("expected 1 POST request to %s, but got %d", url, info[key])
+		}
+	})
+}
