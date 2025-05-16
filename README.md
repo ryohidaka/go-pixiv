@@ -91,6 +91,9 @@ users, err := crawler.FetchAllUserFollowers(11)
 
 // Follow user with user IDs
 processed, err := c.UserFollowAddMultiple([]uint64{11})
+
+// Unfollow user with user IDs
+processed, err := c.UserFollowDeleteMultiple([]uint64{11})
 ```
 
 ## API functions
@@ -146,6 +149,8 @@ FetchAllUserFollowing(uid uint64, opts *UserFollowingOptions, sleepMs ...int) ([
 FetchAllUserFollowers(uid uint64, opts *UserFollowerOptions, sleepMs ...int) ([]models.UserPreview, error) {...}
 
 UserFollowAddMultiple(uids []uint64, restrict ...models.Restrict) ([]uint64, error) {...}
+
+UserFollowDeleteMultiple(uids []uint64) ([]uint64, error) {...}
 ```
 
 ## Link
