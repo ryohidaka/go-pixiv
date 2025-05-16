@@ -2,6 +2,7 @@ package pixiv
 
 import (
 	"fmt"
+	"log/slog"
 	"net/url"
 	"strings"
 
@@ -29,6 +30,8 @@ func (a *AppPixivAPI) UserFollowAdd(uid uint64, restrict ...models.Restrict) (bo
 		r = restrict[0]
 	}
 
+	slog.Info(fmt.Sprintf("Follow User: %d (%s)", uid, r))
+
 	// Construct form-encoded data
 	data := url.Values{}
 	data.Set("user_id", fmt.Sprintf("%d", uid))
@@ -55,6 +58,8 @@ func (a *AppPixivAPI) UserFollowAdd(uid uint64, restrict ...models.Restrict) (bo
 //   - error: An error object if the request fails; otherwise, nil.
 func (a *AppPixivAPI) UserFollowDelete(uid uint64) (bool, error) {
 	const path = "v1/user/follow/delete"
+
+	slog.Info(fmt.Sprintf("Unfollow User: %d", uid))
 
 	// Construct form-encoded data
 	data := url.Values{}
