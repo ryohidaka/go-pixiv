@@ -133,19 +133,19 @@ UserFollowDelete(uid uint64) (bool, error) {...}
 
 ```go
 // 获取指定用户的作品列表
-FetchAllUserIllusts(uid uint64, opts *UserIllustsOptions, sleepMs ...int) ([]models.Illust, error)
+FetchAllUserIllusts(uid uint64, opts *UserIllustsOptions, sleepMs ...int) ([]models.Illust, error) {...}
 
 // 获取指定用户的收藏列表
-FetchAllBookmarkedIllusts(uid uint64, opts *UserBookmarksIllustOptions, sleepMs ...int) ([]models.Illust, error)
+FetchAllBookmarkedIllusts(uid uint64, opts *UserBookmarksIllustOptions, sleepMs ...int) ([]models.Illust, error) {...}
 
-FetchAllIllustFollows(opts *IllustFollowOptions, sleepMs ...int) ([]models.Illust, error)
+FetchAllIllustFollows(opts *IllustFollowOptions, sleepMs ...int) ([]models.Illust, error) {...}
 
 // 获取指定用户跟踪的用户列表
-FetchAllUserFollowing(uid uint64, opts *UserFollowingOptions, sleepMs ...int) ([]models.UserPreview, error)
+FetchAllUserFollowing(uid uint64, opts *UserFollowingOptions, sleepMs ...int) ([]models.UserPreview, error) {...}
 
-FetchAllUserFollowers(uid uint64, opts *UserFollowerOptions, sleepMs ...int) ([]models.UserPreview, error)
+FetchAllUserFollowers(uid uint64, opts *UserFollowerOptions, sleepMs ...int) ([]models.UserPreview, error) {...}
 
-UserFollowAddMultiple(uids []uint64, restrict ...models.Restrict) ([]uint64, error)
+UserFollowAddMultiple(uids []uint64, restrict ...models.Restrict) ([]uint64, error) {...}
 ```
 
 ## Link
