@@ -28,7 +28,7 @@ func (a *AppPixivAPI) IllustDetail(id uint64) (*models.Illust, error) {
 	data := &models.IllustResponse{}
 
 	// Send the API request
-	if err := a.Request(path, params, data); err != nil {
+	if err := a.Get(path, params, data); err != nil {
 		return nil, err
 	}
 

@@ -39,7 +39,7 @@ func TestAppPixivAPIRequest(t *testing.T) {
 		api, err := pixiv.NewApp("dummy-refresh-token")
 		assert.NoError(t, err)
 
-		// Call the request method
+		// Call the GET method wrapper
 		type response struct {
 			User struct {
 				ID   int    `json:"id"`
@@ -47,7 +47,7 @@ func TestAppPixivAPIRequest(t *testing.T) {
 			} `json:"user"`
 		}
 		var out response
-		err = api.Request("v1/user/detail", struct {
+		err = api.Get("v1/user/detail", struct {
 			UserID int `url:"user_id"`
 		}{UserID: 123}, &out)
 		assert.NoError(t, err)

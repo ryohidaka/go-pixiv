@@ -44,7 +44,7 @@ func (a *AppPixivAPI) IllustFollow(opts ...IllustFollowOptions) ([]models.Illust
 	data := &models.IllustsResponse{}
 
 	// Send the API request
-	if err := a.Request(path, params, data); err != nil {
+	if err := a.Get(path, params, data); err != nil {
 		return nil, 0, err
 	}
 

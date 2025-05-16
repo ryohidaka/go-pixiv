@@ -3,6 +3,7 @@ package pixiv
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"log/slog"
 	"net/http"
 	"net/url"
@@ -64,18 +65,34 @@ func NewApp(refreshToken string) (*AppPixivAPI, error) {
 	}, nil
 }
 
-// request sends a GET request to the specified Pixiv API endpoint,
+// Get sends a GET request to the specified path with query parameters,
+// and decodes the JSON response into the provided output structure.
+//
+// Parameters:
+//   - path: API endpoint path (e.g., "/v1/user/detail").
+//   - queryStruct: Struct containing query parameters, encoded via `query.Values`.
+//   - out: Pointer to a variable to store the decoded response.
+//
+// Returns:
+//   - error: An error if the request or decoding fails.
+func (a *AppPixivAPI) Get(path string, queryStruct any, out any) error {
+	return a.request("GET", path, queryStruct, nil, out)
+}
+
+// Request sends an HTTP request (GET, POST, etc.) to the specified Pixiv API endpoint,
 // optionally including OAuth authorization.
 //
 // Parameters:
+//   - method: HTTP method (e.g., "GET", "POST").
 //   - path: API path (e.g., "/v1/user/detail").
 //   - queryStruct: Struct containing query parameters, encoded via `query.Values`.
+//   - body: Optional request body (e.g., for POST), can be nil.
 //   - out: A pointer to a variable where the response will be decoded.
 //
 // Returns:
 //   - error: An error if request or decoding fails.
-func (a *AppPixivAPI) Request(path string, queryStruct any, out any) error {
-	slog.Debug("Request start", slog.String("path", path))
+func (a *AppPixivAPI) request(method, path string, queryStruct any, body io.Reader, out any) error {
+	slog.Debug("Request start", slog.String("method", method), slog.String("path", path))
 	if err := a.refreshTokenIfNeeded(); err != nil {
 		return err
 	}
@@ -86,7 +103,7 @@ func (a *AppPixivAPI) Request(path string, queryStruct any, out any) error {
 		return err
 	}
 
-	req, err := a.createRequest("GET", reqURL)
+	req, err := a.createRequest(method, reqURL, body)
 	if err != nil {
 		slog.Error("Failed to create request", slog.String("error", err.Error()))
 		return err
@@ -137,14 +154,15 @@ func (a *AppPixivAPI) buildRequestURL(path string, queryStruct any) (*url.URL, e
 // createRequest creates a new HTTP request with required headers.
 //
 // Parameters:
-//   - method: HTTP method (e.g., "GET").
+//   - method: HTTP method (e.g., "GET", "POST").
 //   - reqURL: The full request URL.
+//   - body: Optional request body (e.g., for POST), can be nil.
 //
 // Returns:
 //   - *http.Request: The constructed HTTP request.
 //   - error: An error if request creation fails.
-func (a *AppPixivAPI) createRequest(method string, reqURL *url.URL) (*http.Request, error) {
-	req, err := http.NewRequest(method, reqURL.String(), nil)
+func (a *AppPixivAPI) createRequest(method string, reqURL *url.URL, body io.Reader) (*http.Request, error) {
+	req, err := http.NewRequest(method, reqURL.String(), body)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create HTTP request: %w", err)
 	}
@@ -155,6 +173,11 @@ func (a *AppPixivAPI) createRequest(method string, reqURL *url.URL) (*http.Reque
 		"App-OS-VERSION": AppOSVersion,
 		"App-OS":         AppOS,
 		"Authorization":  "Bearer " + a.auth.AccessToken,
+	}
+
+	// Content-Type is set for methods with body
+	if body != nil && (method == "POST" || method == "PUT" || method == "PATCH") {
+		headers["Content-Type"] = "application/x-www-form-urlencoded"
 	}
 
 	setHeaders(req, headers)
