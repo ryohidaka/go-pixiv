@@ -35,7 +35,7 @@ func TestUserFollowAddMultiple(t *testing.T) {
 		// Mock the authentication response
 		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token", true)
 
-		// Mock the user follower response
+		// Mock the user follow response
 		url := pixiv.AppHosts + "v1/user/follow/add"
 		err := testutil.MockResponseFromFile("POST", url, "empty", true)
 		assert.NoError(t, err)
@@ -49,6 +49,36 @@ func TestUserFollowAddMultiple(t *testing.T) {
 		restrict := models.Private
 
 		processed, err := crawler.UserFollowAddMultiple(uids, restrict)
+		assert.NoError(t, err)
+		assert.Equal(t, []uint64{12345678}, processed)
+
+		// Verify request was made as expected
+		info := httpmock.GetCallCountInfo()
+		key := fmt.Sprintf("POST %s", url)
+		if info[key] != 1 {
+			t.Errorf("expected 1 POST request to %s, but got %d", url, info[key])
+		}
+	})
+}
+
+func TestUserFollowDeleteMultiple(t *testing.T) {
+	testutil.WithMockHTTP(t, func() {
+		// Mock the authentication response
+		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token", true)
+
+		// Mock the user unfollow response
+		url := pixiv.AppHosts + "v1/user/follow/delete"
+		err := testutil.MockResponseFromFile("POST", url, "empty", true)
+		assert.NoError(t, err)
+
+		// Initialize Crawler instance
+		crawler, err := crawler.NewCrawler("dummy-refresh-token")
+		assert.NoError(t, err)
+
+		// Call UserFollowDeleteMultiple with a specific uids and restrict mode
+		uids := []uint64{12345678}
+
+		processed, err := crawler.UserFollowDeleteMultiple(uids)
 		assert.NoError(t, err)
 		assert.Equal(t, []uint64{12345678}, processed)
 
