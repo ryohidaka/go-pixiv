@@ -2,6 +2,7 @@ package pixiv_test
 
 import (
 	"fmt"
+	"os"
 	"testing"
 
 	"github.com/jarcoal/httpmock"
@@ -10,6 +11,17 @@ import (
 	"github.com/ryohidaka/go-pixiv/testutil"
 	"github.com/stretchr/testify/assert"
 )
+
+func ExampleAppPixivAPI_UserFollowAdd() {
+	// Get the refresh token used for authentication
+	refreshToken := os.Getenv("PIXIV_REFRESH_TOKEN")
+
+	// Create a new Pixiv App API client
+	app, _ := pixiv.NewApp(refreshToken)
+
+	// Send a follow request to user ID 11 (Pixiv official account)
+	app.UserFollowAdd(11)
+}
 
 // TestUserFollowAdd tests the UserFollowAdd method of AppPixivAPI
 func TestUserFollowAdd(t *testing.T) {
