@@ -2,6 +2,7 @@ package crawler_test
 
 import (
 	"fmt"
+	"os"
 	"testing"
 
 	"github.com/jarcoal/httpmock"
@@ -11,6 +12,23 @@ import (
 	"github.com/ryohidaka/go-pixiv/testutil"
 	"github.com/stretchr/testify/assert"
 )
+
+func ExamplePixivCrawler_UserFollowAddMultiple() {
+	// Get the refresh token used for authentication
+	refreshToken := os.Getenv("PIXIV_REFRESH_TOKEN")
+
+	// Create a new Pixiv Crawler
+	c, _ := crawler.NewCrawler(refreshToken)
+
+	// Follow multiple users
+	uids := []uint64{11}
+	processed, _ := c.UserFollowAddMultiple(uids)
+
+	for _, v := range processed {
+		// Print the user id
+		fmt.Println("User ID:", v)
+	}
+}
 
 func TestUserFollowAddMultiple(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
