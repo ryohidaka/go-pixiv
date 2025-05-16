@@ -223,5 +223,11 @@ func (a *AppPixivAPI) handleResponse(req *http.Request, out any) error {
 		return fmt.Errorf("API error: %d %s", resp.StatusCode, http.StatusText(resp.StatusCode))
 	}
 
+	// Skip decoding if output destination is nil
+	if out == nil {
+		return nil
+	}
+
+	// Decode JSON response into the provided output variable
 	return json.NewDecoder(resp.Body).Decode(out)
 }
