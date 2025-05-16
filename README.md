@@ -88,6 +88,9 @@ users, err := crawler.FetchAllUserFollowing(11)
 
 // Fetch all user follower
 users, err := crawler.FetchAllUserFollowers(11)
+
+// Follow user with user IDs
+processed, err := c.UserFollowAddMultiple([]uint64{11})
 ```
 
 ## API functions
@@ -141,6 +144,8 @@ FetchAllIllustFollows(opts *IllustFollowOptions, sleepMs ...int) ([]models.Illus
 FetchAllUserFollowing(uid uint64, opts *UserFollowingOptions, sleepMs ...int) ([]models.UserPreview, error)
 
 FetchAllUserFollowers(uid uint64, opts *UserFollowerOptions, sleepMs ...int) ([]models.UserPreview, error)
+
+UserFollowAddMultiple(uids []uint64, restrict ...models.Restrict) ([]uint64, error)
 ```
 
 ## Link
