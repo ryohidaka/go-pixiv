@@ -79,6 +79,21 @@ func (a *AppPixivAPI) Get(path string, queryStruct any, out any) error {
 	return a.request("GET", path, queryStruct, nil, out)
 }
 
+// Post sends a POST request to the specified path with query parameters and body,
+// and decodes the JSON response into the provided output structure.
+//
+// Parameters:
+//   - path: API endpoint path (e.g., "/v1/user/edit").
+//   - queryStruct: Struct containing query parameters, encoded via `query.Values`.
+//   - body: Optional request body (e.g., form data or JSON), can be nil.
+//   - out: Pointer to a variable to store the decoded response.
+//
+// Returns:
+//   - error: An error if the request or decoding fails.
+func (a *AppPixivAPI) Post(path string, queryStruct any, body io.Reader, out any) error {
+	return a.request("POST", path, queryStruct, body, out)
+}
+
 // Request sends an HTTP request (GET, POST, etc.) to the specified Pixiv API endpoint,
 // optionally including OAuth authorization.
 //
