@@ -23,6 +23,17 @@ func ExampleAppPixivAPI_UserFollowAdd() {
 	app.UserFollowAdd(11)
 }
 
+func ExampleAppPixivAPI_UserFollowDelete() {
+	// Get the refresh token used for authentication
+	refreshToken := os.Getenv("PIXIV_REFRESH_TOKEN")
+
+	// Create a new Pixiv App API client
+	app, _ := pixiv.NewApp(refreshToken)
+
+	// Send a unfollow request to user ID 11 (Pixiv official account)
+	app.UserFollowDelete(11)
+}
+
 // TestUserFollowAdd tests the UserFollowAdd method of AppPixivAPI
 func TestUserFollowAdd(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
