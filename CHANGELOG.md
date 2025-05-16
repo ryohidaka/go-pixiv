@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.1](https://github.com/ryohidaka/go-pixiv/compare/v0.20.0...v0.20.1) (2025-05-16)
+
+
+### Bug Fixes
+
+* **api:** Add sleep processing for each request ([98587da](https://github.com/ryohidaka/go-pixiv/commit/98587da922000fb87f5c0dac8d5d5140aed4067d))
+
 ## [0.20.0](https://github.com/ryohidaka/go-pixiv/compare/v0.19.0...v0.20.0) (2025-05-16)
 
 
