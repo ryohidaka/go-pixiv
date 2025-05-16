@@ -61,6 +61,9 @@ users, next, err := api.UserFollower(11)
 
 // Follow user with user ID
 ok, err := api.UserFollowAdd(11)
+
+// Unfollow user with user ID
+ok, err := api.UserFollowDelete(11)
 ```
 
 ### Crawler
@@ -118,6 +121,9 @@ UserFollower(uid uint64, opts ...UserFollowerOptions) ([]models.UserPreview, int
 
 // 关注用户
 UserFollowAdd(uid uint64, restrict ...models.Restrict) {...}
+
+// 取消关注用户
+UserFollowDelete(uid uint64) (bool, error) {...}
 ```
 
 ## Crawler
