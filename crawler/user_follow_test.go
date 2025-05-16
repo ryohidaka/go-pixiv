@@ -30,6 +30,23 @@ func ExamplePixivCrawler_UserFollowAddMultiple() {
 	}
 }
 
+func ExamplePixivCrawler_UserFollowDeleteMultiple() {
+	// Get the refresh token used for authentication
+	refreshToken := os.Getenv("PIXIV_REFRESH_TOKEN")
+
+	// Create a new Pixiv Crawler
+	c, _ := crawler.NewCrawler(refreshToken)
+
+	// Unfollow multiple users
+	uids := []uint64{11}
+	processed, _ := c.UserFollowDeleteMultiple(uids)
+
+	for _, v := range processed {
+		// Print the user id
+		fmt.Println("User ID:", v)
+	}
+}
+
 func TestUserFollowAddMultiple(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the authentication response
