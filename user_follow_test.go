@@ -1,0 +1,44 @@
+package pixiv_test
+
+import (
+	"fmt"
+	"testing"
+
+	"github.com/jarcoal/httpmock"
+	"github.com/ryohidaka/go-pixiv"
+	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/testutil"
+	"github.com/stretchr/testify/assert"
+)
+
+// TestUserFollowAdd tests the UserFollowAdd method of AppPixivAPI
+func TestUserFollowAdd(t *testing.T) {
+	testutil.WithMockHTTP(t, func() {
+		// Mock the authentication response
+		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
+
+		// Mock the user follower response
+		url := pixiv.AppHosts + "v1/user/follow/add"
+		err := testutil.MockResponseFromFile("POST", url, "empty")
+		assert.NoError(t, err)
+
+		// Initialize the AppPixivAPI instance
+		api, err := pixiv.NewApp("dummy-refresh-token")
+		assert.NoError(t, err)
+
+		// Call UserFollowAdd with a specific userID and restrict mode
+		userID := uint64(12345678)
+		restrict := models.Private
+
+		ok, err := api.UserFollowAdd(userID, restrict)
+		assert.NoError(t, err)
+		assert.True(t, ok, "UserFollowAdd should return true on success")
+
+		// Verify request was made as expected
+		info := httpmock.GetCallCountInfo()
+		key := fmt.Sprintf("POST %s", url)
+		if info[key] != 1 {
+			t.Errorf("expected 1 POST request to %s, but got %d", url, info[key])
+		}
+	})
+}
