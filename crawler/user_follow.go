@@ -35,3 +35,29 @@ func (c *PixivCrawler) UserFollowAddMultiple(uids []uint64, restrict ...models.R
 
 	return processed, nil
 }
+
+// UserFollowDeleteMultiple sends unfollow requests to multiple users on Pixiv.
+//
+// Parameters:
+//   - uids: A slice of user IDs to follow.
+//
+// Returns:
+//   - []uint64: A list of user IDs that have been processed (success or failure).
+//   - error: An error object if any request fails; otherwise, nil.
+func (c *PixivCrawler) UserFollowDeleteMultiple(uids []uint64) ([]uint64, error) {
+	var processed []uint64
+
+	for _, uid := range uids {
+		success, err := c.app.UserFollowDelete(uid)
+		processed = append(processed, uid)
+
+		if err != nil {
+			return processed, err // Exit loop and return error with processed IDs
+		}
+		if !success {
+			return processed, fmt.Errorf("failed to follow user %d", uid)
+		}
+	}
+
+	return processed, nil
+}
