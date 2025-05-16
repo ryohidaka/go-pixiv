@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.20.0](https://github.com/ryohidaka/go-pixiv/compare/v0.19.0...v0.20.0) (2025-05-16)
+
+
+### Features
+
+* **api:** Add UserFollowAddMultiple() ([2f38acd](https://github.com/ryohidaka/go-pixiv/commit/2f38acd05aa7f973f6ef439d37e25525613d4b33))
+* **api:** Add UserFollowDeleteMultiple() ([4e651fb](https://github.com/ryohidaka/go-pixiv/commit/4e651fbb71a88b2002df9dfd763e0a1bf464b86a))
+
 ## [0.19.0](https://github.com/ryohidaka/go-pixiv/compare/v0.18.0...v0.19.0) (2025-05-16)
 
 
