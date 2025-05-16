@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.18.0](https://github.com/ryohidaka/go-pixiv/compare/v0.17.0...v0.18.0) (2025-05-16)
+
+
+### Features
+
+* **api:** Add wrapper method to make GET requests ([211900a](https://github.com/ryohidaka/go-pixiv/commit/211900a786ff69c8e6ad2885f9b73a255716d2b1))
+* **api:** Add wrapper method to make POST requests ([9fcba9f](https://github.com/ryohidaka/go-pixiv/commit/9fcba9fb2d7ea7a2f8073a35375141dadfdb91a8))
+* **api:** Support for HTTP requests other than GET ([f6cbb07](https://github.com/ryohidaka/go-pixiv/commit/f6cbb07620e75ff8e86375e01d217d9369b19a73))
+
 ## [0.17.0](https://github.com/ryohidaka/go-pixiv/compare/v0.16.0...v0.17.0) (2025-05-15)
 
 
