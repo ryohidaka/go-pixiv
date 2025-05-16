@@ -40,7 +40,7 @@ func TestUserFollowAdd(t *testing.T) {
 		// Mock the authentication response
 		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
 
-		// Mock the user follower response
+		// Mock the user follow response
 		url := pixiv.AppHosts + "v1/user/follow/add"
 		err := testutil.MockResponseFromFile("POST", url, "empty")
 		assert.NoError(t, err)
@@ -72,7 +72,7 @@ func TestUserFollowDelete(t *testing.T) {
 		// Mock the authentication response
 		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
 
-		// Mock the user follower response
+		// Mock the user unfollow response
 		url := pixiv.AppHosts + "v1/user/follow/delete"
 		err := testutil.MockResponseFromFile("POST", url, "empty")
 		assert.NoError(t, err)
