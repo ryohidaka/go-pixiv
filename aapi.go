@@ -86,7 +86,7 @@ func (a *AppPixivAPI) Request(path string, queryStruct any, out any) error {
 		return err
 	}
 
-	req, err := a.createRequest(reqURL)
+	req, err := a.createRequest("GET", reqURL)
 	if err != nil {
 		slog.Error("Failed to create request", slog.String("error", err.Error()))
 		return err
@@ -134,16 +134,17 @@ func (a *AppPixivAPI) buildRequestURL(path string, queryStruct any) (*url.URL, e
 	return reqURL, nil
 }
 
-// createRequest creates a new HTTP GET request with required headers.
+// createRequest creates a new HTTP request with required headers.
 //
 // Parameters:
+//   - method: HTTP method (e.g., "GET").
 //   - reqURL: The full request URL.
 //
 // Returns:
 //   - *http.Request: The constructed HTTP request.
 //   - error: An error if request creation fails.
-func (a *AppPixivAPI) createRequest(reqURL *url.URL) (*http.Request, error) {
-	req, err := http.NewRequest("GET", reqURL.String(), nil)
+func (a *AppPixivAPI) createRequest(method string, reqURL *url.URL) (*http.Request, error) {
+	req, err := http.NewRequest(method, reqURL.String(), nil)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create HTTP request: %w", err)
 	}
