@@ -2,6 +2,9 @@ package crawler
 
 import (
 	"fmt"
+	"log/slog"
+	"os"
+	"time"
 
 	"github.com/ryohidaka/go-pixiv/models"
 )
@@ -14,15 +17,20 @@ import (
 // Parameters:
 //   - uids: A slice of user IDs to follow.
 //   - restrict (optional): Restriction level of the follow (e.g., Public or Private).
+//   - sleepMs: Optional sleep duration between requests in milliseconds (default: 1000ms).
 //
 // Returns:
 //   - []uint64: A list of user IDs that have been processed (success or failure).
 //   - error: An error object if any request fails; otherwise, nil.
-func (c *PixivCrawler) UserFollowAddMultiple(uids []uint64, restrict ...models.Restrict) ([]uint64, error) {
+func (c *PixivCrawler) UserFollowAddMultiple(uids []uint64, restrict *models.Restrict, sleepMs ...int) ([]uint64, error) {
+	// Logger setup
+	handler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{})
+	logger := slog.New(handler)
+
 	var processed []uint64
 
 	for _, uid := range uids {
-		success, err := c.app.UserFollowAdd(uid, restrict...)
+		success, err := c.app.UserFollowAdd(uid, []models.Restrict{*restrict}...)
 		processed = append(processed, uid)
 
 		if err != nil {
@@ -31,6 +39,11 @@ func (c *PixivCrawler) UserFollowAddMultiple(uids []uint64, restrict ...models.R
 		if !success {
 			return processed, fmt.Errorf("failed to follow user %d", uid)
 		}
+
+		// Sleep between requests to avoid rate limits
+		sleepDuration := getSleepDuration(sleepMs...)
+		logger.Info("Sleeping before next request", "sleepDuration", sleepDuration)
+		time.Sleep(sleepDuration)
 	}
 
 	return processed, nil
@@ -40,11 +53,16 @@ func (c *PixivCrawler) UserFollowAddMultiple(uids []uint64, restrict ...models.R
 //
 // Parameters:
 //   - uids: A slice of user IDs to follow.
+//   - sleepMs: Optional sleep duration between requests in milliseconds (default: 1000ms).
 //
 // Returns:
 //   - []uint64: A list of user IDs that have been processed (success or failure).
 //   - error: An error object if any request fails; otherwise, nil.
-func (c *PixivCrawler) UserFollowDeleteMultiple(uids []uint64) ([]uint64, error) {
+func (c *PixivCrawler) UserFollowDeleteMultiple(uids []uint64, sleepMs ...int) ([]uint64, error) {
+	// Logger setup
+	handler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{})
+	logger := slog.New(handler)
+
 	var processed []uint64
 
 	for _, uid := range uids {
@@ -57,6 +75,11 @@ func (c *PixivCrawler) UserFollowDeleteMultiple(uids []uint64) ([]uint64, error)
 		if !success {
 			return processed, fmt.Errorf("failed to follow user %d", uid)
 		}
+
+		// Sleep between requests to avoid rate limits
+		sleepDuration := getSleepDuration(sleepMs...)
+		logger.Info("Sleeping before next request", "sleepDuration", sleepDuration)
+		time.Sleep(sleepDuration)
 	}
 
 	return processed, nil

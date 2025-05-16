@@ -22,7 +22,7 @@ func ExamplePixivCrawler_UserFollowAddMultiple() {
 
 	// Follow multiple users
 	uids := []uint64{11}
-	processed, _ := c.UserFollowAddMultiple(uids)
+	processed, _ := c.UserFollowAddMultiple(uids, nil)
 
 	for _, v := range processed {
 		// Print the user id
@@ -65,7 +65,7 @@ func TestUserFollowAddMultiple(t *testing.T) {
 		uids := []uint64{12345678}
 		restrict := models.Private
 
-		processed, err := crawler.UserFollowAddMultiple(uids, restrict)
+		processed, err := crawler.UserFollowAddMultiple(uids, &restrict)
 		assert.NoError(t, err)
 		assert.Equal(t, []uint64{12345678}, processed)
 
