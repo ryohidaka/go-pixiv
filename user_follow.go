@@ -44,3 +44,29 @@ func (a *AppPixivAPI) UserFollowAdd(uid uint64, restrict ...models.Restrict) (bo
 
 	return true, nil
 }
+
+// UserFollowAdd sends a unfollow request to a user on Pixiv.
+//
+// Parameters:
+//   - uid: The ID of the user to follow.
+//
+// Returns:
+//   - bool: true if the request was successfully sent, false otherwise.
+//   - error: An error object if the request fails; otherwise, nil.
+func (a *AppPixivAPI) UserFollowDelete(uid uint64) (bool, error) {
+	const path = "v1/user/follow/delete"
+
+	// Construct form-encoded data
+	data := url.Values{}
+	data.Set("user_id", fmt.Sprintf("%d", uid))
+
+	// Convert form data to io.Reader
+	body := strings.NewReader(data.Encode())
+
+	// Send POST request with form-encoded body
+	if err := a.Post(path, nil, body, nil); err != nil {
+		return false, err
+	}
+
+	return true, nil
+}
