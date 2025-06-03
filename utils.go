@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log/slog"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -37,7 +36,6 @@ func setHeaders(req *http.Request, headers map[string]string) {
 func readResponse(resp *http.Response) ([]byte, error) {
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		slog.Error("failed to read response body", "error", err)
 		return nil, fmt.Errorf("failed to read response: %w", err)
 	}
 
@@ -47,7 +45,6 @@ func readResponse(resp *http.Response) ([]byte, error) {
 // decodeJSON unmarshals a JSON byte slice into the provided output structure.
 func decodeJSON(body []byte, out any) error {
 	if err := json.Unmarshal(body, out); err != nil {
-		slog.Error("failed to unmarshal JSON", "error", err)
 		return fmt.Errorf("failed to unmarshal response: %w", err)
 	}
 
@@ -71,28 +68,24 @@ func parseNextPageOffset(s, field string) (int, error) {
 	// Parse the input string into a URL structure.
 	u, err := url.Parse(s)
 	if err != nil {
-		slog.Error("failed to parse URL", "url", s, "error", err)
 		return 0, fmt.Errorf("failed to parse URL: %s {%s}", s, err)
 	}
 
 	// Parse the raw query string from the URL.
 	queryParams, err := url.ParseQuery(u.RawQuery)
 	if err != nil {
-		slog.Error("failed to parse query parameters", "url", s, "error", err)
 		return 0, fmt.Errorf("failed to parse query parameters: %s {%s}", s, err)
 	}
 
 	// Retrieve the offset value from the query parameters using the specified field name.
 	offsetParam := queryParams.Get(field)
 	if offsetParam == "" {
-		slog.Error("missing query parameter", "param", field)
 		return 0, fmt.Errorf("missing query parameter: %s", field)
 	}
 
 	// Convert the offset parameter from string to integer.
 	offset, err := strconv.Atoi(offsetParam)
 	if err != nil {
-		slog.Error("invalid offset value", "value", offsetParam, "error", err)
 		return 0, fmt.Errorf("invalid offset value: %s {%s}", offsetParam, err)
 	}
 

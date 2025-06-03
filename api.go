@@ -3,7 +3,6 @@ package pixiv
 import (
 	"encoding/json"
 	"fmt"
-	"log/slog"
 	"net/http"
 	"net/url"
 	"strings"
@@ -42,7 +41,6 @@ func (s *AuthSession) Authenticate(params *models.AuthParams) (*models.AuthInfo,
 
 	req, err := http.NewRequest("POST", s.BaseURL+"auth/token", strings.NewReader(form.Encode()))
 	if err != nil {
-		slog.Error("Failed to create request", slog.String("error", err.Error()))
 		return nil, fmt.Errorf("failed to create request: %w", err)
 	}
 
@@ -63,14 +61,12 @@ func (s *AuthSession) Authenticate(params *models.AuthParams) (*models.AuthInfo,
 
 	resp, err := client.Do(req)
 	if err != nil {
-		slog.Error("Authentication request failed", slog.String("error", err.Error()))
 		return nil, fmt.Errorf("auth request failed: %w", err)
 	}
 	defer resp.Body.Close()
 
 	body, err := readResponse(resp)
 	if err != nil {
-		slog.Error("Failed to read response", slog.String("error", err.Error()))
 		return nil, err
 	}
 
@@ -78,23 +74,15 @@ func (s *AuthSession) Authenticate(params *models.AuthParams) (*models.AuthInfo,
 		var pixivErr models.PixivError
 		if err := json.Unmarshal(body, &pixivErr); err == nil && pixivErr.HasError {
 			for k, v := range pixivErr.Errors {
-				slog.Error("Pixiv API returned error",
-					slog.String("type", k),
-					slog.String("message", v.Message),
-				)
 				return nil, fmt.Errorf("login %s error: %s", k, v.Message)
 			}
 		}
-		slog.Error("Authentication failed with unexpected status",
-			slog.Int("status", resp.StatusCode),
-			slog.String("body", string(body)),
-		)
+
 		return nil, fmt.Errorf("auth failed with status %d: %s", resp.StatusCode, string(body))
 	}
 
 	var res models.AuthResponse
 	if err := decodeJSON(body, &res); err != nil {
-		slog.Error("Failed to decode response JSON", slog.String("error", err.Error()))
 		return nil, err
 	}
 
@@ -104,7 +92,6 @@ func (s *AuthSession) Authenticate(params *models.AuthParams) (*models.AuthInfo,
 
 	if s.AuthHook != nil {
 		if err := s.AuthHook(s.AccessToken, s.RefreshToken, s.ExpiresAt); err != nil {
-			slog.Error("AuthHook failed", slog.String("error", err.Error()))
 			return nil, err
 		}
 	}
@@ -115,7 +102,6 @@ func (s *AuthSession) Authenticate(params *models.AuthParams) (*models.AuthInfo,
 // RefreshAuth refreshes the access token if it has expired or if forced.
 func (s *AuthSession) RefreshAuth(force bool) (*models.Account, error) {
 	if s.RefreshToken == "" {
-		slog.Error("Cannot refresh token: missing refresh token")
 		return nil, fmt.Errorf("missing refresh token")
 	}
 	if !force && time.Now().Before(s.ExpiresAt) {
@@ -132,7 +118,6 @@ func (s *AuthSession) RefreshAuth(force bool) (*models.Account, error) {
 	info, err := s.Authenticate(params)
 
 	if err != nil {
-		slog.Error("Token refresh failed", slog.String("error", err.Error()))
 		return nil, err
 	}
 

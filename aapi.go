@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log/slog"
 	"net/http"
 	"net/url"
 
@@ -69,13 +68,11 @@ func (a *AppPixivAPI) request(method, path string, queryStruct any, body io.Read
 
 	reqURL, err := a.buildRequestURL(path, queryStruct)
 	if err != nil {
-		slog.Error("Failed to build request URL", slog.String("error", err.Error()))
 		return err
 	}
 
 	req, err := a.createRequest(method, reqURL, body)
 	if err != nil {
-		slog.Error("Failed to create request", slog.String("error", err.Error()))
 		return err
 	}
 
@@ -85,7 +82,6 @@ func (a *AppPixivAPI) request(method, path string, queryStruct any, body io.Read
 // refreshTokenIfNeeded refreshes the access token if it is expired or about to expire.
 func (a *AppPixivAPI) refreshTokenIfNeeded() error {
 	if _, err := a.auth.RefreshAuth(false); err != nil {
-		slog.Error("Token refresh failed", slog.String("error", err.Error()))
 		return fmt.Errorf("failed to refresh token: %w", err)
 	}
 
@@ -138,13 +134,11 @@ func (a *AppPixivAPI) createRequest(method string, reqURL *url.URL, body io.Read
 func (a *AppPixivAPI) handleResponse(req *http.Request, out any) error {
 	resp, err := a.httpClient.Do(req)
 	if err != nil {
-		slog.Error("API request failed", slog.String("error", err.Error()))
 		return fmt.Errorf("API request failed: %w", err)
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode >= 400 {
-		slog.Error("API error", slog.Int("status", resp.StatusCode), slog.String("status_text", http.StatusText(resp.StatusCode)))
 		return fmt.Errorf("API error: %d %s", resp.StatusCode, http.StatusText(resp.StatusCode))
 	}
 
