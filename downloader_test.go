@@ -29,6 +29,30 @@ func ExampleDownloader_DownloadBytes() {
 	fmt.Printf("Downloaded %d bytes\n", len(data))
 }
 
+func ExampleDownloader_DownloadFile() {
+	d := pixiv.NewDownloader()
+	defer d.Close()
+
+	url := "https://i.pximg.net/c/600x1200_90/img-master/img/2025/05/01/11/19/11/129899459_p0_master1200.jpg"
+
+	opts := &pixiv.DownloadFileOptions{
+		Dir:     "test_downloads",
+		Name:    "sample.jpg",
+		Replace: true,
+	}
+
+	ok, err := d.DownloadFile(url, opts)
+	if err != nil {
+		fmt.Println("Download failed:", err)
+		return
+	}
+	if ok {
+		fmt.Println("Downloaded successfully")
+	} else {
+		fmt.Println("Download skipped (already exists)")
+	}
+}
+
 func TestDownloadBytes(t *testing.T) {
 	// Set up a test HTTP server that returns fixed data
 	const testData = "hello pixiv"
