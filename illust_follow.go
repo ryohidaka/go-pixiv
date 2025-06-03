@@ -1,6 +1,8 @@
 package pixiv
 
 import (
+	"github.com/ryohidaka/go-pixiv/internal/modelutil"
+	"github.com/ryohidaka/go-pixiv/internal/urlutil"
 	"github.com/ryohidaka/go-pixiv/models"
 )
 
@@ -28,7 +30,7 @@ func (a *AppPixivAPI) IllustFollow(opts ...IllustFollowOptions) ([]models.Illust
 	// Override default parameters if options are provided
 	if opts != nil {
 		opt := opts[0]
-		params.Restrict = getRestrict(opt.Restrict)
+		params.Restrict = modelutil.GetRestrict(opt.Restrict)
 		params.Offset = opt.Offset
 	}
 
@@ -41,6 +43,6 @@ func (a *AppPixivAPI) IllustFollow(opts ...IllustFollowOptions) ([]models.Illust
 	}
 
 	// Parse the next page offset from the response's NextURL field
-	next, err := parseNextPageOffset(data.NextURL, OffsetFieldOffset)
+	next, err := urlutil.ParseNextPageOffset(data.NextURL, OffsetFieldOffset)
 	return data.Illusts, next, err
 }

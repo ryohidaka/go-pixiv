@@ -8,6 +8,9 @@ import (
 	"net/url"
 
 	"github.com/google/go-querystring/query"
+
+	"github.com/ryohidaka/go-pixiv/internal/authutil"
+	"github.com/ryohidaka/go-pixiv/internal/httpclient"
 	"github.com/ryohidaka/go-pixiv/models"
 )
 
@@ -39,7 +42,7 @@ func NewApp(refreshToken string) (*AppPixivAPI, error) {
 
 	auth.AccessToken = authInfo.AccessToken
 	auth.RefreshToken = authInfo.RefreshToken
-	auth.ExpiresAt = getExpiresAt(authInfo.ExpiresIn)
+	auth.ExpiresAt = authutil.GetExpiresAt(authInfo.ExpiresIn)
 
 	return &AppPixivAPI{
 		httpClient: http.DefaultClient,
@@ -125,7 +128,7 @@ func (a *AppPixivAPI) createRequest(method string, reqURL *url.URL, body io.Read
 		headers["Content-Type"] = "application/x-www-form-urlencoded"
 	}
 
-	setHeaders(req, headers)
+	httpclient.SetHeaders(req, headers)
 
 	return req, nil
 }

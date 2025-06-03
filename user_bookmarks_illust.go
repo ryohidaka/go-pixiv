@@ -1,6 +1,8 @@
 package pixiv
 
 import (
+	"github.com/ryohidaka/go-pixiv/internal/modelutil"
+	"github.com/ryohidaka/go-pixiv/internal/urlutil"
 	"github.com/ryohidaka/go-pixiv/models"
 )
 
@@ -34,7 +36,7 @@ func (a *AppPixivAPI) UserBookmarksIllust(uid uint64, opts ...UserBookmarksIllus
 	// Populate optional parameters if opts is provided
 	if opts != nil {
 		opt := opts[0]
-		params.Restrict = getRestrict(opt.Restrict)
+		params.Restrict = modelutil.GetRestrict(opt.Restrict)
 		params.Filter = opt.Filter
 		params.MaxBookmarkID = opt.MaxBookmarkID
 		params.Tag = opt.Tag
@@ -49,6 +51,6 @@ func (a *AppPixivAPI) UserBookmarksIllust(uid uint64, opts ...UserBookmarksIllus
 	}
 
 	// Parse the next page offset from the NextURL (if any)
-	next, err := parseNextPageOffset(data.NextURL, "max_bookmark_id")
+	next, err := urlutil.ParseNextPageOffset(data.NextURL, "max_bookmark_id")
 	return data.Illusts, next, err
 }
