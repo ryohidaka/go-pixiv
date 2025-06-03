@@ -10,14 +10,6 @@ import (
 )
 
 // FetchAllIllustFollows retrieves all illustrations from followed users by paginating.
-//
-// Parameters:
-//   - opts: Optional parameters for the follow illust request (e.g. Restrict).
-//   - sleepMs: Optional sleep duration between requests in milliseconds (default: 1000ms).
-//
-// Returns:
-//   - []models.Illust: A combined list of all retrieved follow illustrations.
-//   - error: Any error encountered during the API request.
 func (c *PixivCrawler) FetchAllIllustFollows(opts *pixiv.IllustFollowOptions, sleepMs ...int) ([]models.Illust, error) {
 	var allIllusts []models.Illust
 	var next int

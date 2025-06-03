@@ -10,15 +10,6 @@ import (
 )
 
 // FetchAllUserIllusts retrieves all illustrations posted by a given user by paginating.
-//
-// Parameters:
-//   - uid: Pixiv user ID whose illustrations should be fetched.
-//   - opts: Optional filter parameters (Filter, Type). Offset will be overwritten for pagination.
-//   - sleepMs: Optional sleep duration between requests in milliseconds (default: 1000ms).
-//
-// Returns:
-//   - []models.Illust: A combined list of all retrieved illustrations.
-//   - error: Any error encountered during the API request.
 func (c *PixivCrawler) FetchAllUserIllusts(uid uint64, opts *pixiv.UserIllustsOptions, sleepMs ...int) ([]models.Illust, error) {
 	var allIllusts []models.Illust
 	var next int

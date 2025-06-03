@@ -19,15 +19,6 @@ type AppPixivAPI struct {
 }
 
 // NewApp initializes and returns a new AppPixivAPI instance using the provided refresh token.
-//
-// It performs the initial token refresh and sets up authentication state.
-//
-// Parameters:
-//   - refreshToken: The OAuth refresh token to authenticate the user.
-//
-// Returns:
-//   - *AppPixivAPI: A pointer to the initialized AppPixivAPI instance.
-//   - error: An error if authentication fails.
 func NewApp(refreshToken string) (*AppPixivAPI, error) {
 	slog.Debug("Initializing AppPixivAPI", slog.String("refresh_token", refreshToken))
 
@@ -67,45 +58,18 @@ func NewApp(refreshToken string) (*AppPixivAPI, error) {
 
 // Get sends a GET request to the specified path with query parameters,
 // and decodes the JSON response into the provided output structure.
-//
-// Parameters:
-//   - path: API endpoint path (e.g., "/v1/user/detail").
-//   - queryStruct: Struct containing query parameters, encoded via `query.Values`.
-//   - out: Pointer to a variable to store the decoded response.
-//
-// Returns:
-//   - error: An error if the request or decoding fails.
 func (a *AppPixivAPI) Get(path string, queryStruct any, out any) error {
 	return a.request("GET", path, queryStruct, nil, out)
 }
 
 // Post sends a POST request to the specified path with query parameters and body,
 // and decodes the JSON response into the provided output structure.
-//
-// Parameters:
-//   - path: API endpoint path (e.g., "/v1/user/edit").
-//   - queryStruct: Struct containing query parameters, encoded via `query.Values`.
-//   - body: Optional request body (e.g., form data or JSON), can be nil.
-//   - out: Pointer to a variable to store the decoded response.
-//
-// Returns:
-//   - error: An error if the request or decoding fails.
 func (a *AppPixivAPI) Post(path string, queryStruct any, body io.Reader, out any) error {
 	return a.request("POST", path, queryStruct, body, out)
 }
 
 // Request sends an HTTP request (GET, POST, etc.) to the specified Pixiv API endpoint,
 // optionally including OAuth authorization.
-//
-// Parameters:
-//   - method: HTTP method (e.g., "GET", "POST").
-//   - path: API path (e.g., "/v1/user/detail").
-//   - queryStruct: Struct containing query parameters, encoded via `query.Values`.
-//   - body: Optional request body (e.g., for POST), can be nil.
-//   - out: A pointer to a variable where the response will be decoded.
-//
-// Returns:
-//   - error: An error if request or decoding fails.
 func (a *AppPixivAPI) request(method, path string, queryStruct any, body io.Reader, out any) error {
 	slog.Debug("Request start", slog.String("method", method), slog.String("path", path))
 	if err := a.refreshTokenIfNeeded(); err != nil {
@@ -128,9 +92,6 @@ func (a *AppPixivAPI) request(method, path string, queryStruct any, body io.Read
 }
 
 // refreshTokenIfNeeded refreshes the access token if it is expired or about to expire.
-//
-// Returns:
-//   - error: An error if the token refresh fails.
 func (a *AppPixivAPI) refreshTokenIfNeeded() error {
 	slog.Debug("Checking if token refresh is needed")
 	if _, err := a.auth.RefreshAuth(false); err != nil {
@@ -142,14 +103,6 @@ func (a *AppPixivAPI) refreshTokenIfNeeded() error {
 }
 
 // buildRequestURL constructs the complete URL with encoded query parameters.
-//
-// Parameters:
-//   - path: The API endpoint path (e.g., "/v1/user/detail").
-//   - queryStruct: A struct to be encoded as URL query parameters.
-//
-// Returns:
-//   - *url.URL: The complete request URL.
-//   - error: An error if URL parsing or query encoding fails.
 func (a *AppPixivAPI) buildRequestURL(path string, queryStruct any) (*url.URL, error) {
 	reqURL, err := url.Parse(AppHosts + path)
 	if err != nil {
@@ -167,15 +120,6 @@ func (a *AppPixivAPI) buildRequestURL(path string, queryStruct any) (*url.URL, e
 }
 
 // createRequest creates a new HTTP request with required headers.
-//
-// Parameters:
-//   - method: HTTP method (e.g., "GET", "POST").
-//   - reqURL: The full request URL.
-//   - body: Optional request body (e.g., for POST), can be nil.
-//
-// Returns:
-//   - *http.Request: The constructed HTTP request.
-//   - error: An error if request creation fails.
 func (a *AppPixivAPI) createRequest(method string, reqURL *url.URL, body io.Reader) (*http.Request, error) {
 	req, err := http.NewRequest(method, reqURL.String(), body)
 	if err != nil {
@@ -201,13 +145,6 @@ func (a *AppPixivAPI) createRequest(method string, reqURL *url.URL, body io.Read
 }
 
 // handleResponse sends the HTTP request and decodes the response body into `out`.
-//
-// Parameters:
-//   - req: The HTTP request to execute.
-//   - out: A pointer to the value to decode the JSON response into.
-//
-// Returns:
-//   - error: An error if the request fails or the response is invalid.
 func (a *AppPixivAPI) handleResponse(req *http.Request, out any) error {
 	resp, err := a.httpClient.Do(req)
 	if err != nil {

@@ -25,13 +25,6 @@ type AuthSession struct {
 
 // Authenticate performs authentication against the Pixiv API using the provided
 // AuthParams. It updates the session with the new access and refresh tokens.
-//
-// Parameters:
-//   - params: A pointer to AuthParams containing authentication credentials.
-//
-// Returns:
-//   - A pointer to AuthInfo containing user and token information.
-//   - An error if authentication fails or the response is invalid.
 func (s *AuthSession) Authenticate(params *models.AuthParams) (*models.AuthInfo, error) {
 	if s.BaseURL == "" {
 		s.BaseURL = AuthHosts
@@ -131,14 +124,6 @@ func (s *AuthSession) Authenticate(params *models.AuthParams) (*models.AuthInfo,
 }
 
 // RefreshAuth refreshes the access token if it has expired or if forced.
-//
-// Parameters:
-//   - force: If true, the token is refreshed regardless of expiration status.
-//
-// Returns:
-//   - A pointer to the Account if refreshed successfully.
-//   - nil if no refresh was needed and `force` is false.
-//   - An error if refreshing the token fails.
 func (s *AuthSession) RefreshAuth(force bool) (*models.Account, error) {
 	if s.RefreshToken == "" {
 		slog.Error("Cannot refresh token: missing refresh token")

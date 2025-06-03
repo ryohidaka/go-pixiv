@@ -22,15 +22,6 @@ type userBookmarksIllustParams struct {
 
 // UserBookmarksIllust retrieves a list of bookmarked illustrations for a given user.
 // It allows optional parameters such as restrict level, filter, max bookmark ID, and tag.
-//
-// Parameters:
-//   - uid: The Pixiv user ID whose bookmarks should be fetched.
-//   - opts: Optional parameters for filtering the results. Can be nil.
-//
-// Returns:
-//   - []models.Illust: A list of illustrations.
-//   - int: The offset for the next page (based on max_bookmark_id), or 0 if there is no next page.
-//   - error: Any error encountered during the API request or pagination parsing.
 func (a *AppPixivAPI) UserBookmarksIllust(uid uint64, opts ...UserBookmarksIllustOptions) ([]models.Illust, int, error) {
 	const path = "v1/user/bookmarks/illust"
 

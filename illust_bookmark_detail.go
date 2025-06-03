@@ -10,13 +10,6 @@ type illustBookmarkDetailParams struct {
 
 // IllustBookmarkDetail retrieves the bookmark detail information
 // for a specific illustration by its ID.
-//
-// Parameters:
-//   - id: The illustration ID to fetch the bookmark details for.
-//
-// Returns:
-//   - A pointer to IllustBookmarkDetail containing the bookmark info.
-//   - An error if the API request fails.
 func (a *AppPixivAPI) IllustBookmarkDetail(id uint64) (*models.IllustBookmarkDetail, error) {
 	const path = "v2/illust/bookmark/detail"
 

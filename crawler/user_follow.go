@@ -10,18 +10,6 @@ import (
 )
 
 // UserFollowAddMultiple sends follow requests to multiple users on Pixiv.
-//
-// If the optional restrict parameter is provided, it will be used for all users;
-// otherwise, the default is models.Public.
-//
-// Parameters:
-//   - uids: A slice of user IDs to follow.
-//   - restrict (optional): Restriction level of the follow (e.g., Public or Private).
-//   - sleepMs: Optional sleep duration between requests in milliseconds (default: 1000ms).
-//
-// Returns:
-//   - []uint64: A list of user IDs that have been processed (success or failure).
-//   - error: An error object if any request fails; otherwise, nil.
 func (c *PixivCrawler) UserFollowAddMultiple(uids []uint64, restrict *models.Restrict, sleepMs ...int) ([]uint64, error) {
 	// Logger setup
 	handler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{})
@@ -50,14 +38,6 @@ func (c *PixivCrawler) UserFollowAddMultiple(uids []uint64, restrict *models.Res
 }
 
 // UserFollowDeleteMultiple sends unfollow requests to multiple users on Pixiv.
-//
-// Parameters:
-//   - uids: A slice of user IDs to follow.
-//   - sleepMs: Optional sleep duration between requests in milliseconds (default: 1000ms).
-//
-// Returns:
-//   - []uint64: A list of user IDs that have been processed (success or failure).
-//   - error: An error object if any request fails; otherwise, nil.
 func (c *PixivCrawler) UserFollowDeleteMultiple(uids []uint64, sleepMs ...int) ([]uint64, error) {
 	// Logger setup
 	handler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{})

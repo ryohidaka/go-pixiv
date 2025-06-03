@@ -12,15 +12,6 @@ import (
 // MockResponseFromFile mocks an API response from an external JSON file
 // for the specified URL path and HTTP method (GET, POST, etc.)
 // It reads the JSON file and registers the response using the httpmock package.
-//
-// Parameters:
-// - method: The HTTP method (e.g., "GET", "POST")
-// - url: The URL path for which the mock response will be registered
-// - path: The name of the JSON file that contains the mock response data
-// - isSubDir (optional): If true, looks for file in ../testutil; default is false (testutil)
-//
-// Returns:
-// - An error if there is an issue reading the file or registering the mock response
 func MockResponseFromFile(method, url, path string, isSubDir ...bool) error {
 	basePath := "testutil"
 	if len(isSubDir) > 0 && isSubDir[0] {
@@ -52,13 +43,6 @@ func MockResponseFromFile(method, url, path string, isSubDir ...bool) error {
 
 // WithMockHTTP activates httpmock for the duration of the test function and then deactivates it.
 // It ensures that HTTP requests are intercepted and handled using registered mock responders.
-//
-// Parameters:
-//   - t: The testing context, used for cleanup and reporting test failures.
-//   - testFunc: A function containing the test logic to execute while httpmock is active.
-//
-// Returns:
-//   - None (this function executes the given testFunc inline).
 func WithMockHTTP(t *testing.T, testFunc func()) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()

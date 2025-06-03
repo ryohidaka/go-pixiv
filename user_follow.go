@@ -10,17 +10,6 @@ import (
 )
 
 // UserFollowAdd sends a follow request to a user on Pixiv.
-//
-// If the optional restrict parameter is provided, it will be used;
-// otherwise, the default is models.Public.
-//
-// Parameters:
-//   - uid: The ID of the user to follow.
-//   - restrict (optional): Restriction level of the follow (e.g., Public or Private).
-//
-// Returns:
-//   - bool: true if the request was successfully sent, false otherwise.
-//   - error: An error object if the request fails; otherwise, nil.
 func (a *AppPixivAPI) UserFollowAdd(uid uint64, restrict ...models.Restrict) (bool, error) {
 	const path = "v1/user/follow/add"
 
@@ -49,13 +38,6 @@ func (a *AppPixivAPI) UserFollowAdd(uid uint64, restrict ...models.Restrict) (bo
 }
 
 // UserFollowAdd sends a unfollow request to a user on Pixiv.
-//
-// Parameters:
-//   - uid: The ID of the user to follow.
-//
-// Returns:
-//   - bool: true if the request was successfully sent, false otherwise.
-//   - error: An error object if the request fails; otherwise, nil.
 func (a *AppPixivAPI) UserFollowDelete(uid uint64) (bool, error) {
 	const path = "v1/user/follow/delete"
 

@@ -20,15 +20,6 @@ type userIllustsParams struct {
 }
 
 // UserIllusts retrieves a list of illustrations for a given user.
-//
-// Parameters:
-//   - uid: The ID of the user whose illustrations are being fetched.
-//   - opts: Optional parameters for filtering and pagination.
-//
-// Returns:
-//   - []models.Illust: A slice of illustrations returned by the API.
-//   - int: The offset for the next page, if available (0 if not present).
-//   - error: An error if the API request or offset parsing fails.
 func (a *AppPixivAPI) UserIllusts(uid uint64, opts ...UserIllustsOptions) ([]models.Illust, int, error) {
 	const path = "v1/user/illusts"
 

@@ -17,14 +17,6 @@ type illustFollowParams struct {
 
 // IllustFollow retrieves a list of illustrations from users that the authenticated user follows.
 // It supports optional parameters such as restriction (public/private) and pagination offset.
-//
-// Parameters:
-//   - opts: Pointer to IllustFollowOptions containing optional request parameters.
-//
-// Returns:
-//   - A slice of Illust representing the retrieved illustrations.
-//   - An integer indicating the offset for the next page, or 0 if there is no next page.
-//   - An error if the request fails or the response cannot be parsed.
 func (a *AppPixivAPI) IllustFollow(opts ...IllustFollowOptions) ([]models.Illust, int, error) {
 	const path = "v2/illust/follow"
 

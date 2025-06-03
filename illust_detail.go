@@ -9,13 +9,6 @@ type illustDetailParams struct {
 }
 
 // IllustDetail retrieves detailed information about a specific illustration by its ID.
-//
-// Parameters:
-//   - id: The unique ID of the illustration to fetch.
-//
-// Returns:
-//   - A pointer to an Illust object containing detailed information about the illustration.
-//   - An error if the request fails or the response is invalid.
 func (a *AppPixivAPI) IllustDetail(id uint64) (*models.Illust, error) {
 	const path = "v1/illust/detail"
 

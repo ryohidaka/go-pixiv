@@ -10,15 +10,6 @@ import (
 )
 
 // FetchAllBookmarkedIllusts retrieves all bookmarked illustrations for a given user by paginating
-//
-// Parameters:
-//   - uid: Pixiv user ID to retrieve bookmarks for.
-//   - baseOpts: Optional filter parameters (Restrict, Filter, Tag). MaxBookmarkID will be overwritten for pagination.
-//   - sleepMs: Optional sleep duration between requests in milliseconds (default: 1000ms).
-//
-// Returns:
-//   - []models.Illust: A combined list of all retrieved bookmarked illustrations (even if an error occurs mid-fetch).
-//   - error: Any error encountered during the API request.
 func (c *PixivCrawler) FetchAllBookmarkedIllusts(uid uint64, opts *pixiv.UserBookmarksIllustOptions, sleepMs ...int) ([]models.Illust, error) {
 	var allIllusts []models.Illust
 	var next int

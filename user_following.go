@@ -17,15 +17,6 @@ type userFollowingParams struct {
 }
 
 // UserFollowing fetches the list of users followed by the specified user.
-//
-// Parameters:
-//   - uid: Pixiv user ID of the target user.
-//   - opts: Optional parameters for restricting visibility or paginating results.
-//
-// Returns:
-//   - A pointer to models.UserFollowList containing the list of followed users.
-//   - An integer indicating the offset for the next page, or 0 if there is no next page.
-//   - An error if the request fails.
 func (a *AppPixivAPI) UserFollowing(uid uint64, opts ...UserFollowingOptions) ([]models.UserPreview, int, error) {
 	const path = "v1/user/following"
 

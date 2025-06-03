@@ -10,15 +10,6 @@ import (
 )
 
 // FetchAllUserFollowing retrieves all users followed by the specified user by paginating.
-//
-// Parameters:
-//   - uid: Pixiv user ID of the target user.
-//   - opts: Optional parameters such as Restrict. Offset will be managed internally.
-//   - sleepMs: Optional sleep duration between requests in milliseconds (default: 1000ms).
-//
-// Returns:
-//   - []models.UserPreview: A complete list of followed users.
-//   - error: Any error encountered during the request.
 func (c *PixivCrawler) FetchAllUserFollowing(uid uint64, opts *pixiv.UserFollowingOptions, sleepMs ...int) ([]models.UserPreview, error) {
 	var allUsers []models.UserPreview
 	var next int
