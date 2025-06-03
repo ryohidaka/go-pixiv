@@ -1,8 +1,6 @@
 package crawler
 
 import (
-	"log/slog"
-	"os"
 	"time"
 
 	"github.com/ryohidaka/go-pixiv"
@@ -15,32 +13,20 @@ func (c *PixivCrawler) FetchAllBookmarkedIllusts(uid uint64, opts *pixiv.UserBoo
 	var next int
 	var err error
 
-	// Initialize the slog logger with options
-	handler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{})
-	logger := slog.New(handler)
-
 	// Start the fetch process
-	logger.Info("Fetching bookmarked illustrations", "uid", uid)
-
 	for {
 		// Retrieve a page of bookmarked illustrations
 		var illusts []models.Illust
 		illusts, next, err = c.app.UserBookmarksIllust(uid, []pixiv.UserBookmarksIllustOptions{*opts}...)
 
-		// Log the number of illustrations fetched in this request
-		logger.Info("Fetched illustrations", "count", len(illusts), "nextBookmarkID", next)
-
 		// Always append the successfully fetched results before returning on error
 		allIllusts = append(allIllusts, illusts...)
 		if err != nil {
-			// Log the error
-			logger.Error("Error fetching illustrations", "error", err)
 			return allIllusts, err
 		}
 
 		// Exit loop if there are no more pages
 		if next == 0 {
-			logger.Info("No more pages to fetch, exiting")
 			break
 		}
 
@@ -49,12 +35,8 @@ func (c *PixivCrawler) FetchAllBookmarkedIllusts(uid uint64, opts *pixiv.UserBoo
 
 		// Sleep between requests to avoid rate limits
 		sleepDuration := getSleepDuration(sleepMs...)
-		logger.Info("Sleeping before next request", "sleepDuration", sleepDuration)
 		time.Sleep(sleepDuration)
 	}
-
-	// Log the total number of illustrations fetched
-	logger.Info("Total illustrations fetched", "total", len(allIllusts))
 
 	return allIllusts, nil
 }

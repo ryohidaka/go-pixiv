@@ -2,8 +2,6 @@ package crawler
 
 import (
 	"fmt"
-	"log/slog"
-	"os"
 	"time"
 
 	"github.com/ryohidaka/go-pixiv/models"
@@ -11,10 +9,6 @@ import (
 
 // UserFollowAddMultiple sends follow requests to multiple users on Pixiv.
 func (c *PixivCrawler) UserFollowAddMultiple(uids []uint64, restrict *models.Restrict, sleepMs ...int) ([]uint64, error) {
-	// Logger setup
-	handler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{})
-	logger := slog.New(handler)
-
 	var processed []uint64
 
 	for _, uid := range uids {
@@ -30,7 +24,6 @@ func (c *PixivCrawler) UserFollowAddMultiple(uids []uint64, restrict *models.Res
 
 		// Sleep between requests to avoid rate limits
 		sleepDuration := getSleepDuration(sleepMs...)
-		logger.Info("Sleeping before next request", "sleepDuration", sleepDuration)
 		time.Sleep(sleepDuration)
 	}
 
@@ -39,10 +32,6 @@ func (c *PixivCrawler) UserFollowAddMultiple(uids []uint64, restrict *models.Res
 
 // UserFollowDeleteMultiple sends unfollow requests to multiple users on Pixiv.
 func (c *PixivCrawler) UserFollowDeleteMultiple(uids []uint64, sleepMs ...int) ([]uint64, error) {
-	// Logger setup
-	handler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{})
-	logger := slog.New(handler)
-
 	var processed []uint64
 
 	for _, uid := range uids {
@@ -58,7 +47,6 @@ func (c *PixivCrawler) UserFollowDeleteMultiple(uids []uint64, sleepMs ...int) (
 
 		// Sleep between requests to avoid rate limits
 		sleepDuration := getSleepDuration(sleepMs...)
-		logger.Info("Sleeping before next request", "sleepDuration", sleepDuration)
 		time.Sleep(sleepDuration)
 	}
 
