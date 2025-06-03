@@ -1,8 +1,6 @@
 package crawler
 
 import (
-	"log/slog"
-
 	"github.com/ryohidaka/go-pixiv"
 )
 
@@ -14,8 +12,6 @@ type PixivCrawler struct {
 
 // NewCrawler initializes and returns a new PixivCrawler instance using the provided refresh token.
 func NewCrawler(refreshToken string) (*PixivCrawler, error) {
-	slog.Debug("Initializing PixivCrawler", slog.String("refresh_token", refreshToken))
-
 	app, err := pixiv.NewApp(refreshToken)
 	if err != nil {
 		return nil, err

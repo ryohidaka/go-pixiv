@@ -30,11 +30,6 @@ func (s *AuthSession) Authenticate(params *models.AuthParams) (*models.AuthInfo,
 		s.BaseURL = AuthHosts
 	}
 
-	slog.Debug("Starting authentication",
-		slog.String("client_id", params.ClientID),
-		slog.String("grant_type", params.GrantType),
-	)
-
 	clientTime := time.Now().Format(time.RFC3339)
 
 	form := url.Values{
@@ -66,7 +61,6 @@ func (s *AuthSession) Authenticate(params *models.AuthParams) (*models.AuthInfo,
 		client = http.DefaultClient
 	}
 
-	slog.Debug("Sending authentication request", slog.String("url", req.URL.String()))
 	resp, err := client.Do(req)
 	if err != nil {
 		slog.Error("Authentication request failed", slog.String("error", err.Error()))
@@ -108,11 +102,6 @@ func (s *AuthSession) Authenticate(params *models.AuthParams) (*models.AuthInfo,
 	s.RefreshToken = res.Response.RefreshToken
 	s.ExpiresAt = getExpiresAt(res.Response.ExpiresIn)
 
-	slog.Debug("Authentication successful",
-		slog.String("access_token", s.AccessToken),
-		slog.Time("expires_at", s.ExpiresAt),
-	)
-
 	if s.AuthHook != nil {
 		if err := s.AuthHook(s.AccessToken, s.RefreshToken, s.ExpiresAt); err != nil {
 			slog.Error("AuthHook failed", slog.String("error", err.Error()))
@@ -130,7 +119,6 @@ func (s *AuthSession) RefreshAuth(force bool) (*models.Account, error) {
 		return nil, fmt.Errorf("missing refresh token")
 	}
 	if !force && time.Now().Before(s.ExpiresAt) {
-		slog.Debug("No need to refresh token", slog.Time("expires_at", s.ExpiresAt))
 		return nil, nil
 	}
 

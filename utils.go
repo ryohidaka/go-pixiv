@@ -22,7 +22,7 @@ func genClientHash(clientTime string) string {
 	io.WriteString(h, clientTime)
 	io.WriteString(h, ClientHashSecret)
 	hash := hex.EncodeToString(h.Sum(nil))
-	slog.Debug("generated client hash", "client_time", clientTime, "hash", hash)
+
 	return hash
 }
 
@@ -30,7 +30,6 @@ func genClientHash(clientTime string) string {
 func setHeaders(req *http.Request, headers map[string]string) {
 	for k, v := range headers {
 		req.Header.Set(k, v)
-		slog.Debug("set header", "key", k, "value", v)
 	}
 }
 
@@ -41,7 +40,7 @@ func readResponse(resp *http.Response) ([]byte, error) {
 		slog.Error("failed to read response body", "error", err)
 		return nil, fmt.Errorf("failed to read response: %w", err)
 	}
-	slog.Debug("read response body", "length", len(body))
+
 	return body, nil
 }
 
@@ -51,14 +50,14 @@ func decodeJSON(body []byte, out any) error {
 		slog.Error("failed to unmarshal JSON", "error", err)
 		return fmt.Errorf("failed to unmarshal response: %w", err)
 	}
-	slog.Debug("successfully decoded JSON")
+
 	return nil
 }
 
 // getExpiresAt calculates and returns the time when the access token will expire.
 func getExpiresAt(expiredIn int) time.Time {
 	expiresAt := time.Now().Add(time.Duration(expiredIn) * time.Second)
-	slog.Debug("calculated token expiration time", "expires_in", expiredIn, "expires_at", expiresAt)
+
 	return expiresAt
 }
 
@@ -66,7 +65,6 @@ func getExpiresAt(expiredIn int) time.Time {
 func parseNextPageOffset(s, field string) (int, error) {
 	// If the input string is empty, return 0 as a default offset.
 	if s == "" {
-		slog.Debug("URL string is empty, defaulting offset to 0")
 		return 0, nil
 	}
 
@@ -98,7 +96,6 @@ func parseNextPageOffset(s, field string) (int, error) {
 		return 0, fmt.Errorf("invalid offset value: %s {%s}", offsetParam, err)
 	}
 
-	slog.Debug("parsed next page offset", "offset", offset)
 	return offset, nil
 }
 
@@ -107,10 +104,8 @@ func parseNextPageOffset(s, field string) (int, error) {
 func getRestrict(r *models.Restrict) models.Restrict {
 	// Check if the pointer is non-nil and the value is not an empty string
 	if r != nil && *r != "" {
-		slog.Debug("using custom restrict value", "value", *r)
 		return *r
 	}
 	// Return the default value when the pointer is nil or empty
-	slog.Debug("using default restrict value: public")
 	return models.Public
 }

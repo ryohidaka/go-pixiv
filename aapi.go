@@ -20,8 +20,6 @@ type AppPixivAPI struct {
 
 // NewApp initializes and returns a new AppPixivAPI instance using the provided refresh token.
 func NewApp(refreshToken string) (*AppPixivAPI, error) {
-	slog.Debug("Initializing AppPixivAPI", slog.String("refresh_token", refreshToken))
-
 	auth := &AuthSession{
 		RefreshToken: refreshToken,
 		HTTPClient:   http.DefaultClient,
@@ -37,18 +35,12 @@ func NewApp(refreshToken string) (*AppPixivAPI, error) {
 
 	authInfo, err := auth.Authenticate(params)
 	if err != nil {
-		slog.Error("Authentication failed", slog.String("error", err.Error()))
 		return nil, fmt.Errorf("failed to authenticate: %w", err)
 	}
 
 	auth.AccessToken = authInfo.AccessToken
 	auth.RefreshToken = authInfo.RefreshToken
 	auth.ExpiresAt = getExpiresAt(authInfo.ExpiresIn)
-
-	slog.Debug("Authentication successful",
-		slog.String("access_token", auth.AccessToken),
-		slog.Time("expires_at", auth.ExpiresAt),
-	)
 
 	return &AppPixivAPI{
 		httpClient: http.DefaultClient,
@@ -71,7 +63,6 @@ func (a *AppPixivAPI) Post(path string, queryStruct any, body io.Reader, out any
 // Request sends an HTTP request (GET, POST, etc.) to the specified Pixiv API endpoint,
 // optionally including OAuth authorization.
 func (a *AppPixivAPI) request(method, path string, queryStruct any, body io.Reader, out any) error {
-	slog.Debug("Request start", slog.String("method", method), slog.String("path", path))
 	if err := a.refreshTokenIfNeeded(); err != nil {
 		return err
 	}
@@ -93,12 +84,11 @@ func (a *AppPixivAPI) request(method, path string, queryStruct any, body io.Read
 
 // refreshTokenIfNeeded refreshes the access token if it is expired or about to expire.
 func (a *AppPixivAPI) refreshTokenIfNeeded() error {
-	slog.Debug("Checking if token refresh is needed")
 	if _, err := a.auth.RefreshAuth(false); err != nil {
 		slog.Error("Token refresh failed", slog.String("error", err.Error()))
 		return fmt.Errorf("failed to refresh token: %w", err)
 	}
-	slog.Debug("Token refresh succeeded")
+
 	return nil
 }
 
@@ -115,7 +105,7 @@ func (a *AppPixivAPI) buildRequestURL(path string, queryStruct any) (*url.URL, e
 		}
 		reqURL.RawQuery = values.Encode()
 	}
-	slog.Debug("Built request URL", slog.String("url", reqURL.String()))
+
 	return reqURL, nil
 }
 
@@ -140,7 +130,7 @@ func (a *AppPixivAPI) createRequest(method string, reqURL *url.URL, body io.Read
 	}
 
 	setHeaders(req, headers)
-	slog.Debug("Created request with headers", slog.Any("headers", headers))
+
 	return req, nil
 }
 
@@ -152,8 +142,6 @@ func (a *AppPixivAPI) handleResponse(req *http.Request, out any) error {
 		return fmt.Errorf("API request failed: %w", err)
 	}
 	defer resp.Body.Close()
-
-	slog.Debug("Received response", slog.Int("status", resp.StatusCode))
 
 	if resp.StatusCode >= 400 {
 		slog.Error("API error", slog.Int("status", resp.StatusCode), slog.String("status_text", http.StatusText(resp.StatusCode)))
