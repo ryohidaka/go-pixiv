@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.21.0](https://github.com/ryohidaka/go-pixiv/compare/v0.20.2...v0.21.0) (2025-06-03)
+
+
+### Features
+
+* **client:** Add download client. ([6dfeabd](https://github.com/ryohidaka/go-pixiv/commit/6dfeabdee5db322018b93baa4ecb7fa196126f60))
+* **downloader:** Add DownloadBytes(). ([d838617](https://github.com/ryohidaka/go-pixiv/commit/d838617a90943a876a5b70c4def7f3b8d8147b2f))
+* **downloader:** Add DownloadFile(). ([aa637eb](https://github.com/ryohidaka/go-pixiv/commit/aa637ebf060f5fcdb0bf81c45c4153634a9c95d8))
+
 ## [0.20.2](https://github.com/ryohidaka/go-pixiv/compare/v0.20.1...v0.20.2) (2025-06-03)
 
 
