@@ -96,6 +96,24 @@ processed, err := c.UserFollowAddMultiple([]uint64{11})
 processed, err := c.UserFollowDeleteMultiple([]uint64{11})
 ```
 
+### Downloader
+
+```go
+import "github.com/ryohidaka/go-pixiv"
+
+downloader := pixiv.NewDownloader()
+
+// Download as byte
+data, err := downloader.DownloadBytes("https://i.pximg.net/...")
+
+// Download as file
+len, err := downloader.DownloadFile("https://i.pximg.net/...", &pixiv.DownloadFileOptions{
+    Dir:     ".tmp",
+    Name:    "test.jpg",
+    Replace: true,
+})
+```
+
 ## API functions
 
 ### App-API (6.0 - app-api.pixiv.net)
@@ -132,7 +150,7 @@ UserFollowAdd(uid uint64, restrict ...models.Restrict) {...}
 UserFollowDelete(uid uint64) (bool, error) {...}
 ```
 
-## Crawler
+### Crawler
 
 ```go
 // 获取指定用户的作品列表
@@ -151,6 +169,14 @@ FetchAllUserFollowers(uid uint64, opts *UserFollowerOptions, sleepMs ...int) ([]
 UserFollowAddMultiple(uids []uint64, restrict ...models.Restrict) ([]uint64, error) {...}
 
 UserFollowDeleteMultiple(uids []uint64) ([]uint64, error) {...}
+```
+
+### Downloader
+
+```go
+DownloadBytes(url string) ([]byte, error) {...}
+
+DownloadFile(url string, opts *DownloadFileOptions) (int64, error) {...}
 ```
 
 ## Link
