@@ -2,12 +2,30 @@ package pixiv_test
 
 import (
 	"context"
+	"fmt"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 
 	"github.com/ryohidaka/go-pixiv"
 )
+
+func ExampleDownloader_DownloadBytes() {
+	d := pixiv.NewDownloader()
+	defer d.Close()
+
+	url := "https://i.pximg.net/c/600x1200_90/img-master/img/2025/05/01/11/19/11/129899459_p0_master1200.jpg"
+
+	data, err := d.DownloadBytes(url)
+	if err != nil {
+		log.Printf("Download failed: %v", err)
+		return
+	}
+
+	// Output only length for demo
+	fmt.Printf("Downloaded %d bytes\n", len(data))
+}
 
 func TestDownloadBytes(t *testing.T) {
 	// Set up a test HTTP server that returns fixed data
