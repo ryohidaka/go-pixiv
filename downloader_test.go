@@ -6,6 +6,8 @@ import (
 	"log"
 	"net/http"
 	"net/http/httptest"
+	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/ryohidaka/go-pixiv"
@@ -49,5 +51,68 @@ func TestDownloadBytes(t *testing.T) {
 	}
 	if string(data) != testData {
 		t.Errorf("DownloadBytes returned %q, want %q", string(data), testData)
+	}
+}
+
+func TestDownloadFile(t *testing.T) {
+	const testData = "pixiv image data"
+
+	// Set up a test HTTP server
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(testData))
+	}))
+	defer ts.Close()
+
+	d := pixiv.NewDownloader(context.Background())
+	defer d.Close()
+
+	tmpDir := t.TempDir()
+	fileName := "testfile.txt"
+	filePath := filepath.Join(tmpDir, fileName)
+
+	// First download (should succeed)
+	ok, err := d.DownloadFile(ts.URL, &pixiv.DownloadFileOptions{
+		Dir:  tmpDir,
+		Name: fileName,
+	})
+	if err != nil {
+		t.Fatalf("DownloadFile failed: %v", err)
+	}
+	if !ok {
+		t.Errorf("expected download to occur, got ok=false")
+	}
+
+	content, err := os.ReadFile(filePath)
+	if err != nil {
+		t.Fatalf("failed to read downloaded file: %v", err)
+	}
+	if string(content) != testData {
+		t.Errorf("downloaded content = %q, want %q", string(content), testData)
+	}
+
+	// Second download (should be skipped due to existing file and Replace=false)
+	ok, err = d.DownloadFile(ts.URL, &pixiv.DownloadFileOptions{
+		Dir:  tmpDir,
+		Name: fileName,
+	})
+	if err != nil {
+		t.Fatalf("DownloadFile second call failed: %v", err)
+	}
+	if ok {
+		t.Errorf("expected second call to skip download, got ok=true")
+	}
+
+	// Third download (overwrite enabled)
+	ok, err = d.DownloadFile(ts.URL, &pixiv.DownloadFileOptions{
+		Dir:     tmpDir,
+		Name:    fileName,
+		Replace: true,
+	})
+	if err != nil {
+		t.Fatalf("DownloadFile overwrite failed: %v", err)
+	}
+	if !ok {
+		t.Errorf("expected overwrite download to occur, got ok=false")
 	}
 }
