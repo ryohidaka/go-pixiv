@@ -54,16 +54,16 @@ illust, err := app.IllustDetail(129899459)
 bookmark, err := app.IllustBookmarkDetail(129899459)
 
 // Fetch user following
-users, next, err := api.UserFollowing(11)
+users, next, err := app.UserFollowing(11)
 
 // Fetch user follower
-users, next, err := api.UserFollower(11)
+users, next, err := app.UserFollower(11)
 
 // Follow user with user ID
-ok, err := api.UserFollowAdd(11)
+ok, err := app.UserFollowAdd(11)
 
 // Unfollow user with user ID
-ok, err := api.UserFollowDelete(11)
+ok, err := app.UserFollowDelete(11)
 ```
 
 ### Crawler
