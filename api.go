@@ -134,7 +134,6 @@ func (s *AuthSession) RefreshAuth(force bool) (*models.Account, error) {
 		return nil, nil
 	}
 
-	slog.Info("Refreshing token", slog.Bool("forced", force))
 	params := &models.AuthParams{
 		GetSecureURL: 1,
 		ClientID:     ClientID,
@@ -143,10 +142,11 @@ func (s *AuthSession) RefreshAuth(force bool) (*models.Account, error) {
 		RefreshToken: s.RefreshToken,
 	}
 	info, err := s.Authenticate(params)
+
 	if err != nil {
 		slog.Error("Token refresh failed", slog.String("error", err.Error()))
 		return nil, err
 	}
-	slog.Info("Token refreshed successfully")
+
 	return &info.User, nil
 }
