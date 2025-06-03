@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os"
+	"path/filepath"
 	"time"
 )
 
@@ -64,4 +66,55 @@ func (d *Downloader) DownloadBytes(url string) ([]byte, error) {
 	}
 
 	return io.ReadAll(resp.Body)
+}
+
+// DownloadFileOptions holds optional parameters for DownloadFile.
+type DownloadFileOptions struct {
+	Dir     string // Directory to save the file (optional)
+	Name    string // Filename to save as (optional, default: base name from URL)
+	Replace bool   // Whether to overwrite existing file (default false)
+}
+
+// DownloadFile downloads the file from the given URL and saves it according to opts.
+// It returns true if the file was successfully downloaded and saved, or false if skipped.
+// If opts is nil, default options are applied (no directory, default filename, no overwrite).
+func (d *Downloader) DownloadFile(url string, opts *DownloadFileOptions) (bool, error) {
+	dir := ""
+	name := ""
+	replace := false
+
+	if opts != nil {
+		dir = opts.Dir
+		name = opts.Name
+		replace = opts.Replace
+	}
+
+	if name == "" {
+		name = filepath.Base(url)
+	}
+	fullPath := filepath.Join(dir, name)
+
+	if !replace {
+		if _, err := os.Stat(fullPath); err == nil {
+			// File exists and replace is false; skip download
+			return false, nil
+		}
+	}
+
+	data, err := d.DownloadBytes(url)
+	if err != nil {
+		return false, err
+	}
+
+	if dir != "" {
+		if err := os.MkdirAll(dir, 0755); err != nil {
+			return false, fmt.Errorf("failed to create directory: %w", err)
+		}
+	}
+
+	if err := os.WriteFile(fullPath, data, 0644); err != nil {
+		return false, fmt.Errorf("failed to save file: %w", err)
+	}
+
+	return true, nil
 }
