@@ -4,6 +4,7 @@ import (
 	"github.com/ryohidaka/go-pixiv/internal/modelutil"
 	"github.com/ryohidaka/go-pixiv/internal/urlutil"
 	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/models/appmodel"
 )
 
 // IllustFollowOptions defines optional parameters for the IllustFollow method.
@@ -35,7 +36,7 @@ func (a *AppPixivAPI) IllustFollow(opts ...IllustFollowOptions) ([]models.Illust
 	}
 
 	// Initialize the response model
-	data := &models.IllustsResponse{}
+	data := &appmodel.IllustsResponse{}
 
 	// Send the API request
 	if err := a.Get(path, params, data); err != nil {

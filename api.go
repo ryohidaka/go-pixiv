@@ -10,7 +10,7 @@ import (
 
 	"github.com/ryohidaka/go-pixiv/internal/authutil"
 	"github.com/ryohidaka/go-pixiv/internal/httpclient"
-	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/models/appmodel"
 )
 
 // AuthSession holds the authentication state and provides methods to
@@ -26,7 +26,7 @@ type AuthSession struct {
 
 // Authenticate performs authentication against the Pixiv API using the provided
 // AuthParams. It updates the session with the new access and refresh tokens.
-func (s *AuthSession) Authenticate(params *models.AuthParams) (*models.AuthInfo, error) {
+func (s *AuthSession) Authenticate(params *appmodel.AuthParams) (*appmodel.AuthInfo, error) {
 	if s.BaseURL == "" {
 		s.BaseURL = AuthHosts
 	}
@@ -73,7 +73,7 @@ func (s *AuthSession) Authenticate(params *models.AuthParams) (*models.AuthInfo,
 	}
 
 	if resp.StatusCode >= 400 {
-		var pixivErr models.PixivError
+		var pixivErr appmodel.PixivError
 		if err := json.Unmarshal(body, &pixivErr); err == nil && pixivErr.HasError {
 			for k, v := range pixivErr.Errors {
 				return nil, fmt.Errorf("login %s error: %s", k, v.Message)
@@ -83,7 +83,7 @@ func (s *AuthSession) Authenticate(params *models.AuthParams) (*models.AuthInfo,
 		return nil, fmt.Errorf("auth failed with status %d: %s", resp.StatusCode, string(body))
 	}
 
-	var res models.AuthResponse
+	var res appmodel.AuthResponse
 	if err := httpclient.DecodeJSON(body, &res); err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *AuthSession) Authenticate(params *models.AuthParams) (*models.AuthInfo,
 }
 
 // RefreshAuth refreshes the access token if it has expired or if forced.
-func (s *AuthSession) RefreshAuth(force bool) (*models.Account, error) {
+func (s *AuthSession) RefreshAuth(force bool) (*appmodel.Account, error) {
 	if s.RefreshToken == "" {
 		return nil, fmt.Errorf("missing refresh token")
 	}
@@ -110,7 +110,7 @@ func (s *AuthSession) RefreshAuth(force bool) (*models.Account, error) {
 		return nil, nil
 	}
 
-	params := &models.AuthParams{
+	params := &appmodel.AuthParams{
 		GetSecureURL: 1,
 		ClientID:     ClientID,
 		ClientSecret: ClientSecret,

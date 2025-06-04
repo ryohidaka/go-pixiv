@@ -1,4 +1,4 @@
-package models
+package appmodel
 
 type Request struct {
 	RequestInfo  RequestInfo `json:"request_info"`

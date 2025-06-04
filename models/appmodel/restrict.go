@@ -1,4 +1,4 @@
-package models
+package appmodel
 
 type Restrict string
 

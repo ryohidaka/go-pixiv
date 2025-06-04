@@ -1,6 +1,8 @@
 package modelutil
 
-import "github.com/ryohidaka/go-pixiv/models"
+import (
+	"github.com/ryohidaka/go-pixiv/models"
+)
 
 // GetRestrict safely dereferences a *Restrict pointer and returns its value.
 // If the pointer is nil or the value is an empty string, it returns models.Public.

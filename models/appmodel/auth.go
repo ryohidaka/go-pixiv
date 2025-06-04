@@ -1,4 +1,4 @@
-package models
+package appmodel
 
 type AuthParams struct {
 	GetSecureURL int    `url:"get_secure_url,omitempty"`

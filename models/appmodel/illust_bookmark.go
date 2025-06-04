@@ -1,4 +1,4 @@
-package models
+package appmodel
 
 type IllustBookmarkDetail struct {
 	BookmarkDetail BookmarkDetail `json:"bookmark_detail"`

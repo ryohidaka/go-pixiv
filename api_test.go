@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/ryohidaka/go-pixiv"
-	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/models/appmodel"
 	"github.com/ryohidaka/go-pixiv/testutil"
 
 	"github.com/stretchr/testify/assert"
@@ -21,7 +21,7 @@ func TestAuthenticate(t *testing.T) {
 
 		// Prepare AuthSession and AuthParams
 		authSession := testutil.CreateAuthSession("validRefreshToken")
-		params := &models.AuthParams{
+		params := &appmodel.AuthParams{
 			ClientID:     "clientID",
 			ClientSecret: "clientSecret",
 			GrantType:    "refresh_token",

@@ -1,4 +1,4 @@
-package models
+package appmodel
 
 type PixivError struct {
 	HasError bool              `json:"has_error"`

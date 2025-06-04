@@ -1,6 +1,9 @@
 package pixiv
 
-import "github.com/ryohidaka/go-pixiv/models"
+import (
+	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/models/appmodel"
+)
 
 // illustDetailParams represents the query parameters for fetching illustration details.
 // It includes the ID of the illustration to be retrieved.
@@ -18,7 +21,7 @@ func (a *AppPixivAPI) IllustDetail(id uint64) (*models.Illust, error) {
 	}
 
 	// Initialize the response model
-	data := &models.IllustResponse{}
+	data := &appmodel.IllustResponse{}
 
 	// Send the API request
 	if err := a.Get(path, params, data); err != nil {

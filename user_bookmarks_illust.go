@@ -4,6 +4,7 @@ import (
 	"github.com/ryohidaka/go-pixiv/internal/modelutil"
 	"github.com/ryohidaka/go-pixiv/internal/urlutil"
 	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/models/appmodel"
 )
 
 // UserBookmarksIllustOptions defines optional parameters for retrieving user bookmarks illust.
@@ -43,7 +44,7 @@ func (a *AppPixivAPI) UserBookmarksIllust(uid uint64, opts ...UserBookmarksIllus
 	}
 
 	// Initialize the response model
-	data := &models.IllustsResponse{}
+	data := &appmodel.IllustsResponse{}
 
 	// Send the API request
 	if err := a.Get(path, params, data); err != nil {

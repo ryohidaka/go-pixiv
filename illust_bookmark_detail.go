@@ -1,6 +1,8 @@
 package pixiv
 
-import "github.com/ryohidaka/go-pixiv/models"
+import (
+	"github.com/ryohidaka/go-pixiv/models"
+)
 
 // illustBookmarkDetailParams represents the request parameters
 // for retrieving illustration bookmark detail from the Pixiv API.

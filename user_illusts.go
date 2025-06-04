@@ -3,6 +3,7 @@ package pixiv
 import (
 	"github.com/ryohidaka/go-pixiv/internal/urlutil"
 	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/models/appmodel"
 )
 
 // UserIllustsOptions defines optional parameters for fetching a user's illustrations.
@@ -38,7 +39,7 @@ func (a *AppPixivAPI) UserIllusts(uid uint64, opts ...UserIllustsOptions) ([]mod
 	}
 
 	// Initialize the response model
-	data := &models.IllustsResponse{}
+	data := &appmodel.IllustsResponse{}
 
 	// Send the API request
 	if err := a.Get(path, params, data); err != nil {

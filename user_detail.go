@@ -1,6 +1,9 @@
 package pixiv
 
-import "github.com/ryohidaka/go-pixiv/models"
+import (
+	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/models/appmodel"
+)
 
 // UserDetailOptions defines optional parameters for retrieving user details.
 type UserDetailOptions struct {
@@ -27,7 +30,7 @@ func (a *AppPixivAPI) UserDetail(uid uint64, opts ...UserDetailOptions) (*models
 
 	// Initialize the response model
 	detail := &models.UserDetail{
-		User: &models.User{},
+		User: &appmodel.User{},
 	}
 
 	// Send the API request

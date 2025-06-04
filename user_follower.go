@@ -4,6 +4,7 @@ import (
 	"github.com/ryohidaka/go-pixiv/internal/modelutil"
 	"github.com/ryohidaka/go-pixiv/internal/urlutil"
 	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/models/appmodel"
 )
 
 // UserFollowerOptions defines optional parameters for retrieving the list of user followers.
@@ -36,7 +37,7 @@ func (a *AppPixivAPI) UserFollower(uid uint64, opts ...UserFollowerOptions) ([]m
 	}
 
 	// Initialize the response model
-	data := &models.UserFollowList{}
+	data := &appmodel.UserFollowList{}
 
 	// Send the API request
 	if err := a.Get(path, params, data); err != nil {

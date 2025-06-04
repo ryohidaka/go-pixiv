@@ -11,7 +11,7 @@ import (
 
 	"github.com/ryohidaka/go-pixiv/internal/authutil"
 	"github.com/ryohidaka/go-pixiv/internal/httpclient"
-	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/models/appmodel"
 )
 
 // AppPixivAPI handles Pixiv App API operations using OAuth authentication.
@@ -27,7 +27,7 @@ func NewApp(refreshToken string) (*AppPixivAPI, error) {
 		HTTPClient:   http.DefaultClient,
 	}
 
-	params := &models.AuthParams{
+	params := &appmodel.AuthParams{
 		GetSecureURL: 1,
 		ClientID:     ClientID,
 		ClientSecret: ClientSecret,
