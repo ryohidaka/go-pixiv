@@ -10,16 +10,16 @@ import (
 )
 
 // MockResponseFromFile mocks an API response from an external JSON file
-// for the specified URL path and HTTP method (GET, POST, etc.)
-// It reads the JSON file and registers the response using the httpmock package.
-func MockResponseFromFile(method, url, path string, isSubDir ...bool) error {
-	basePath := "testutil"
-	if len(isSubDir) > 0 && isSubDir[0] {
-		basePath = "../testutil"
+// for the specified URL path and HTTP method (GET, POST, etc.).
+// It allows optional customization of the base path used to locate the JSON fixture.
+func MockResponseFromFile(method, url, path string, basePath ...string) error {
+	root := "testutil"
+	if len(basePath) > 0 && basePath[0] != "" {
+		root = basePath[0]
 	}
 
 	// Build full file path
-	filePath := fmt.Sprintf("%s/fixtures/json/%s.json", basePath, path)
+	filePath := fmt.Sprintf("%s/fixtures/json/%s.json", root, path)
 
 	// Open the JSON file for reading
 	file, err := os.Open(filePath)

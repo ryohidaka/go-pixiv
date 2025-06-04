@@ -31,16 +31,16 @@ func ExamplePixivCrawler_FetchAllBookmarkedIllusts() {
 func TestFetchAllBookmarkedIllusts(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock: authentication response
-		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token", true)
+		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token", "../testutil")
 
 		// Mock: page 1 of user bookmarks
 		urlPage1 := pixiv.AppHosts + "v1/user/bookmarks/illust?filter=for_ios&restrict=public&user_id=11"
-		err := testutil.MockResponseFromFile("GET", urlPage1, "v1/user/bookmarks/illust", true)
+		err := testutil.MockResponseFromFile("GET", urlPage1, "v1/user/bookmarks/illust", "../testutil")
 		assert.NoError(t, err)
 
 		// Mock: page 2 of user bookmarks (with next_id)
 		urlPage2 := pixiv.AppHosts + "v1/user/bookmarks/illust?filter=for_ios&max_bookmark_id=129899459&restrict=public&user_id=11"
-		err = testutil.MockResponseFromFile("GET", urlPage2, "v1/user/bookmarks/illust_end", true)
+		err = testutil.MockResponseFromFile("GET", urlPage2, "v1/user/bookmarks/illust_end", "../testutil")
 		assert.NoError(t, err)
 
 		// Initialize Crawler instance

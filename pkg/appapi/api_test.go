@@ -1,11 +1,11 @@
-package pixiv_test
+package appapi_test
 
 import (
 	"testing"
 	"time"
 
-	"github.com/ryohidaka/go-pixiv"
 	"github.com/ryohidaka/go-pixiv/models/appmodel"
+	"github.com/ryohidaka/go-pixiv/pkg/appapi"
 	"github.com/ryohidaka/go-pixiv/testutil"
 
 	"github.com/stretchr/testify/assert"
@@ -14,7 +14,7 @@ import (
 // TestAuthenticate tests the Authenticate method in AuthSession.
 func TestAuthenticate(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
-		err := testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
+		err := testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
 		if err != nil {
 			t.Fatalf("Failed to mock response: %v", err)
 		}
@@ -46,7 +46,7 @@ func TestAuthenticate(t *testing.T) {
 func TestRefreshAuth(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the Pixiv API response for refreshing the token.
-		err := testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
+		err := testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token","../../testutil")
 		if err != nil {
 			t.Fatalf("Failed to mock response: %v", err)
 		}

@@ -50,11 +50,11 @@ func ExamplePixivCrawler_UserFollowDeleteMultiple() {
 func TestUserFollowAddMultiple(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token", true)
+		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token", "../testutil")
 
 		// Mock the user follow response
 		url := pixiv.AppHosts + "v1/user/follow/add"
-		err := testutil.MockResponseFromFile("POST", url, "empty", true)
+		err := testutil.MockResponseFromFile("POST", url, "empty", "../testutil")
 		assert.NoError(t, err)
 
 		// Initialize Crawler instance
@@ -81,11 +81,11 @@ func TestUserFollowAddMultiple(t *testing.T) {
 func TestUserFollowDeleteMultiple(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token", true)
+		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token", "../testutil")
 
 		// Mock the user unfollow response
 		url := pixiv.AppHosts + "v1/user/follow/delete"
-		err := testutil.MockResponseFromFile("POST", url, "empty", true)
+		err := testutil.MockResponseFromFile("POST", url, "empty", "../testutil")
 		assert.NoError(t, err)
 
 		// Initialize Crawler instance
