@@ -1,4 +1,4 @@
-package pixiv_test
+package downloader_test
 
 import (
 	"context"
