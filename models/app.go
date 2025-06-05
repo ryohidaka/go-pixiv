@@ -2,8 +2,6 @@ package models
 
 import "github.com/ryohidaka/go-pixiv/models/appmodel"
 
-
-
 type UserDetail = appmodel.UserDetail
 type Illust = appmodel.Illust
 type IllustBookmarkDetail = appmodel.IllustBookmarkDetail
