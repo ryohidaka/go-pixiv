@@ -5,16 +5,16 @@ import (
 
 	"github.com/ryohidaka/go-pixiv"
 	"github.com/ryohidaka/go-pixiv/pkg/appapi"
-	"github.com/ryohidaka/go-pixiv/testutil"
+	"github.com/ryohidaka/go-pixiv/testutil/apptest"
 
 	"github.com/stretchr/testify/assert"
 )
 
 // TestNewApp verifies that NewApp correctly initializes the API with mocked authentication.
 func TestNewApp(t *testing.T) {
-	testutil.WithMockHTTP(t, func() {
+	apptest.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		err := testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
+		err := apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
 		assert.NoError(t, err)
 
 		// Create a new AppPixivAPI instance
@@ -26,14 +26,14 @@ func TestNewApp(t *testing.T) {
 
 // TestAppPixivAPIRequest verifies that API requests return the expected mocked data.
 func TestAppPixivAPIRequest(t *testing.T) {
-	testutil.WithMockHTTP(t, func() {
+	apptest.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		err := testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
+		err := apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
 		assert.NoError(t, err)
 
 		// Mock API endpoint response
 		apiURL := appapi.AppHosts + "v1/user/detail?user_id=123"
-		err = testutil.MockResponseFromFile("GET", apiURL, "v1/user/detail", "../../testutil")
+		err = apptest.MockResponseFromFile("GET", apiURL, "v1/user/detail", "../../testutil")
 		assert.NoError(t, err)
 
 		// Initialize AppPixivAPI

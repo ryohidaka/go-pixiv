@@ -8,7 +8,7 @@ import (
 	"github.com/ryohidaka/go-pixiv"
 	"github.com/ryohidaka/go-pixiv/models"
 	"github.com/ryohidaka/go-pixiv/pkg/appapi"
-	"github.com/ryohidaka/go-pixiv/testutil"
+	"github.com/ryohidaka/go-pixiv/testutil/apptest"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -29,13 +29,13 @@ func ExampleAppPixivAPI_IllustFollow() {
 }
 
 func TestIllustFollow(t *testing.T) {
-	testutil.WithMockHTTP(t, func() {
+	apptest.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
+		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
 
 		// Mock the illust follow response
 		url := appapi.AppHosts + "v2/illust/follow?restrict=public"
-		err := testutil.MockResponseFromFile("GET", url, "v2/illust/follow", "../../testutil")
+		err := apptest.MockResponseFromFile("GET", url, "v2/illust/follow", "../../testutil")
 		assert.NoError(t, err)
 
 		// Initialize the AppPixivAPI instance

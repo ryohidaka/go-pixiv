@@ -1,4 +1,4 @@
-package testutil
+package apptest
 
 import (
 	"github.com/ryohidaka/go-pixiv/pkg/appapi"

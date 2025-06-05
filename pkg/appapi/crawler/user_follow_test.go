@@ -10,7 +10,7 @@ import (
 	"github.com/ryohidaka/go-pixiv/models"
 	"github.com/ryohidaka/go-pixiv/pkg/appapi"
 	"github.com/ryohidaka/go-pixiv/pkg/appapi/crawler"
-	"github.com/ryohidaka/go-pixiv/testutil"
+	"github.com/ryohidaka/go-pixiv/testutil/apptest"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -49,13 +49,13 @@ func ExamplePixivCrawler_UserFollowDeleteMultiple() {
 }
 
 func TestUserFollowAddMultiple(t *testing.T) {
-	testutil.WithMockHTTP(t, func() {
+	apptest.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../../testutil")
+		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../../testutil")
 
 		// Mock the user follow response
 		url := appapi.AppHosts + "v1/user/follow/add"
-		err := testutil.MockResponseFromFile("POST", url, "empty", "../../../testutil")
+		err := apptest.MockResponseFromFile("POST", url, "empty", "../../../testutil")
 		assert.NoError(t, err)
 
 		// Initialize Crawler instance
@@ -80,13 +80,13 @@ func TestUserFollowAddMultiple(t *testing.T) {
 }
 
 func TestUserFollowDeleteMultiple(t *testing.T) {
-	testutil.WithMockHTTP(t, func() {
+	apptest.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../../testutil")
+		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../../testutil")
 
 		// Mock the user unfollow response
 		url := appapi.AppHosts + "v1/user/follow/delete"
-		err := testutil.MockResponseFromFile("POST", url, "empty", "../../../testutil")
+		err := apptest.MockResponseFromFile("POST", url, "empty", "../../../testutil")
 		assert.NoError(t, err)
 
 		// Initialize Crawler instance

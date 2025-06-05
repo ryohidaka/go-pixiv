@@ -6,21 +6,21 @@ import (
 
 	"github.com/ryohidaka/go-pixiv/models/appmodel"
 	"github.com/ryohidaka/go-pixiv/pkg/appapi"
-	"github.com/ryohidaka/go-pixiv/testutil"
+	"github.com/ryohidaka/go-pixiv/testutil/apptest"
 
 	"github.com/stretchr/testify/assert"
 )
 
 // TestAuthenticate tests the Authenticate method in AuthSession.
 func TestAuthenticate(t *testing.T) {
-	testutil.WithMockHTTP(t, func() {
-		err := testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
+	apptest.WithMockHTTP(t, func() {
+		err := apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
 		if err != nil {
 			t.Fatalf("Failed to mock response: %v", err)
 		}
 
 		// Prepare AuthSession and AuthParams
-		authSession := testutil.CreateAuthSession("validRefreshToken")
+		authSession := apptest.CreateAuthSession("validRefreshToken")
 		params := &appmodel.AuthParams{
 			ClientID:     "clientID",
 			ClientSecret: "clientSecret",
@@ -44,15 +44,15 @@ func TestAuthenticate(t *testing.T) {
 
 // TestRefreshAuth tests the RefreshAuth method in AuthSession.
 func TestRefreshAuth(t *testing.T) {
-	testutil.WithMockHTTP(t, func() {
+	apptest.WithMockHTTP(t, func() {
 		// Mock the Pixiv API response for refreshing the token.
-		err := testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
+		err := apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
 		if err != nil {
 			t.Fatalf("Failed to mock response: %v", err)
 		}
 
 		// Prepare AuthSession and set an initial refresh token
-		authSession := testutil.CreateAuthSession("validRefreshToken")
+		authSession := apptest.CreateAuthSession("validRefreshToken")
 		authSession.ExpiresAt = time.Now().Add(-time.Hour) // force refresh
 
 		// Call RefreshAuth

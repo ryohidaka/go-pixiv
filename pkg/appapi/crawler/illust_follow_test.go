@@ -10,7 +10,7 @@ import (
 	"github.com/ryohidaka/go-pixiv/models"
 	"github.com/ryohidaka/go-pixiv/pkg/appapi"
 	"github.com/ryohidaka/go-pixiv/pkg/appapi/crawler"
-	"github.com/ryohidaka/go-pixiv/testutil"
+	"github.com/ryohidaka/go-pixiv/testutil/apptest"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -31,18 +31,18 @@ func ExamplePixivCrawler_FetchAllIllustFollows() {
 }
 
 func TestFetchAllIllustFollows(t *testing.T) {
-	testutil.WithMockHTTP(t, func() {
+	apptest.WithMockHTTP(t, func() {
 		// Mock: authentication response
-		_ = testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../../testutil")
+		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../../testutil")
 
 		// Mock: page 1 of illust follow
 		urlPage1 := appapi.AppHosts + "v2/illust/follow?restrict=public"
-		err := testutil.MockResponseFromFile("GET", urlPage1, "v2/illust/follow", "../../../testutil")
+		err := apptest.MockResponseFromFile("GET", urlPage1, "v2/illust/follow", "../../../testutil")
 		assert.NoError(t, err)
 
 		// Mock: page 2 of illust follow (with offset)
 		urlPage2 := appapi.AppHosts + "v2/illust/follow?offset=30&restrict=public"
-		err = testutil.MockResponseFromFile("GET", urlPage2, "v2/illust/follow_end", "../../../testutil")
+		err = apptest.MockResponseFromFile("GET", urlPage2, "v2/illust/follow_end", "../../../testutil")
 		assert.NoError(t, err)
 
 		// Initialize Crawler instance
