@@ -39,11 +39,11 @@ func ExampleAppPixivAPI_UserFollowDelete() {
 func TestUserFollowAdd(t *testing.T) {
 	apptest.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
+		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth_token")
 
 		// Mock the user follow response
 		url := appapi.AppHosts + "v1/user/follow/add"
-		err := apptest.MockResponseFromFile("POST", url, "empty", "../../testutil")
+		err := apptest.MockResponseFromFile("POST", url, "empty")
 		assert.NoError(t, err)
 
 		// Initialize the AppPixivAPI instance
@@ -71,11 +71,11 @@ func TestUserFollowAdd(t *testing.T) {
 func TestUserFollowDelete(t *testing.T) {
 	apptest.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
+		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth_token")
 
 		// Mock the user unfollow response
 		url := appapi.AppHosts + "v1/user/follow/delete"
-		err := apptest.MockResponseFromFile("POST", url, "empty", "../../testutil")
+		err := apptest.MockResponseFromFile("POST", url, "empty")
 		assert.NoError(t, err)
 
 		// Initialize the AppPixivAPI instance

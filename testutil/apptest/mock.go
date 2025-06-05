@@ -1,40 +1,34 @@
 package apptest
 
 import (
+	"embed"
 	"fmt"
-	"io"
-	"os"
+	"strings"
 	"testing"
 
 	"github.com/jarcoal/httpmock"
 )
 
-// MockResponseFromFile mocks an API response from an external JSON file
+//go:embed fixtures/json/*.json
+var fixtures embed.FS
+
+// MockResponseFromFile mocks an API response from an embedded JSON file
 // for the specified URL path and HTTP method (GET, POST, etc.).
-// It allows optional customization of the base path used to locate the JSON fixture.
-func MockResponseFromFile(method, url, path string, basePath ...string) error {
-	root := "testutil"
-	if len(basePath) > 0 && basePath[0] != "" {
-		root = basePath[0]
+func MockResponseFromFile(method, url, path string) error {
+	// Ensure `.json` extension
+	if !strings.HasSuffix(path, ".json") {
+		path += ".json"
 	}
 
-	// Build full file path
-	filePath := fmt.Sprintf("%s/fixtures/json/%s.json", root, path)
+	filePath := fmt.Sprintf("fixtures/json/%s", path)
 
-	// Open the JSON file for reading
-	file, err := os.Open(filePath)
+	// Read embedded file
+	data, err := fixtures.ReadFile(filePath)
 	if err != nil {
-		return fmt.Errorf("could not open mock response file: %v", err)
-	}
-	defer file.Close()
-
-	// Read the file content
-	data, err := io.ReadAll(file)
-	if err != nil {
-		return fmt.Errorf("could not read mock response file: %v", err)
+		return fmt.Errorf("could not read embedded mock response file: %v", err)
 	}
 
-	// Register the mocked response for the specified URL path and HTTP method
+	// Register the mocked response
 	httpmock.RegisterResponder(method, url,
 		httpmock.NewStringResponder(200, string(data)))
 

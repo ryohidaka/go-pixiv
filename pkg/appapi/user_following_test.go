@@ -31,11 +31,11 @@ func ExampleAppPixivAPI_UserFollowing() {
 func TestUserFollowing(t *testing.T) {
 	apptest.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
+		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth_token")
 
 		// Mock the user illusts response
 		url := appapi.AppHosts + "v1/user/following?restrict=public&user_id=11"
-		err := apptest.MockResponseFromFile("GET", url, "v1/user/following", "../../testutil")
+		err := apptest.MockResponseFromFile("GET", url, "user_following")
 		assert.NoError(t, err)
 
 		// Initialize the AppPixivAPI instance

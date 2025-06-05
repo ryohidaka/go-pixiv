@@ -35,11 +35,11 @@ func ExampleAppPixivAPI_UserDetail() {
 func TestUserDetail(t *testing.T) {
 	apptest.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
+		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth_token")
 
 		// Mock the user detail response
 		url := appapi.AppHosts + "v1/user/detail?filter=for_ios&user_id=11"
-		err := apptest.MockResponseFromFile("GET", url, "v1/user/detail", "../../testutil")
+		err := apptest.MockResponseFromFile("GET", url, "user_detail")
 		assert.NoError(t, err)
 
 		// Initialize the AppPixivAPI instance

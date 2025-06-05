@@ -31,11 +31,11 @@ func ExampleAppPixivAPI_IllustFollow() {
 func TestIllustFollow(t *testing.T) {
 	apptest.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
+		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth_token")
 
 		// Mock the illust follow response
 		url := appapi.AppHosts + "v2/illust/follow?restrict=public"
-		err := apptest.MockResponseFromFile("GET", url, "v2/illust/follow", "../../testutil")
+		err := apptest.MockResponseFromFile("GET", url, "illust_follow")
 		assert.NoError(t, err)
 
 		// Initialize the AppPixivAPI instance

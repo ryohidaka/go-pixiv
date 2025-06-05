@@ -33,16 +33,16 @@ func ExamplePixivCrawler_FetchAllBookmarkedIllusts() {
 func TestFetchAllBookmarkedIllusts(t *testing.T) {
 	apptest.WithMockHTTP(t, func() {
 		// Mock: authentication response
-		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../../testutil")
+		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth_token")
 
 		// Mock: page 1 of user bookmarks
 		urlPage1 := appapi.AppHosts + "v1/user/bookmarks/illust?filter=for_ios&restrict=public&user_id=11"
-		err := apptest.MockResponseFromFile("GET", urlPage1, "v1/user/bookmarks/illust", "../../../testutil")
+		err := apptest.MockResponseFromFile("GET", urlPage1, "bookmarks_illust")
 		assert.NoError(t, err)
 
 		// Mock: page 2 of user bookmarks (with next_id)
 		urlPage2 := appapi.AppHosts + "v1/user/bookmarks/illust?filter=for_ios&max_bookmark_id=129899459&restrict=public&user_id=11"
-		err = apptest.MockResponseFromFile("GET", urlPage2, "v1/user/bookmarks/illust_end", "../../../testutil")
+		err = apptest.MockResponseFromFile("GET", urlPage2, "bookmarks_illust_end")
 		assert.NoError(t, err)
 
 		// Initialize Crawler instance

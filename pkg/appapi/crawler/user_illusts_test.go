@@ -32,16 +32,16 @@ func ExamplePixivCrawler_FetchAllUserIllusts() {
 func TestFetchAllUserIllusts(t *testing.T) {
 	apptest.WithMockHTTP(t, func() {
 		// Mock: authentication response
-		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../../testutil")
+		_ = apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth_token")
 
 		// Mock: page 1 of user illustrations
 		urlPage1 := appapi.AppHosts + "v1/user/illusts?filter=for_ios&user_id=11"
-		err := apptest.MockResponseFromFile("GET", urlPage1, "v1/user/illusts", "../../../testutil")
+		err := apptest.MockResponseFromFile("GET", urlPage1, "user_illusts")
 		assert.NoError(t, err)
 
 		// Mock: page 2 of user illustrations (with offset)
 		urlPage2 := appapi.AppHosts + "v1/user/illusts?filter=for_ios&offset=30&user_id=11"
-		err = apptest.MockResponseFromFile("GET", urlPage2, "v1/user/illusts_end", "../../../testutil")
+		err = apptest.MockResponseFromFile("GET", urlPage2, "user_illusts_end")
 		assert.NoError(t, err)
 
 		// Initialize Crawler instance

@@ -13,7 +13,7 @@ import (
 func TestNewCrawler(t *testing.T) {
 	apptest.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		err := apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../../testutil")
+		err := apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth_token")
 		assert.NoError(t, err)
 
 		// Create a new Pixiv Crawler
