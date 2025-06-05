@@ -1,6 +1,8 @@
 package webapi_test
 
 import (
+	"fmt"
+	"os"
 	"testing"
 
 	"github.com/ryohidaka/go-pixiv"
@@ -8,6 +10,23 @@ import (
 	"github.com/ryohidaka/go-pixiv/testutil/webtest"
 	"github.com/stretchr/testify/assert"
 )
+
+func ExampleWebPixivAPI_UserShort() {
+	// Get the PHPSESSID used for authentication
+	phpsessid := os.Getenv("PHPSESSID")
+
+	// Create a new Pixiv Web API client
+	app, _ := pixiv.NewWebApp(phpsessid)
+
+	// Fetch user short for user ID 11 (Pixiv official account)
+	user, _ := app.UserShort(11)
+
+	// Print the user's name
+	fmt.Println("Name:", user.Name)
+
+	// Output:
+	// Name: pixiv事務局
+}
 
 func TestUserShort(t *testing.T) {
 	webtest.WithMockHTTP(t, func() {
