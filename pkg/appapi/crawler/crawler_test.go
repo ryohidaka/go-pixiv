@@ -3,8 +3,8 @@ package crawler_test
 import (
 	"testing"
 
+	"github.com/ryohidaka/go-pixiv"
 	"github.com/ryohidaka/go-pixiv/pkg/appapi"
-	"github.com/ryohidaka/go-pixiv/pkg/appapi/crawler"
 	"github.com/ryohidaka/go-pixiv/testutil/apptest"
 	"github.com/stretchr/testify/assert"
 )
@@ -17,7 +17,7 @@ func TestNewCrawler(t *testing.T) {
 		assert.NoError(t, err)
 
 		// Create a new Pixiv Crawler
-		c, _ := crawler.NewCrawler("dummy-refresh-token")
+		c, _ := pixiv.NewCrawler("dummy-refresh-token")
 		assert.NoError(t, err)
 		assert.NotNil(t, c)
 	})
