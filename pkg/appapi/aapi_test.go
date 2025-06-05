@@ -48,7 +48,7 @@ func TestAppPixivAPIRequest(t *testing.T) {
 			} `json:"user"`
 		}
 		var out response
-		err = api.Get("v1/user/detail", struct {
+		err = appapi.Get(api, "v1/user/detail", struct {
 			UserID int `url:"user_id"`
 		}{UserID: 123}, &out)
 		assert.NoError(t, err)

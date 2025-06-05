@@ -27,7 +27,7 @@ func (a *AppPixivAPI) UserFollowAdd(uid uint64, restrict ...models.Restrict) (bo
 	body := strings.NewReader(data.Encode())
 
 	// Send POST request with form-encoded body
-	if err := a.Post(path, nil, body, nil); err != nil {
+	if err := Post(a, path, nil, body, nil); err != nil {
 		return false, err
 	}
 
@@ -46,7 +46,7 @@ func (a *AppPixivAPI) UserFollowDelete(uid uint64) (bool, error) {
 	body := strings.NewReader(data.Encode())
 
 	// Send POST request with form-encoded body
-	if err := a.Post(path, nil, body, nil); err != nil {
+	if err := Post(a, path, nil, body, nil); err != nil {
 		return false, err
 	}
 

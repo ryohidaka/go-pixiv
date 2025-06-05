@@ -34,7 +34,7 @@ func (a *AppPixivAPI) UserDetail(uid uint64, opts ...UserDetailOptions) (*models
 	}
 
 	// Send the API request
-	if err := a.Get(path, params, detail); err != nil {
+	if err := Get(a, path, params, detail); err != nil {
 		return nil, err
 	}
 	return detail, nil

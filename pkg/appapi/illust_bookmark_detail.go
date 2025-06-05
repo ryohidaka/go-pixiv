@@ -24,7 +24,7 @@ func (a *AppPixivAPI) IllustBookmarkDetail(id uint64) (*models.IllustBookmarkDet
 	data := &models.IllustBookmarkDetail{}
 
 	// Send the API request
-	if err := a.Get(path, params, data); err != nil {
+	if err := Get(a, path, params, data); err != nil {
 		return nil, err
 	}
 
