@@ -1,4 +1,4 @@
-package modelutil
+package apputils
 
 import (
 	"github.com/ryohidaka/go-pixiv/models"

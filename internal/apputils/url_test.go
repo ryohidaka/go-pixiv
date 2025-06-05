@@ -1,9 +1,9 @@
-package urlutil_test
+package apputils_test
 
 import (
 	"testing"
 
-	"github.com/ryohidaka/go-pixiv/internal/urlutil"
+	"github.com/ryohidaka/go-pixiv/internal/apputils"
 )
 
 // TestParseNextPageOffset tests the parseNextPageOffset function.
@@ -54,7 +54,7 @@ func TestParseNextPageOffset(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := urlutil.ParseNextPageOffset(tt.url, tt.field)
+			got, err := apputils.ParseNextPageOffset(tt.url, tt.field)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("parseNextPageOffset() error = %v, wantErr %v", err, tt.wantErr)
 				return

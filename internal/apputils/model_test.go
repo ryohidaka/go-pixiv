@@ -1,9 +1,9 @@
-package modelutil_test
+package apputils_test
 
 import (
 	"testing"
 
-	"github.com/ryohidaka/go-pixiv/internal/modelutil"
+	"github.com/ryohidaka/go-pixiv/internal/apputils"
 	"github.com/ryohidaka/go-pixiv/models"
 )
 
@@ -36,7 +36,7 @@ func TestGetRestrict(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := modelutil.GetRestrict(tt.input)
+			result := apputils.GetRestrict(tt.input)
 			if result != tt.expected {
 				t.Errorf("getRestrict() = %v, want %v", result, tt.expected)
 			}

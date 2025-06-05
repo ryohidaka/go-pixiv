@@ -1,8 +1,7 @@
 package appapi
 
 import (
-	"github.com/ryohidaka/go-pixiv/internal/modelutil"
-	"github.com/ryohidaka/go-pixiv/internal/urlutil"
+	"github.com/ryohidaka/go-pixiv/internal/apputils"
 	"github.com/ryohidaka/go-pixiv/models"
 	"github.com/ryohidaka/go-pixiv/models/appmodel"
 )
@@ -32,7 +31,7 @@ func (a *AppPixivAPI) UserFollowing(uid uint64, opts ...UserFollowingOptions) ([
 	// Populate optional parameters if opts is provided
 	if opts != nil {
 		opt := opts[0]
-		params.Restrict = modelutil.GetRestrict(opt.Restrict)
+		params.Restrict = apputils.GetRestrict(opt.Restrict)
 		params.Offset = opt.Offset
 	}
 
@@ -45,6 +44,6 @@ func (a *AppPixivAPI) UserFollowing(uid uint64, opts ...UserFollowingOptions) ([
 	}
 
 	// Parse the next page offset from the response's NextURL field
-	next, err := urlutil.ParseNextPageOffset(data.NextURL, OffsetFieldOffset)
+	next, err := apputils.ParseNextPageOffset(data.NextURL, OffsetFieldOffset)
 	return data.UserPreviews, next, err
 }

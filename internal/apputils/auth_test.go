@@ -1,4 +1,4 @@
-package authutil_test
+package apputils_test
 
 import (
 	"crypto/md5"
@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ryohidaka/go-pixiv/internal/authutil"
+	"github.com/ryohidaka/go-pixiv/internal/apputils"
 	"github.com/ryohidaka/go-pixiv/pkg/appapi"
 )
 
@@ -24,7 +24,7 @@ func TestGenClientHash(t *testing.T) {
 	expectedHash := hex.EncodeToString(h.Sum(nil)) // Expected MD5 hash
 
 	// Call the function
-	result := authutil.GenClientHash(clientTime, expectedSecret)
+	result := apputils.GenClientHash(clientTime, expectedSecret)
 
 	// Check if the result matches the expected value
 	if result != expectedHash {
@@ -35,7 +35,7 @@ func TestGenClientHash(t *testing.T) {
 // TestGetExpiresAt tests the getExpiresAt function.
 func TestGetExpiresAt(t *testing.T) {
 	expiredIn := 3600 // 1 hour
-	expirationTime := authutil.GetExpiresAt(expiredIn)
+	expirationTime := apputils.GetExpiresAt(expiredIn)
 
 	// Check if the expiration time is approximately 1 hour from now
 	if expirationTime.Before(time.Now().Add(time.Duration(expiredIn-5)*time.Second)) || expirationTime.After(time.Now().Add(time.Duration(expiredIn+5)*time.Second)) {

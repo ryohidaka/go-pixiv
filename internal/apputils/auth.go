@@ -1,4 +1,4 @@
-package authutil
+package apputils
 
 import (
 	"crypto/md5"

@@ -1,4 +1,4 @@
-package httpclient_test
+package apputils_test
 
 import (
 	"bytes"
@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/ryohidaka/go-pixiv/internal/httpclient"
+	"github.com/ryohidaka/go-pixiv/internal/apputils"
 )
 
 // TestSetHeaders tests the setHeaders function by checking if headers are correctly set.
@@ -22,7 +22,7 @@ func TestSetHeaders(t *testing.T) {
 		"User-Agent":   "PixivClient/1.0",
 	}
 
-	httpclient.SetHeaders(req, headers)
+	apputils.SetHeaders(req, headers)
 
 	// Check if headers were set correctly
 	for key, value := range headers {
@@ -39,7 +39,7 @@ func TestReadResponse(t *testing.T) {
 		Body: io.NopCloser(bytes.NewReader([]byte(`{"status":"ok"}`))),
 	}
 
-	body, err := httpclient.ReadResponse(resp)
+	body, err := apputils.ReadResponse(resp)
 	if err != nil {
 		t.Fatalf("expected no error, got %v", err)
 	}
@@ -56,7 +56,7 @@ func TestDecodeJSON(t *testing.T) {
 	var result map[string]string
 
 	// Call the function
-	err := httpclient.DecodeJSON(body, &result)
+	err := apputils.DecodeJSON(body, &result)
 	if err != nil {
 		t.Fatalf("expected no error, got %v", err)
 	}

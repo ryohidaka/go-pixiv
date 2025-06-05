@@ -1,4 +1,4 @@
-package urlutil
+package apputils
 
 import (
 	"fmt"

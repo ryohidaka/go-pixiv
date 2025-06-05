@@ -1,7 +1,7 @@
 package appapi
 
 import (
-	"github.com/ryohidaka/go-pixiv/internal/urlutil"
+	"github.com/ryohidaka/go-pixiv/internal/apputils"
 	"github.com/ryohidaka/go-pixiv/models"
 	"github.com/ryohidaka/go-pixiv/models/appmodel"
 )
@@ -47,7 +47,7 @@ func (a *AppPixivAPI) UserIllusts(uid uint64, opts ...UserIllustsOptions) ([]mod
 	}
 
 	// Extract the offset for the next page from the NextURL field.
-	next, err := urlutil.ParseNextPageOffset(data.NextURL, OffsetFieldOffset)
+	next, err := apputils.ParseNextPageOffset(data.NextURL, OffsetFieldOffset)
 
 	return data.Illusts, next, err
 }

@@ -1,4 +1,4 @@
-package httpclient
+package apputils
 
 import (
 	"encoding/json"

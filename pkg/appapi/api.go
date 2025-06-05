@@ -8,8 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ryohidaka/go-pixiv/internal/authutil"
-	"github.com/ryohidaka/go-pixiv/internal/httpclient"
+	"github.com/ryohidaka/go-pixiv/internal/apputils"
 	"github.com/ryohidaka/go-pixiv/models/appmodel"
 )
 
@@ -50,11 +49,11 @@ func (s *AuthSession) Authenticate(params *appmodel.AuthParams) (*appmodel.AuthI
 		"Content-Type":   "application/x-www-form-urlencoded",
 		"User-Agent":     UserAgent,
 		"X-Client-Time":  clientTime,
-		"X-Client-Hash":  authutil.GenClientHash(clientTime, ClientHashSecret),
+		"X-Client-Hash":  apputils.GenClientHash(clientTime, ClientHashSecret),
 		"App-OS":         AppOS,
 		"App-OS-Version": AppOSVersion,
 	}
-	httpclient.SetHeaders(req, headers)
+	apputils.SetHeaders(req, headers)
 
 	client := s.HTTPClient
 	if client == nil {
@@ -67,7 +66,7 @@ func (s *AuthSession) Authenticate(params *appmodel.AuthParams) (*appmodel.AuthI
 	}
 	defer resp.Body.Close()
 
-	body, err := httpclient.ReadResponse(resp)
+	body, err := apputils.ReadResponse(resp)
 	if err != nil {
 		return nil, err
 	}
@@ -84,13 +83,13 @@ func (s *AuthSession) Authenticate(params *appmodel.AuthParams) (*appmodel.AuthI
 	}
 
 	var res appmodel.AuthResponse
-	if err := httpclient.DecodeJSON(body, &res); err != nil {
+	if err := apputils.DecodeJSON(body, &res); err != nil {
 		return nil, err
 	}
 
 	s.AccessToken = res.Response.AccessToken
 	s.RefreshToken = res.Response.RefreshToken
-	s.ExpiresAt = authutil.GetExpiresAt(res.Response.ExpiresIn)
+	s.ExpiresAt = apputils.GetExpiresAt(res.Response.ExpiresIn)
 
 	if s.AuthHook != nil {
 		if err := s.AuthHook(s.AccessToken, s.RefreshToken, s.ExpiresAt); err != nil {
