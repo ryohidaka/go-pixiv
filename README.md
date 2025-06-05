@@ -29,6 +29,8 @@ Read [GoDoc](https://pkg.go.dev/github.com/ryohidaka/go-pixiv)
 
 ### API functions
 
+#### App-API (6.0 - app-api.pixiv.net)
+
 ```go
 import "github.com/ryohidaka/go-pixiv"
 
@@ -66,7 +68,18 @@ ok, err := app.UserFollowAdd(11)
 ok, err := app.UserFollowDelete(11)
 ```
 
+#### Web-API (ajax)
+
+```go
+import "github.com/ryohidaka/go-pixiv"
+
+// Create a new Pixiv Web API client
+app, err := pixiv.NewWebApp("<YOUR_PHPSESSID>")
+```
+
 ### Crawler
+
+#### App-API (6.0 - app-api.pixiv.net)
 
 ```go
 import "github.com/ryohidaka/go-pixiv"
@@ -177,6 +190,12 @@ UserFollowDeleteMultiple(uids []uint64) ([]uint64, error) {...}
 DownloadBytes(url string) ([]byte, error) {...}
 
 DownloadFile(url string, opts *DownloadFileOptions) (int64, error) {...}
+```
+
+### Web API
+
+```go
+UserShort(uid uint64) (*webmodel.UserShort, error) {...}
 ```
 
 ## Link
