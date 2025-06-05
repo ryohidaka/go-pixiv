@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.22.0](https://github.com/ryohidaka/go-pixiv/compare/v0.21.0...v0.22.0) (2025-06-05)
+
+
+### Features
+
+* **api:** Move AppApi functions to the pkg directory. ([ad3c66c](https://github.com/ryohidaka/go-pixiv/commit/ad3c66c735ee256d427fddd2236b02cb7c9cc185))
+* **client:** Move api.go to pkg directory. ([240fd2c](https://github.com/ryohidaka/go-pixiv/commit/240fd2c1f3e0c6e98f274b648b46b34200310d37))
+* **crawler:** Move crawler functions into pkg directory. ([006805b](https://github.com/ryohidaka/go-pixiv/commit/006805b4e2aab802b2b78c55ff8301a6e1477722))
+* **downloader:** Move downloader functions into pkg directory. ([d996c4d](https://github.com/ryohidaka/go-pixiv/commit/d996c4decfd1aaf0aad86861977cda30492b8f15))
+
 ## [0.21.0](https://github.com/ryohidaka/go-pixiv/compare/v0.20.2...v0.21.0) (2025-06-03)
 
 
