@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.24.0](https://github.com/ryohidaka/go-pixiv/compare/v0.23.1...v0.24.0) (2025-06-05)
+
+
+### Features
+
+* **api:** Add UserShort() ([018be36](https://github.com/ryohidaka/go-pixiv/commit/018be3647f1451f8faef86eb4d4ac1c75cb0622f))
+* **api:** Add WebAPI client. ([f1482b3](https://github.com/ryohidaka/go-pixiv/commit/f1482b3308267f91759f0bd4ac2e4db9048c7837))
+
 ## [0.23.1](https://github.com/ryohidaka/go-pixiv/compare/v0.23.0...v0.23.1) (2025-06-05)
 
 
