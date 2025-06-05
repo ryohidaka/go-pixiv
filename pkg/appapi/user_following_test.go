@@ -1,4 +1,4 @@
-package pixiv_test
+package appapi_test
 
 import (
 	"fmt"
@@ -7,19 +7,20 @@ import (
 
 	"github.com/ryohidaka/go-pixiv"
 	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/pkg/appapi"
 	"github.com/ryohidaka/go-pixiv/testutil"
 	"github.com/stretchr/testify/assert"
 )
 
-func ExampleAppPixivAPI_UserFollower() {
+func ExampleAppPixivAPI_UserFollowing() {
 	// Get the refresh token used for authentication
 	refreshToken := os.Getenv("PIXIV_REFRESH_TOKEN")
 
 	// Create a new Pixiv App API client
 	app, _ := pixiv.NewApp(refreshToken)
 
-	// Fetch user followers for user ID 11 (Pixiv official account)
-	users, _, _ := app.UserFollower(11)
+	// Fetch user following for user ID 11 (Pixiv official account)
+	users, _, _ := app.UserFollowing(11)
 
 	for _, v := range users {
 		// Print the user name
@@ -27,14 +28,14 @@ func ExampleAppPixivAPI_UserFollower() {
 	}
 }
 
-func TestUserFollower(t *testing.T) {
+func TestUserFollowing(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
+		_ = testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
 
-		// Mock the user follower response
-		url := pixiv.AppHosts + "v1/user/follower?restrict=public&user_id=11"
-		err := testutil.MockResponseFromFile("GET", url, "v1/user/follower")
+		// Mock the user illusts response
+		url := appapi.AppHosts + "v1/user/following?restrict=public&user_id=11"
+		err := testutil.MockResponseFromFile("GET", url, "v1/user/following", "../../testutil")
 		assert.NoError(t, err)
 
 		// Initialize the AppPixivAPI instance
@@ -43,12 +44,12 @@ func TestUserFollower(t *testing.T) {
 
 		// Prepare options
 		public := models.Public
-		opts := pixiv.UserFollowerOptions{
+		opts := pixiv.UserFollowingOptions{
 			Restrict: &public,
 		}
 
-		// Call the UserFollower method
-		users, next, err := api.UserFollower(11, opts)
+		// Call the UserFollowing method
+		users, next, err := api.UserFollowing(11, opts)
 		assert.NoError(t, err)
 		assert.Len(t, users, 1)
 		assert.Equal(t, 30, next)

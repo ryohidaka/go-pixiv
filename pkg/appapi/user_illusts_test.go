@@ -1,4 +1,4 @@
-package pixiv_test
+package appapi_test
 
 import (
 	"fmt"
@@ -7,19 +7,20 @@ import (
 
 	"github.com/ryohidaka/go-pixiv"
 	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/pkg/appapi"
 	"github.com/ryohidaka/go-pixiv/testutil"
 	"github.com/stretchr/testify/assert"
 )
 
-func ExampleAppPixivAPI_UserBookmarksIllust() {
+func ExampleAppPixivAPI_UserIllusts() {
 	// Get the refresh token used for authentication
 	refreshToken := os.Getenv("PIXIV_REFRESH_TOKEN")
 
 	// Create a new Pixiv App API client
 	app, _ := pixiv.NewApp(refreshToken)
 
-	// Fetch user bookmarks illust for user ID 11 (Pixiv official account)
-	illusts, _, _ := app.UserBookmarksIllust(11)
+	// Fetch user illusts for user ID 11 (Pixiv official account)
+	illusts, _, _ := app.UserIllusts(11)
 
 	for _, v := range illusts {
 		// Print the illust title
@@ -27,14 +28,14 @@ func ExampleAppPixivAPI_UserBookmarksIllust() {
 	}
 }
 
-func TestUserBookmarksIllust(t *testing.T) {
+func TestUserIllust(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
+		_ = testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
 
-		// Mock the user bookmarks illust response
-		url := pixiv.AppHosts + "v1/user/bookmarks/illust?filter=for_ios&restrict=public&user_id=11"
-		err := testutil.MockResponseFromFile("GET", url, "v1/user/bookmarks/illust")
+		// Mock the user illusts response
+		url := appapi.AppHosts + "v1/user/illusts?filter=for_ios&user_id=11"
+		err := testutil.MockResponseFromFile("GET", url, "v1/user/illusts", "../../testutil")
 		assert.NoError(t, err)
 
 		// Initialize the AppPixivAPI instance
@@ -43,17 +44,15 @@ func TestUserBookmarksIllust(t *testing.T) {
 
 		// Prepare options
 		filter := "for_ios"
-		public := models.Public
-		opts := pixiv.UserBookmarksIllustOptions{
-			Filter:   &filter,
-			Restrict: &public,
+		opts := pixiv.UserIllustsOptions{
+			Filter: &filter,
 		}
 
-		// Call the UserBookmarksIllust method
-		illusts, next, err := api.UserBookmarksIllust(11, opts)
+		// Call the UserIllusts method
+		illusts, next, err := api.UserIllusts(11, opts)
 		assert.NoError(t, err)
 		assert.Len(t, illusts, 1)
-		assert.Equal(t, 129899459, next)
+		assert.Equal(t, 30, next)
 
 		// Check contents of the first illustration
 		illust := illusts[0]

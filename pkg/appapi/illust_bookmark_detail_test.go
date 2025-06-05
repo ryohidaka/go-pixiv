@@ -1,4 +1,4 @@
-package pixiv_test
+package appapi_test
 
 import (
 	"fmt"
@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/ryohidaka/go-pixiv"
+	"github.com/ryohidaka/go-pixiv/pkg/appapi"
 	"github.com/ryohidaka/go-pixiv/testutil"
 	"github.com/stretchr/testify/assert"
 )
@@ -27,11 +28,11 @@ func ExampleAppPixivAPI_IllustBookmarkDetail() {
 func TestIllustBookmarkDetail(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
+		_ = testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
 
 		// Mock the user illusts response
-		url := pixiv.AppHosts + "v2/illust/bookmark/detail?illust_id=129899459"
-		err := testutil.MockResponseFromFile("GET", url, "v2/illust/bookmark/detail")
+		url := appapi.AppHosts + "v2/illust/bookmark/detail?illust_id=129899459"
+		err := testutil.MockResponseFromFile("GET", url, "v2/illust/bookmark/detail", "../../testutil")
 		assert.NoError(t, err)
 
 		// Initialize the AppPixivAPI instance

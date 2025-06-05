@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ryohidaka/go-pixiv"
 	"github.com/ryohidaka/go-pixiv/internal/authutil"
+	"github.com/ryohidaka/go-pixiv/pkg/appapi"
 )
 
 // TestGenClientHash tests the genClientHash function.
@@ -17,7 +17,7 @@ func TestGenClientHash(t *testing.T) {
 
 	// Manually calculate the expected hash value using the known secret
 	// ClientHashSecret is assumed to be "yourSecretValue"
-	expectedSecret := pixiv.ClientHashSecret // This will be imported from go-pixiv
+	expectedSecret := appapi.ClientHashSecret // This will be imported from go-pixiv
 	h := md5.New()
 	io.WriteString(h, clientTime)
 	io.WriteString(h, expectedSecret)

@@ -9,7 +9,7 @@ const (
 
 // AppAPI Hosts
 const (
-	AppHosts string = "https://app-api.pixiv.net/"
+	AppHosts  string = "https://app-api.pixiv.net/"
 	AuthHosts string = "https://oauth.secure.pixiv.net/"
 )
 
@@ -17,5 +17,9 @@ const (
 const (
 	AppOS        string = "ios"
 	AppOSVersion string = "14.6"
+	AppVersion   string = "7.13.3"
 	UserAgent    string = "PixivIOSApp/7.13.3 (iOS 14.6; iPhone13,2)"
 )
+
+// Pagination
+const OffsetFieldOffset string = "offset"

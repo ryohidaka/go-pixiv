@@ -1,4 +1,4 @@
-package pixiv
+package appapi
 
 import (
 	"github.com/ryohidaka/go-pixiv/internal/urlutil"

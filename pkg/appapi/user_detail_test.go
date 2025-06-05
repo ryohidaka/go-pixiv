@@ -1,4 +1,4 @@
-package pixiv_test
+package appapi_test
 
 import (
 	"fmt"
@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/ryohidaka/go-pixiv"
+	"github.com/ryohidaka/go-pixiv/pkg/appapi"
 	"github.com/ryohidaka/go-pixiv/testutil"
 
 	"github.com/stretchr/testify/assert"
@@ -34,11 +35,11 @@ func ExampleAppPixivAPI_UserDetail() {
 func TestUserDetail(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
+		_ = testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
 
 		// Mock the user detail response
-		url := pixiv.AppHosts + "v1/user/detail?filter=for_ios&user_id=11"
-		err := testutil.MockResponseFromFile("GET", url, "v1/user/detail")
+		url := appapi.AppHosts + "v1/user/detail?filter=for_ios&user_id=11"
+		err := testutil.MockResponseFromFile("GET", url, "v1/user/detail", "../../testutil")
 		assert.NoError(t, err)
 
 		// Initialize the AppPixivAPI instance

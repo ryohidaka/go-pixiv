@@ -1,4 +1,4 @@
-package pixiv_test
+package appapi_test
 
 import (
 	"fmt"
@@ -8,6 +8,7 @@ import (
 	"github.com/jarcoal/httpmock"
 	"github.com/ryohidaka/go-pixiv"
 	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/pkg/appapi"
 	"github.com/ryohidaka/go-pixiv/testutil"
 	"github.com/stretchr/testify/assert"
 )
@@ -38,11 +39,11 @@ func ExampleAppPixivAPI_UserFollowDelete() {
 func TestUserFollowAdd(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
+		_ = testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
 
 		// Mock the user follow response
-		url := pixiv.AppHosts + "v1/user/follow/add"
-		err := testutil.MockResponseFromFile("POST", url, "empty")
+		url := appapi.AppHosts + "v1/user/follow/add"
+		err := testutil.MockResponseFromFile("POST", url, "empty", "../../testutil")
 		assert.NoError(t, err)
 
 		// Initialize the AppPixivAPI instance
@@ -70,11 +71,11 @@ func TestUserFollowAdd(t *testing.T) {
 func TestUserFollowDelete(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token")
+		_ = testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../testutil")
 
 		// Mock the user unfollow response
-		url := pixiv.AppHosts + "v1/user/follow/delete"
-		err := testutil.MockResponseFromFile("POST", url, "empty")
+		url := appapi.AppHosts + "v1/user/follow/delete"
+		err := testutil.MockResponseFromFile("POST", url, "empty", "../../testutil")
 		assert.NoError(t, err)
 
 		// Initialize the AppPixivAPI instance
