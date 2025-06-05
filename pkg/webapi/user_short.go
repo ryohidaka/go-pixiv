@@ -7,7 +7,9 @@ import (
 	"github.com/ryohidaka/go-pixiv/models/webmodel/user"
 )
 
-// UserShort returns a short user profile by user ID using the Pixiv Web API.
+// UserShort returns a user information in a simplified format. ([Docs])
+//
+// [Docs]: https://github.com/daydreamer-json/pixiv-ajax-api-docs?tab=readme-ov-file#get-user-information-short
 func (a *WebPixivAPI) UserShort(uid uint64) (*webmodel.UserShort, error) {
 	path := fmt.Sprintf("user/%d", uid)
 	referer := fmt.Sprintf(AppHosts+"member.php?id=%d", uid)
