@@ -1,0 +1,24 @@
+{
+  "error": false,
+  "message": "",
+  "body": {
+    "userId": "11",
+    "name": "pixiv事務局",
+    "image": "https://i.pximg.net/user-profile/img/2025/01/28/14/59/33/26898736_058dfc75acb3b71f4cdce3fdb7a9da87_50.jpg",
+    "imageBig": "https://i.pximg.net/user-profile/img/2025/01/28/14/59/33/26898736_058dfc75acb3b71f4cdce3fdb7a9da87_170.jpg",
+    "premium": true,
+    "isFollowed": false,
+    "isMypixiv": false,
+    "isBlocking": false,
+    "background": {
+      "repeat": null,
+      "color": null,
+      "url": "https://i.pximg.net/c/1920x960_80_a2_g5/background/img/2018/10/01/16/59/56/11_7ab625928a2138eff12f2851476a06fa.jpg",
+      "isPrivate": false
+    },
+    "sketchLiveId": null,
+    "partial": 0,
+    "sketchLives": [],
+    "commission": null
+  }
+}
