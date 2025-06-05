@@ -1,0 +1,70 @@
+{
+  "error": false,
+  "message": "",
+  "body": {
+    "userId": "11",
+    "name": "pixiv事務局",
+    "image": "https://i.pximg.net/user-profile/img/2025/01/28/14/59/33/26898736_058dfc75acb3b71f4cdce3fdb7a9da87_50.jpg",
+    "imageBig": "https://i.pximg.net/user-profile/img/2025/01/28/14/59/33/26898736_058dfc75acb3b71f4cdce3fdb7a9da87_170.jpg",
+    "premium": true,
+    "isFollowed": false,
+    "isMypixiv": false,
+    "isBlocking": false,
+    "background": {
+      "repeat": null,
+      "color": null,
+      "url": "https://i.pximg.net/c/1920x960_80_a2_g5/background/img/2018/10/01/16/59/56/11_7ab625928a2138eff12f2851476a06fa.jpg",
+      "isPrivate": false
+    },
+    "sketchLiveId": null,
+    "partial": 1,
+    "sketchLives": [],
+    "commission": null,
+    "following": 0,
+    "mypixivCount": 0,
+    "followedBack": false,
+    "comment": "pixiv(ピクシブ)は、「作品を介したコミュニケーション」にフォーカスしているクリエイターとそのファンのためのSNSです。\r\n\r\nあなたが投稿した作品(イラスト、漫画、小説)やブックマークした作品そのものがプロフィールを形成し、それが中心となって作品によるコミュニケーションが行われています。\r\n\r\npixivには幅広いジャンルの作品が投稿されユーザー発のイラスト企画やメーカー公認のコンテストが頻繁に開催されています。\r\nそしてユーザー同士が協力しあい新たな作品が生まれる協創(co-creation)のプラットフォームとして活用されています。\r\n\r\n「お絵かきがもっと楽しくなる場所」\r\n\r\npixivは、そんな場所を目指しています。\r\n\r\npixivのご利用方法、ご不明点、その他のご連絡・お問い合わせについては、以下のお問い合わせフォームをご利用ください。\r\n\r\nお問い合わせフォーム https://www.pixiv.net/support.php",
+    "commentHtml": "pixiv(ピクシブ)は、「作品を介したコミュニケーション」にフォーカスしているクリエイターとそのファンのためのSNSです。<br /><br />あなたが投稿した作品(イラスト、漫画、小説)やブックマークした作品そのものがプロフィールを形成し、それが中心となって作品によるコミュニケーションが行われています。<br /><br />pixivには幅広いジャンルの作品が投稿されユーザー発のイラスト企画やメーカー公認のコンテストが頻繁に開催されています。<br />そしてユーザー同士が協力しあい新たな作品が生まれる協創(co-creation)のプラットフォームとして活用されています。<br /><br />「お絵かきがもっと楽しくなる場所」<br /><br />pixivは、そんな場所を目指しています。<br /><br />pixivのご利用方法、ご不明点、その他のご連絡・お問い合わせについては、以下のお問い合わせフォームをご利用ください。<br /><br />お問い合わせフォーム <a href=\"https://www.pixiv.net/support.php\" target=\"_blank\">https://www.pixiv.net/support.php</a>",
+    "webpage": "https://www.pixiv.net/",
+    "social": {
+      "twitter": {
+        "url": "https://twitter.com/pixiv"
+      },
+      "pawoo": {
+        "url": "https://pawoo.net/oauth_authentications/11?provider=pixiv"
+      }
+    },
+    "canSendMessage": true,
+    "region": {
+      "name": "日本",
+      "region": "JP",
+      "prefecture": "13",
+      "privacyLevel": "0"
+    },
+    "age": {
+      "name": null,
+      "privacyLevel": null
+    },
+    "birthDay": {
+      "name": null,
+      "privacyLevel": null
+    },
+    "gender": {
+      "name": null,
+      "privacyLevel": null
+    },
+    "job": {
+      "name": null,
+      "privacyLevel": null
+    },
+    "workspace": null,
+    "official": true,
+    "group": [
+      {
+        "id": "20415",
+        "title": "超大量絵馬の集い[跡地]",
+        "iconUrl": "https://i.pximg.net/c/128x128/imgaz/2014/02/27/18/30/53/group_icon_20415_square1200.jpg"
+      }
+    ]
+  }
+}
