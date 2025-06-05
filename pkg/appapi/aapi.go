@@ -7,9 +7,8 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/google/go-querystring/query"
-
 	"github.com/ryohidaka/go-pixiv/internal/apputils"
+	"github.com/ryohidaka/go-pixiv/internal/coreutils"
 
 	"github.com/ryohidaka/go-pixiv/models/appmodel"
 )
@@ -68,8 +67,8 @@ func request(a *AppPixivAPI, method, path string, queryStruct any, body io.Reade
 	if err := refreshTokenIfNeeded(a); err != nil {
 		return err
 	}
-
-	reqURL, err := buildRequestURL(path, queryStruct)
+	baseUrl := AppHosts + path
+	reqURL, err := coreutils.BuildRequestURL(baseUrl, queryStruct)
 	if err != nil {
 		return err
 	}
@@ -88,22 +87,6 @@ func refreshTokenIfNeeded(a *AppPixivAPI) error {
 		return fmt.Errorf("failed to refresh token: %w", err)
 	}
 	return nil
-}
-
-// buildRequestURL constructs the complete URL with encoded query parameters.
-func buildRequestURL(path string, queryStruct any) (*url.URL, error) {
-	reqURL, err := url.Parse(AppHosts + path)
-	if err != nil {
-		return nil, fmt.Errorf("failed to parse URL: %w", err)
-	}
-	if queryStruct != nil {
-		values, err := query.Values(queryStruct)
-		if err != nil {
-			return nil, fmt.Errorf("failed to encode query parameters: %w", err)
-		}
-		reqURL.RawQuery = values.Encode()
-	}
-	return reqURL, nil
 }
 
 // createRequest creates a new HTTP request with required headers.
