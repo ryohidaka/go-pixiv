@@ -69,10 +69,10 @@ ok, err := app.UserFollowDelete(11)
 ### Crawler
 
 ```go
-import "github.com/ryohidaka/go-pixiv/crawler"
+import "github.com/ryohidaka/go-pixiv"
 
 // Create a new Pixiv Crawler
-crawler, err := crawler.NewCrawler(refreshToken)
+crawler, err := pixiv.NewCrawler(refreshToken)
 
 // Fetch all user illusts
 illusts, err := crawler.FetchAllUserIllusts(11)
