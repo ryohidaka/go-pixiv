@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.23.0](https://github.com/ryohidaka/go-pixiv/compare/v0.22.0...v0.23.0) (2025-06-05)
+
+
+### Features
+
+* **api:** Changed AppPixivAPI method caller to the root of the library. ([2568de4](https://github.com/ryohidaka/go-pixiv/commit/2568de42de7320c136e65243ffbeb81efa30388d))
+* **client:** Changed Get and Post functions from AppPixivAPI methods to normal functions. ([42c64e7](https://github.com/ryohidaka/go-pixiv/commit/42c64e71a01b8b269a0edefe53088ab0e3e0a63d))
+* **testutil:** Embed fixtures using go:embed ([16b1021](https://github.com/ryohidaka/go-pixiv/commit/16b1021791753d878d3374577da34f9008f024d4))
+* **testutil:** Move testutil functions to the appapi directory. ([55aa2ae](https://github.com/ryohidaka/go-pixiv/commit/55aa2ae41c13d7b34b82ffb1e36932bbdc055e51))
+
 ## [0.22.0](https://github.com/ryohidaka/go-pixiv/compare/v0.21.0...v0.22.0) (2025-06-05)
 
 
