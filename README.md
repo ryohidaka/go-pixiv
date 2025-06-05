@@ -75,6 +75,9 @@ import "github.com/ryohidaka/go-pixiv"
 
 // Create a new Pixiv Web API client
 app, err := pixiv.NewWebApp("<YOUR_PHPSESSID>")
+
+// Fetch user short
+user, err := app.UserShort(11)
 ```
 
 ### Crawler
