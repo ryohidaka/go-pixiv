@@ -3,19 +3,19 @@ package crawler
 import (
 	"time"
 
-	"github.com/ryohidaka/go-pixiv"
 	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/pkg/appapi"
 )
 
 // FetchAllUserFollowing retrieves all users followed by the specified user by paginating.
-func (c *PixivCrawler) FetchAllUserFollowing(uid uint64, opts *pixiv.UserFollowingOptions, sleepMs ...int) ([]models.UserPreview, error) {
+func (c *PixivCrawler) FetchAllUserFollowing(uid uint64, opts *appapi.UserFollowingOptions, sleepMs ...int) ([]models.UserPreview, error) {
 	var allUsers []models.UserPreview
 	var next int
 	var err error
 
 	for {
 		var users []models.UserPreview
-		users, next, err = c.app.UserFollowing(uid, []pixiv.UserFollowingOptions{*opts}...)
+		users, next, err = c.app.UserFollowing(uid, []appapi.UserFollowingOptions{*opts}...)
 
 		allUsers = append(allUsers, users...)
 		if err != nil {

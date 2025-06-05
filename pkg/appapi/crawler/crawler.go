@@ -1,18 +1,18 @@
 package crawler
 
 import (
-	"github.com/ryohidaka/go-pixiv"
+	"github.com/ryohidaka/go-pixiv/pkg/appapi"
 )
 
 // PixivCrawler is a wrapper around the AppPixivAPI client.
 // It provides methods to interact with Pixiv using the authenticated app client.
 type PixivCrawler struct {
-	app *pixiv.AppPixivAPI
+	app *appapi.AppPixivAPI
 }
 
 // NewCrawler initializes and returns a new PixivCrawler instance using the provided refresh token.
 func NewCrawler(refreshToken string) (*PixivCrawler, error) {
-	app, err := pixiv.NewApp(refreshToken)
+	app, err := appapi.NewApp(refreshToken)
 	if err != nil {
 		return nil, err
 	}

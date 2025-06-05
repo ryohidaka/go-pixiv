@@ -6,21 +6,22 @@ import (
 	"testing"
 
 	"github.com/ryohidaka/go-pixiv"
-	"github.com/ryohidaka/go-pixiv/crawler"
-	"github.com/ryohidaka/go-pixiv/models"
+
+	"github.com/ryohidaka/go-pixiv/pkg/appapi"
+	"github.com/ryohidaka/go-pixiv/pkg/appapi/crawler"
 	"github.com/ryohidaka/go-pixiv/testutil"
 	"github.com/stretchr/testify/assert"
 )
 
-func ExamplePixivCrawler_FetchAllIllustFollows() {
+func ExamplePixivCrawler_FetchAllUserIllusts() {
 	// Get the refresh token used for authentication
 	refreshToken := os.Getenv("PIXIV_REFRESH_TOKEN")
 
 	// Create a new Pixiv Crawler
 	c, _ := crawler.NewCrawler(refreshToken)
 
-	// Fetch all illust from user follows
-	illusts, _ := c.FetchAllIllustFollows(nil)
+	// Fetch all user illusts for user ID 11 (Pixiv official account)
+	illusts, _ := c.FetchAllUserIllusts(11, nil)
 
 	for _, v := range illusts {
 		// Print the illust title
@@ -28,33 +29,33 @@ func ExamplePixivCrawler_FetchAllIllustFollows() {
 	}
 }
 
-func TestFetchAllIllustFollows(t *testing.T) {
+func TestFetchAllUserIllusts(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock: authentication response
-		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token", "../testutil")
+		_ = testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../../testutil")
 
-		// Mock: page 1 of illust follow
-		urlPage1 := pixiv.AppHosts + "v2/illust/follow?restrict=public"
-		err := testutil.MockResponseFromFile("GET", urlPage1, "v2/illust/follow", "../testutil")
+		// Mock: page 1 of user illustrations
+		urlPage1 := appapi.AppHosts + "v1/user/illusts?filter=for_ios&user_id=11"
+		err := testutil.MockResponseFromFile("GET", urlPage1, "v1/user/illusts", "../../../testutil")
 		assert.NoError(t, err)
 
-		// Mock: page 2 of illust follow (with offset)
-		urlPage2 := pixiv.AppHosts + "v2/illust/follow?offset=30&restrict=public"
-		err = testutil.MockResponseFromFile("GET", urlPage2, "v2/illust/follow_end", "../testutil")
+		// Mock: page 2 of user illustrations (with offset)
+		urlPage2 := appapi.AppHosts + "v1/user/illusts?filter=for_ios&offset=30&user_id=11"
+		err = testutil.MockResponseFromFile("GET", urlPage2, "v1/user/illusts_end", "../../../testutil")
 		assert.NoError(t, err)
 
 		// Initialize Crawler instance
 		crawler, err := crawler.NewCrawler("dummy-refresh-token")
 		assert.NoError(t, err)
 
-		// Prepare options
-		public := models.Public
-		opts := &pixiv.IllustFollowOptions{
-			Restrict: &public,
+		// Set request options
+		filter := "for_ios"
+		opts := &pixiv.UserIllustsOptions{
+			Filter: &filter,
 		}
 
 		// Call the main function (no sleep between requests)
-		illusts, err := crawler.FetchAllIllustFollows(opts)
+		illusts, err := crawler.FetchAllUserIllusts(11, opts, 0)
 		assert.NoError(t, err)
 		assert.Len(t, illusts, 2) // One illustration per page
 

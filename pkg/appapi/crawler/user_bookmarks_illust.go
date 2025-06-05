@@ -3,12 +3,12 @@ package crawler
 import (
 	"time"
 
-	"github.com/ryohidaka/go-pixiv"
 	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/pkg/appapi"
 )
 
 // FetchAllBookmarkedIllusts retrieves all bookmarked illustrations for a given user by paginating
-func (c *PixivCrawler) FetchAllBookmarkedIllusts(uid uint64, opts *pixiv.UserBookmarksIllustOptions, sleepMs ...int) ([]models.Illust, error) {
+func (c *PixivCrawler) FetchAllBookmarkedIllusts(uid uint64, opts *appapi.UserBookmarksIllustOptions, sleepMs ...int) ([]models.Illust, error) {
 	var allIllusts []models.Illust
 	var next int
 	var err error
@@ -17,7 +17,7 @@ func (c *PixivCrawler) FetchAllBookmarkedIllusts(uid uint64, opts *pixiv.UserBoo
 	for {
 		// Retrieve a page of bookmarked illustrations
 		var illusts []models.Illust
-		illusts, next, err = c.app.UserBookmarksIllust(uid, []pixiv.UserBookmarksIllustOptions{*opts}...)
+		illusts, next, err = c.app.UserBookmarksIllust(uid, []appapi.UserBookmarksIllustOptions{*opts}...)
 
 		// Always append the successfully fetched results before returning on error
 		allIllusts = append(allIllusts, illusts...)

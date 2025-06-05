@@ -7,21 +7,22 @@ import (
 
 	"github.com/ryohidaka/go-pixiv"
 
-	"github.com/ryohidaka/go-pixiv/crawler"
 	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/pkg/appapi"
+	"github.com/ryohidaka/go-pixiv/pkg/appapi/crawler"
 	"github.com/ryohidaka/go-pixiv/testutil"
 	"github.com/stretchr/testify/assert"
 )
 
-func ExamplePixivCrawler_FetchAllUserFollowers() {
+func ExamplePixivCrawler_FetchAllUserFollowing() {
 	// Get the refresh token used for authentication
 	refreshToken := os.Getenv("PIXIV_REFRESH_TOKEN")
 
 	// Create a new Pixiv Crawler
 	c, _ := crawler.NewCrawler(refreshToken)
 
-	// Fetch all user folower for user ID 11 (Pixiv official account)
-	users, _ := c.FetchAllUserFollowers(11, nil)
+	// Fetch all user following for user ID 11 (Pixiv official account)
+	users, _ := c.FetchAllUserFollowing(11, nil)
 
 	for _, v := range users {
 		// Print the user name
@@ -29,19 +30,19 @@ func ExamplePixivCrawler_FetchAllUserFollowers() {
 	}
 }
 
-func TestFetchAllUserFollower(t *testing.T) {
+func TestFetchAllUserFollowing(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock: authentication response
-		_ = testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token", "../testutil")
+		_ = testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../../testutil")
 
-		// Mock: page 1 of user follower
-		urlPage1 := pixiv.AppHosts + "v1/user/follower?restrict=public&user_id=11"
-		err := testutil.MockResponseFromFile("GET", urlPage1, "v1/user/follower", "../testutil")
+		// Mock: page 1 of user following
+		urlPage1 := appapi.AppHosts + "v1/user/following?restrict=public&user_id=11"
+		err := testutil.MockResponseFromFile("GET", urlPage1, "v1/user/following", "../../../testutil")
 		assert.NoError(t, err)
 
-		// Mock: page 2 of user follower (with offset)
-		urlPage2 := pixiv.AppHosts + "v1/user/follower?offset=30&restrict=public&user_id=11"
-		err = testutil.MockResponseFromFile("GET", urlPage2, "v1/user/follower_end", "../testutil")
+		// Mock: page 2 of user following (with offset)
+		urlPage2 := appapi.AppHosts + "v1/user/following?offset=30&restrict=public&user_id=11"
+		err = testutil.MockResponseFromFile("GET", urlPage2, "v1/user/following_end", "../../../testutil")
 		assert.NoError(t, err)
 
 		// Initialize Crawler instance
@@ -50,12 +51,12 @@ func TestFetchAllUserFollower(t *testing.T) {
 
 		// Prepare options
 		public := models.Public
-		opts := &pixiv.UserFollowerOptions{
+		opts := &pixiv.UserFollowingOptions{
 			Restrict: &public,
 		}
 
 		// Call the main function (no sleep between requests)
-		users, err := crawler.FetchAllUserFollowers(11, opts)
+		users, err := crawler.FetchAllUserFollowing(11, opts)
 		assert.NoError(t, err)
 		assert.Len(t, users, 2) // One user per page
 

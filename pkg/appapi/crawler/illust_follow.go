@@ -3,19 +3,19 @@ package crawler
 import (
 	"time"
 
-	"github.com/ryohidaka/go-pixiv"
 	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv/pkg/appapi"
 )
 
 // FetchAllIllustFollows retrieves all illustrations from followed users by paginating.
-func (c *PixivCrawler) FetchAllIllustFollows(opts *pixiv.IllustFollowOptions, sleepMs ...int) ([]models.Illust, error) {
+func (c *PixivCrawler) FetchAllIllustFollows(opts *appapi.IllustFollowOptions, sleepMs ...int) ([]models.Illust, error) {
 	var allIllusts []models.Illust
 	var next int
 	var err error
 
 	for {
 		var illusts []models.Illust
-		illusts, next, err = c.app.IllustFollow([]pixiv.IllustFollowOptions{*opts}...)
+		illusts, next, err = c.app.IllustFollow([]appapi.IllustFollowOptions{*opts}...)
 
 		allIllusts = append(allIllusts, illusts...)
 		if err != nil {

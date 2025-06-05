@@ -3,8 +3,8 @@ package crawler_test
 import (
 	"testing"
 
-	"github.com/ryohidaka/go-pixiv"
-	"github.com/ryohidaka/go-pixiv/crawler"
+	"github.com/ryohidaka/go-pixiv/pkg/appapi"
+	"github.com/ryohidaka/go-pixiv/pkg/appapi/crawler"
 	"github.com/ryohidaka/go-pixiv/testutil"
 	"github.com/stretchr/testify/assert"
 )
@@ -13,7 +13,7 @@ import (
 func TestNewCrawler(t *testing.T) {
 	testutil.WithMockHTTP(t, func() {
 		// Mock the authentication response
-		err := testutil.MockResponseFromFile("POST", pixiv.AuthHosts+"auth/token", "auth/token", "../testutil")
+		err := testutil.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth/token", "../../../testutil")
 		assert.NoError(t, err)
 
 		// Create a new Pixiv Crawler
