@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.23.1](https://github.com/ryohidaka/go-pixiv/compare/v0.23.0...v0.23.1) (2025-06-05)
+
+
+### Bug Fixes
+
+* **crawler:** Change NewCrawler loading destination of test to the root of the package. ([2416761](https://github.com/ryohidaka/go-pixiv/commit/24167617ced0267cfc4c85cf2a14655c27632418))
+
 ## [0.23.0](https://github.com/ryohidaka/go-pixiv/compare/v0.22.0...v0.23.0) (2025-06-05)
 
 
