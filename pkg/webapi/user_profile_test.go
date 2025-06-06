@@ -1,6 +1,8 @@
 package webapi_test
 
 import (
+	"fmt"
+	"os"
 	"testing"
 
 	"github.com/ryohidaka/go-pixiv"
@@ -8,6 +10,20 @@ import (
 	"github.com/ryohidaka/go-pixiv/testutil/webtest"
 	"github.com/stretchr/testify/assert"
 )
+
+func ExampleWebPixivAPI_UserProfile() {
+	// Get the PHPSESSID used for authentication
+	phpsessid := os.Getenv("PHPSESSID")
+
+	// Create a new Pixiv Web API client
+	app, _ := pixiv.NewWebApp(phpsessid)
+
+	// Fetch user profile for user ID 11 (Pixiv official account)
+	user, _ := app.UserProfile(11)
+
+	// Print the user illust length
+	fmt.Println("Illusts:", len(user.Illusts))
+}
 
 func TestUserProfile(t *testing.T) {
 	webtest.WithMockHTTP(t, func() {
