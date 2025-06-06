@@ -1,0 +1,98 @@
+{
+  "error": false,
+  "message": "",
+  "body": {
+    "users": [
+      {
+        "userId": "11",
+        "userName": "pixiv事務局",
+        "profileImageUrl": "https://i.pximg.net/user-profile/img/2025/01/28/14/59/33/26898736_058dfc75acb3b71f4cdce3fdb7a9da87_50.jpg",
+        "profileImageSmallUrl": "https://i.pximg.net/user-profile/img/2025/01/28/14/59/33/26898736_058dfc75acb3b71f4cdce3fdb7a9da87_170.jpg",
+        "userComment": "pixiv(ピクシブ)は、「作品を介したコミュニケーション」にフォーカスしているクリエイターとそのファンのためのSNSです。\r\n\r\nあなたが投稿した作品(イラスト、漫画、小説)やブックマークした作品そのものがプロフィールを形成し、それが中心となって作品によるコミュニケーションが行われています。\r\n\r\npixivには幅広いジャンルの作品が投稿されユーザー発のイラスト企画やメーカー公認のコンテストが頻繁に開催されています。\r\nそしてユーザー同士が協力しあい新たな作品が生まれる協創(co-creation)のプラットフォームとして活用されています。\r\n\r\n「お絵かきがもっと楽しくなる場所」\r\n\r\npixivは、そんな場所を目指しています。\r\n\r\npixivのご利用方法、ご不明点、その他のご連絡・お問い合わせについては、以下のお問い合わせフォームをご利用ください。\r\n\r\nお問い合わせフォーム https://www.pixiv.net/support.php",
+        "premium": true,
+        "following": true,
+        "followed": false,
+        "isBlocking": false,
+        "isMypixiv": false,
+        "illusts": [
+          {
+            "id": "129155745",
+            "title": "「第4回 GALLERIAイラストコンテスト」開催",
+            "illustType": 0,
+            "xRestrict": 0,
+            "restrict": 0,
+            "sl": 2,
+            "url": "https://i.pximg.net/c/288x288_80_a2/img-master/img/2025/05/07/09/17/52/129155745_p0_square1200.jpg",
+            "description": "pixiv事務局です。<br /><br />2025年4月23日（水）より「第4回 GALLERIAイラストコンテスト」を開催します。<br /><br />▼「クリエイターPC GALLERIA」とは<br />イラストや音楽制作、動画編集など、様々な用途で快適に創作できるパーツを厳選し、<br />ビギナーからベテランの方まで幅広い方々に自信をもってお勧めできるPCです。<br /><br />公式ブランドサイト：<a href=\"/jump.php?https%3A%2F%2Fgalleria.net%2F\" target=\"_blank\">https://galleria.net/</a><br />クリエイターPC GALLERIA ECサイト：<a href=\"/jump.php?https%3A%2F%2Fwww.dospara.co.jp%2Fcreate\" target=\"_blank\">https://www.dospara.co.jp/create</a><br />公式X（旧Twitter）：<a href=\"/jump.php?https%3A%2F%2Fx.com%2FGALLERIA_GM\" target=\"_blank\">https://x.com/GALLERIA_GM</a><br /><br />【開催期間】<br />2025年4月23日（水）～ 6月8日（日）23：59まで<br /><br />【テーマ】<br />部門ごとのテーマに合わせて作品を描き、テーマごとに指定されたタグを設定した上で、pixivに投稿してください。<br /><br />1.「和×きれい」部門<br />「和×きれい」をテーマに、オリジナルのキャラクターを想像して自由にイラストをお描きください。<br /><br />タグ：第4回GALLERIAイラコン和<br /><br />2.「西洋×かわいい」部門<br />「西洋×かわいい」をテーマに、オリジナルのキャラクターを想像して自由にイラストをお描きください。<br /><br />タグ：第4回GALLERIAイラコン西洋<br /><br />【投稿形式】<br />投稿数：1点以上複数作品の投稿可能（ただし、同じ作品を複数投稿することはできません）。<br />Web投稿画像サイズ:投稿時のサイズは自由です。<br /><br />ただし、選考にあたり、受賞候補者の方は以下の形でデータのご提出をお願いすることになります。あらかじめご了承ください。「A4サイズ（2&#44;894pixel×4&#44;093pixel／縦横の指定はございません）程度、キャラクターと背景がわかれた状態で保存されたPSDデータ、レイヤー統合前のPSDデータ、カラーモードRGB」<br /><br />【受賞賞品】<br />◆最優秀賞(各部門1名)<br />賞品：GALLERIAからのお仕事依頼（GALLERIA キャンペーンイラスト制作依頼）／クリエイターPC『GALLERIA DM7C-IG-C イラスト向けモデル』／BenQ デザイナーモニター PD2506Q 25インチ（協賛：ベンキュージャパン株式会社）<br />副賞：審査員からのコメント／「季刊エス」への受賞作品の掲載<br /><br />◆優秀賞(各部門1名)<br />賞品：ドスパラポイント 10万円分<br />副賞：審査員からのコメント<br /><br />◆ペンタブレット賞(部門共通1名)<br />賞品：Wacom Cintiq 16（協賛：株式会社ワコム）<br /><br />◆ペイントアプリ賞(部門共通5名)<br />賞品：CLIP STUDIO PAINT PRO 2デバイスプラン６カ月版＋CLIP STUDIO TABMATE（協賛：株式会社セルシス）<br /><br />◆片手デバイス賞(部門共通2名)<br />賞品：片手デバイスいずれか1点（Orbital2 STERNA 協賛：株式会社BRAIN MAGIC または TourBox Elite ナチュラルシリーズ ミントグリーン 協賛：TourBox Tech Inc.)<br /><br />◆雑誌掲載賞(若干名)<br />賞品：「季刊エス」への受賞作品の掲載（協賛：季刊エス、SSスモールエス編集部)<br /><br />※最優秀賞、優秀賞について、特別審査員（藤ちょこ氏、necömi氏）の講評を結果発表ページに公開いたします。<br />※賞品のドスパラポイントお受け取りには、別途ドスパラ会員登録が必要です。<br />※受賞されたユーザーの方には、当社から直接お仕事のご依頼をさせていただく場合がございます。<br />※受賞作品を使用する際に、トリミング等の一部改変を行わせていただく場合がございます。<br />※海外からの投稿も可能です。ただし、賞品に関しましては海外発送を承っておりません。国内でのお受け取りをお願いします。<br />※受賞連絡やデータの受け渡しなど、コンテストに関するご連絡はメッセージ機能にて行います。<br />（ご返答期限までに返信がない場合、受賞対象外となる場合がございますのでご注意ください）<br /><br />◆応募作品一覧ページ：<a href=\"https://pixiv.net/contest/GALLERIA4\" target=\"_blank\">https://pixiv.net/contest/GALLERIA4</a><br />◆公式サイト：<a href=\"/jump.php?https%3A%2F%2Fgalleria.net%2F\" target=\"_blank\">https://galleria.net/</a><br /><br />応募の際は、応募作品一覧ページ内の応募要項を必ずご一読の上、詳細をご確認ください。<br /><br />みなさまからのご応募、お待ちしております。",
+            "tags": [
+              "公式企画",
+              "企画目録",
+              "第4回GALLERIAイラコン和",
+              "第4回GALLERIAイラコン西洋",
+              "GALLERIA",
+              "ガレリア"
+            ],
+            "userId": "11",
+            "userName": "pixiv事務局",
+            "width": 1280,
+            "height": 2088,
+            "pageCount": 1,
+            "isBookmarkable": true,
+            "bookmarkData": null,
+            "alt": "#公式企画 「第4回 GALLERIAイラストコンテスト」開催 - pixiv事務局のイラスト",
+            "titleCaptionTranslation": {
+              "workTitle": null,
+              "workCaption": null
+            },
+            "createDate": "2025-04-10T17:00:04+09:00",
+            "updateDate": "2025-05-07T09:17:52+09:00",
+            "isUnlisted": false,
+            "isMasked": false,
+            "aiType": 1,
+            "visibilityScope": 0,
+            "profileImageUrl": "https://i.pximg.net/user-profile/img/2025/01/28/14/59/33/26898736_058dfc75acb3b71f4cdce3fdb7a9da87_50.jpg"
+          }
+        ],
+        "novels": [
+          {
+            "id": "1462193",
+            "title": "pixiv小説関連機能のアップデート情報",
+            "genre": "17",
+            "xRestrict": 1,
+            "restrict": 0,
+            "url": "https://i.pximg.net/c/600x600/novel-cover-master/img/2020/12/25/12/30/32/14327047_103ba26240eb40f8765c7d94e4487303_master1200.jpg",
+            "tags": [],
+            "userId": "11",
+            "userName": "pixiv事務局",
+            "profileImageUrl": "https://i.pximg.net/user-profile/img/2025/01/28/14/59/33/26898736_058dfc75acb3b71f4cdce3fdb7a9da87_170.jpg",
+            "textCount": 73988,
+            "wordCount": 18547,
+            "readingTime": 8878,
+            "useWordCount": false,
+            "description": "pixiv小説関連機能のアップデート情報をお知らせします。",
+            "isBookmarkable": true,
+            "bookmarkData": null,
+            "bookmarkCount": 1,
+            "isOriginal": true,
+            "marker": null,
+            "titleCaptionTranslation": {
+              "workTitle": null,
+              "workCaption": null
+            },
+            "createDate": "2020-12-25T12:37:36+09:00",
+            "updateDate": "2023-12-25T18:21:32+09:00",
+            "isMasked": false,
+            "aiType": 0,
+            "seriesId": "1462193",
+            "seriesTitle": "Vpixiv小説関連機能のアップデート情報",
+            "isUnlisted": false,
+            "visibilityScope": 0
+          }
+        ],
+        "commission": null
+      }
+    ],
+    "total": 1,
+    "followUserTags": []
+  }
+}

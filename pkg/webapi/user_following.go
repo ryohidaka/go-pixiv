@@ -20,7 +20,7 @@ type userFollowingParams struct {
 	Restrict core.Restrict `url:"rest,omitempty"`
 }
 
-// UserFull returns following users. ([Docs])
+// UserFollowing returns following users. ([Docs])
 //
 // [Docs]: https://github.com/daydreamer-json/pixiv-ajax-api-docs?tab=readme-ov-file#get-following-users
 func (a *WebPixivAPI) UserFollowing(uid uint64, opts ...UserFollowingOptions) ([]user.FollowingUser, uint32, error) {
