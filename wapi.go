@@ -1,6 +1,7 @@
 package pixiv
 
 import (
+	"github.com/ryohidaka/go-pixiv/models/webmodel/core"
 	"github.com/ryohidaka/go-pixiv/models/webmodel/user"
 	"github.com/ryohidaka/go-pixiv/pkg/webapi"
 )
@@ -38,4 +39,20 @@ func (a *WebPixivAPI) UserFull(uid uint64) (*user.User, error) {
 // [Docs]: https://github.com/daydreamer-json/pixiv-ajax-api-docs?tab=readme-ov-file#get-user-information-focus-on-artwork
 func (a *WebPixivAPI) UserProfile(uid uint64) (*user.UserProfile, error) {
 	return a.WebPixivAPI.UserProfile(uid)
+}
+
+type WebRestrict = core.Restrict
+
+const (
+	Show = core.Show
+	Hide = core.Hide
+)
+
+type WebUserFollowingOptions = webapi.UserFollowingOptions
+
+// UserFull returns following users. ([Docs])
+//
+// [Docs]: https://github.com/daydreamer-json/pixiv-ajax-api-docs?tab=readme-ov-file#get-following-users
+func (a *WebPixivAPI) UserFollowing(uid uint64, opts ...WebUserFollowingOptions) ([]user.FollowingUser, uint32, error) {
+	return a.WebPixivAPI.UserFollowing(uid, opts...)
 }
