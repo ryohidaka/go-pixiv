@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.25.0](https://github.com/ryohidaka/go-pixiv/compare/v0.24.0...v0.25.0) (2025-06-06)
+
+
+### Features
+
+* **api:** Add doc link. ([54ec650](https://github.com/ryohidaka/go-pixiv/commit/54ec65063860d279135de64eb8a3d35ade22dea3))
+* **api:** Add UserFull() ([c5cd380](https://github.com/ryohidaka/go-pixiv/commit/c5cd3807e6819c298506a5f7f5ff6e335f304fe1))
+
 ## [0.24.0](https://github.com/ryohidaka/go-pixiv/compare/v0.23.1...v0.24.0) (2025-06-05)
 
 
