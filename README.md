@@ -39,7 +39,7 @@ Read [GoDoc](https://pkg.go.dev/github.com/ryohidaka/go-pixiv)
 
 ### Web API (ajax)
 
-- `UserShort`, `UserFull`
+- `UserShort`, `UserFull`, `UserProfile`
 
 ### Crawler
 
@@ -105,6 +105,9 @@ user, err := app.UserShort(11)
 
 // Fetch a full user information.
 user, err := app.UserFull(11)
+
+// Fetch user information along with information about artwork posted by the user.
+user, err := app.UserProfile(11)
 ```
 
 ### Crawler
