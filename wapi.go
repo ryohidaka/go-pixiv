@@ -1,7 +1,7 @@
 package pixiv
 
 import (
-	"github.com/ryohidaka/go-pixiv/models/webmodel"
+	"github.com/ryohidaka/go-pixiv/models/webmodel/user"
 	"github.com/ryohidaka/go-pixiv/pkg/webapi"
 )
 
@@ -19,7 +19,23 @@ func NewWebApp(phpsessid string) (*WebPixivAPI, error) {
 	return &WebPixivAPI{WebPixivAPI: api}, nil
 }
 
-// UserShort returns a short user profile by user ID using the Pixiv Web API.
-func (a *WebPixivAPI) UserShort(uid uint64) (*webmodel.UserShort, error) {
+// UserShort returns a user information in a simplified format. ([Docs])
+//
+// [Docs]: https://github.com/daydreamer-json/pixiv-ajax-api-docs?tab=readme-ov-file#get-user-information-short
+func (a *WebPixivAPI) UserShort(uid uint64) (*user.UserShort, error) {
 	return a.WebPixivAPI.UserShort(uid)
+}
+
+// UserFull returns a full user information. ([Docs])
+//
+// [Docs]: https://github.com/daydreamer-json/pixiv-ajax-api-docs?tab=readme-ov-file#get-user-information-full
+func (a *WebPixivAPI) UserFull(uid uint64) (*user.User, error) {
+	return a.WebPixivAPI.UserFull(uid)
+}
+
+// UserProfile returns a user information along with information about artwork posted by the user. ([Docs])
+//
+// [Docs]: https://github.com/daydreamer-json/pixiv-ajax-api-docs?tab=readme-ov-file#get-user-information-focus-on-artwork
+func (a *WebPixivAPI) UserProfile(uid uint64) (*user.UserProfile, error) {
+	return a.WebPixivAPI.UserProfile(uid)
 }
