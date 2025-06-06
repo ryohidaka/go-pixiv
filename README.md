@@ -76,8 +76,11 @@ import "github.com/ryohidaka/go-pixiv"
 // Create a new Pixiv Web API client
 app, err := pixiv.NewWebApp("<YOUR_PHPSESSID>")
 
-// Fetch user short
+// Fetch a user information in a simplified format.
 user, err := app.UserShort(11)
+
+// Fetch a full user information.
+user, err := app.UserFull(11)
 ```
 
 ### Crawler
@@ -199,6 +202,8 @@ DownloadFile(url string, opts *DownloadFileOptions) (int64, error) {...}
 
 ```go
 UserShort(uid uint64) (*webmodel.UserShort, error) {...}
+
+UserFull(uid uint64) (*user.User, error) {...}
 ```
 
 ## Link
