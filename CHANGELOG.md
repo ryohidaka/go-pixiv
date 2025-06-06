@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.26.0](https://github.com/ryohidaka/go-pixiv/compare/v0.25.0...v0.26.0) (2025-06-06)
+
+
+### Features
+
+* **api:** Add UserProfile() ([167cd0d](https://github.com/ryohidaka/go-pixiv/commit/167cd0d607c778375b13e697592bfd5ad9f95083))
+
+
+### Bug Fixes
+
+* **api:** Expose WebAPI methods in wapi.go ([889abaa](https://github.com/ryohidaka/go-pixiv/commit/889abaaba17fcd6710f586c052b4cce0161c810d))
+
 ## [0.25.0](https://github.com/ryohidaka/go-pixiv/compare/v0.24.0...v0.25.0) (2025-06-06)
 
 
