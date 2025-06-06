@@ -25,11 +25,35 @@ go get github.com/ryohidaka/go-pixiv
 
 Read [GoDoc](https://pkg.go.dev/github.com/ryohidaka/go-pixiv)
 
-## Usage
+## Features
 
-### API functions
+### App-API (`6.0 - app-api.pixiv.net`)
 
-#### App-API (6.0 - app-api.pixiv.net)
+- `UserDetail`, `UserIllusts`, `UserBookmarksIllust`
+
+- `IllustDetail`, `IllustFollow`, `IllustBookmarkDetail`
+
+- `UserFollowing`, `UserFollower`
+
+- `UserFollowAdd`, `UserFollowDelete`
+
+### Web API (ajax)
+
+- `UserShort`, `UserFull`
+
+### Crawler
+
+- Fetch all: `UserIllusts`, `Bookmarks`, `Follows`, `Following`, `Followers`
+
+- Batch follow/unfollow: `UserFollowAddMultiple`, `UserFollowDeleteMultiple`
+
+### Downloader
+
+Download to bytes or file from pixiv CDN
+
+## Examples
+
+### App API
 
 ```go
 import "github.com/ryohidaka/go-pixiv"
@@ -131,79 +155,6 @@ len, err := downloader.DownloadFile("https://i.pximg.net/...", &pixiv.DownloadFi
     Name:    "test.jpg",
     Replace: true,
 })
-```
-
-## API functions
-
-### App-API (6.0 - app-api.pixiv.net)
-
-```go
-// 用户详情
-UserDetail(uid uint64, opts ...UserDetailOptions) (*models.UserDetail, error) {...}
-
-// 用户作品列表
-UserIllusts(uid uint64, opts ...UserIllustsOptions) ([]models.Illust, int, error) {...}
-
-// 用户收藏作品列表
-UserBookmarksIllust(uid uint64, opts ...UserBookmarksIllustOptions) ([]models.Illust, int, error) {...}
-
-// 关注用户的新作
-IllustFollow(opts ...IllustFollowOptions) ([]models.Illust, int, error) {...}
-
-// 作品详情 (类似PAPI.works(),iOS中未使用)
-IllustDetail(id uint64) (*models.Illust, error) {...}
-
-// 作品收藏详情
-IllustBookmarkDetail(id uint64) (*models.IllustBookmarkDetail, error) {...}
-
-// Following用户列表
-UserFollowing(uid uint64, opts ...UserFollowingOptions) ([]models.UserPreview, int, error) {...}
-
-// Followers用户列表
-UserFollower(uid uint64, opts ...UserFollowerOptions) ([]models.UserPreview, int, error) {...}
-
-// 关注用户
-UserFollowAdd(uid uint64, restrict ...models.Restrict) {...}
-
-// 取消关注用户
-UserFollowDelete(uid uint64) (bool, error) {...}
-```
-
-### Crawler
-
-```go
-// 获取指定用户的作品列表
-FetchAllUserIllusts(uid uint64, opts *UserIllustsOptions, sleepMs ...int) ([]models.Illust, error) {...}
-
-// 获取指定用户的收藏列表
-FetchAllBookmarkedIllusts(uid uint64, opts *UserBookmarksIllustOptions, sleepMs ...int) ([]models.Illust, error) {...}
-
-FetchAllIllustFollows(opts *IllustFollowOptions, sleepMs ...int) ([]models.Illust, error) {...}
-
-// 获取指定用户跟踪的用户列表
-FetchAllUserFollowing(uid uint64, opts *UserFollowingOptions, sleepMs ...int) ([]models.UserPreview, error) {...}
-
-FetchAllUserFollowers(uid uint64, opts *UserFollowerOptions, sleepMs ...int) ([]models.UserPreview, error) {...}
-
-UserFollowAddMultiple(uids []uint64, restrict ...models.Restrict) ([]uint64, error) {...}
-
-UserFollowDeleteMultiple(uids []uint64) ([]uint64, error) {...}
-```
-
-### Downloader
-
-```go
-DownloadBytes(url string) ([]byte, error) {...}
-
-DownloadFile(url string, opts *DownloadFileOptions) (int64, error) {...}
-```
-
-### Web API
-
-```go
-UserShort(uid uint64) (*webmodel.UserShort, error) {...}
-
-UserFull(uid uint64) (*user.User, error) {...}
 ```
 
 ## Link
