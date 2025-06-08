@@ -39,7 +39,7 @@ Read [GoDoc](https://pkg.go.dev/github.com/ryohidaka/go-pixiv)
 
 ### Web API (ajax)
 
-- `UserShort`, `UserFull`, `UserProfile`, `UserFollowing`, `UserFollowers`
+- `UserShort`, `UserFull`, `UserProfile`, `UserFollowing`, `UserFollowers`, `UserLatestWorks`
 
 ### Crawler
 
@@ -114,6 +114,9 @@ users, total, err := app.UserFollowing(11)
 
 // Fetch user's followers.
 users, total, err := app.UserFollowers(11)
+
+// Fetch the latest artworks of users.
+works, err := app.UserLatestWorks(11)
 ```
 
 ### Crawler
