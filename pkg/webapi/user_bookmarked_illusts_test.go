@@ -7,6 +7,7 @@ import (
 
 	"github.com/ryohidaka/go-pixiv"
 	"github.com/ryohidaka/go-pixiv/models/webmodel/core"
+	"github.com/ryohidaka/go-pixiv/models/webmodel/illust"
 	"github.com/ryohidaka/go-pixiv/pkg/webapi"
 	"github.com/ryohidaka/go-pixiv/testutil/webtest"
 	"github.com/stretchr/testify/assert"
@@ -71,7 +72,7 @@ func TestUserBookmarksIllusts(t *testing.T) {
 		}
 
 		for i, exp := range expected {
-			assert.Equal(t, exp.id, data.Works[i].ID)
+			assert.Equal(t, illust.IllustID(exp.id), data.Works[i].ID)
 			assert.Equal(t, exp.title, data.Works[i].Title)
 		}
 	})
