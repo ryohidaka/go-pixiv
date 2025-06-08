@@ -1,0 +1,130 @@
+{
+  "error": false,
+  "message": "",
+  "body": {
+    "works": [
+      {
+        "id": "130967689",
+        "title": "comic POOL5月コミックス発売情報",
+        "illustType": 1,
+        "xRestrict": 0,
+        "restrict": 0,
+        "sl": 2,
+        "url": "https://i.pximg.net/c/250x250_80_a2/custom-thumb/img/2025/05/30/12/00/44/130967689_p0_custom1200.jpg",
+        "description": "",
+        "tags": [
+          "漫画",
+          "pixivコミック",
+          "comicPOOL",
+          "正反対なわたしたち",
+          "うらみちお兄さん"
+        ],
+        "userId": "11",
+        "userName": "pixiv事務局",
+        "width": 750,
+        "height": 750,
+        "pageCount": 21,
+        "isBookmarkable": true,
+        "bookmarkData": null,
+        "alt": "#pixivコミック comic POOL5月コミックス発売情報 - pixiv事務局のマンガ #漫画 #comicPOOL #正反対なわたしたち",
+        "titleCaptionTranslation": {
+          "workTitle": null,
+          "workCaption": null
+        },
+        "createDate": "2025-05-30T12:00:44+09:00",
+        "updateDate": "2025-05-30T12:00:44+09:00",
+        "isUnlisted": false,
+        "isMasked": false,
+        "aiType": 1,
+        "visibilityScope": 0,
+        "profileImageUrl": "https://i.pximg.net/user-profile/img/2025/01/28/14/59/33/26898736_058dfc75acb3b71f4cdce3fdb7a9da87_50.jpg"
+      },
+      {
+        "id": "131093702",
+        "title": "マンガ投稿企画『ツキコミ〜裏を見ちゃった！〜』開催",
+        "illustType": 0,
+        "xRestrict": 0,
+        "restrict": 0,
+        "sl": 2,
+        "url": "https://i.pximg.net/c/250x250_80_a2/img-master/img/2025/06/02/13/55/17/131093702_p0_square1200.jpg",
+        "description": "",
+        "tags": [
+          "漫画",
+          "企画目録",
+          "公式企画",
+          "公式コンテスト",
+          "Tsukicomi25Jun",
+          "裏を見ちゃった!"
+        ],
+        "userId": "11",
+        "userName": "pixiv事務局",
+        "width": 960,
+        "height": 1450,
+        "pageCount": 5,
+        "isBookmarkable": true,
+        "bookmarkData": null,
+        "alt": "#企画目録 マンガ投稿企画『ツキコミ〜裏を見ちゃった！〜』開催 - pixiv事務局のイラスト",
+        "titleCaptionTranslation": {
+          "workTitle": null,
+          "workCaption": null
+        },
+        "createDate": "2025-06-02T13:55:17+09:00",
+        "updateDate": "2025-06-02T13:55:17+09:00",
+        "isUnlisted": false,
+        "isMasked": false,
+        "aiType": 1,
+        "visibilityScope": 0,
+        "profileImageUrl": "https://i.pximg.net/user-profile/img/2025/01/28/14/59/33/26898736_058dfc75acb3b71f4cdce3fdb7a9da87_50.jpg"
+      },
+      {
+        "id": "131202453",
+        "title": "pixivが大阪・関西万博で期間限定展示を開催",
+        "illustType": 0,
+        "xRestrict": 0,
+        "restrict": 0,
+        "sl": 2,
+        "url": "https://i.pximg.net/c/250x250_80_a2/img-master/img/2025/06/05/15/41/44/131202453_p0_square1200.jpg",
+        "description": "",
+        "tags": ["公式企画", "EXPO2025"],
+        "userId": "11",
+        "userName": "pixiv事務局",
+        "width": 1200,
+        "height": 630,
+        "pageCount": 4,
+        "isBookmarkable": true,
+        "bookmarkData": null,
+        "alt": "#公式企画 pixivが大阪・関西万博で期間限定展示を開催 - pixiv事務局のイラスト",
+        "titleCaptionTranslation": {
+          "workTitle": null,
+          "workCaption": null
+        },
+        "createDate": "2025-06-05T15:41:44+09:00",
+        "updateDate": "2025-06-05T15:41:44+09:00",
+        "isUnlisted": false,
+        "isMasked": false,
+        "aiType": 1,
+        "visibilityScope": 0,
+        "profileImageUrl": "https://i.pximg.net/user-profile/img/2025/01/28/14/59/33/26898736_058dfc75acb3b71f4cdce3fdb7a9da87_50.jpg"
+      }
+    ],
+    "total": 3,
+    "bookmarkTags": {
+      "130967689": [
+        "漫画",
+        "pixivコミック",
+        "comicPOOL",
+        "正反対なわたしたち",
+        "うらみちお兄さん"
+      ],
+      "131093702": [
+        "漫画",
+        "企画目録",
+        "公式企画",
+        "公式コンテスト",
+        "Tsukicomi25Jun",
+        "裏を見ちゃった!"
+      ],
+      "131202453": ["公式企画", "EXPO2025"]
+    }
+  }
+}
