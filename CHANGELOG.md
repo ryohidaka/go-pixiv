@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.28.0](https://github.com/ryohidaka/go-pixiv/compare/v0.27.0...v0.28.0) (2025-06-08)
+
+
+### Features
+
+* **api:** Add UserFollowers() ([4c2c3e1](https://github.com/ryohidaka/go-pixiv/commit/4c2c3e13633e83a989baed1bf2f0736ba52fe35b))
+
+
+### Bug Fixes
+
+* **api:** Fix referers for UserFollowing() ([91349a5](https://github.com/ryohidaka/go-pixiv/commit/91349a513081d120d8da2a7bcb38a90b0550fd02))
+
 ## [0.27.0](https://github.com/ryohidaka/go-pixiv/compare/v0.26.0...v0.27.0) (2025-06-08)
 
 
