@@ -65,3 +65,10 @@ type UserFollowersOptions = webapi.UserFollowersOptions
 func (a *WebPixivAPI) UserFollowers(uid uint64, opts ...UserFollowersOptions) ([]user.FollowerUser, uint32, error) {
 	return a.WebPixivAPI.UserFollowers(uid, opts...)
 }
+
+// UserLatestWorks returns the latest artworks of users. ([Docs])
+//
+// [Docs]: https://github.com/daydreamer-json/pixiv-ajax-api-docs?tab=readme-ov-file#get-user-latest-artworks
+func (a *WebPixivAPI) UserLatestWorks(uid uint64) (*user.UserWorks, error) {
+	return a.WebPixivAPI.UserLatestWorks(uid)
+}
