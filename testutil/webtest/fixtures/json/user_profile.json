@@ -3,7 +3,36 @@
   "message": "",
   "body": {
     "illusts": {
-      "1580459": null
+      "1580459": {
+        "id": "1580459",
+        "title": "【企画】ピクシブたんを描こう！",
+        "illustType": 0,
+        "xRestrict": 0,
+        "restrict": 0,
+        "sl": 2,
+        "url": "https://i.pximg.net/c/250x250_80_a2/img-master/img/2008/09/10/17/47/18/1580459_p0_square1200.jpg",
+        "description": "2008年9月10日でpixivはサービス開始1周年を迎えます。<br />そこで、pixiv1周年記念企画として、pixivというサービスを擬人化したキャラクター「ピクシブたん」を大募集！<br />皆さんが考える「ピクシブたん」をイラストにしてみませんか？ <br /><br />Special Thanks:「みんなでピクシブたん描こうぜ！」<strong><a href=\"https://www.pixiv.net/artworks/14567\">illust/14567</a></strong><br />「pixivお誕生日」 <strong><a href=\"https://www.pixiv.net/artworks/1469262\">illust/1469262</a></strong> <br />ピクシブたん　→　<a href=\"/jump.php?http%3A%2F%2Ftinyurl.com%2F6yx3f5\" target=\"_blank\">http://tinyurl.com/6yx3f5</a>",
+        "tags": ["ピクシブたん", "企画", "企画主", "企画目録"],
+        "userId": "11",
+        "userName": "pixiv事務局",
+        "width": 749,
+        "height": 711,
+        "pageCount": 1,
+        "isBookmarkable": true,
+        "bookmarkData": null,
+        "alt": "#ピクシブたん 【企画】ピクシブたんを描こう！ - pixiv事務局のイラスト",
+        "titleCaptionTranslation": {
+          "workTitle": null,
+          "workCaption": null
+        },
+        "createDate": "2008-09-10T08:47:00+00:00",
+        "updateDate": "2008-09-10T08:47:00+00:00",
+        "isUnlisted": false,
+        "isMasked": false,
+        "aiType": 1,
+        "visibilityScope": 0,
+        "profileImageUrl": "https://i.pximg.net/user-profile/img/2025/01/28/14/59/33/26898736_058dfc75acb3b71f4cdce3fdb7a9da87_170.jpg"
+      }
     },
     "manga": {
       "6209105": null
