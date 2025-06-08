@@ -1,6 +1,8 @@
 package webapi_test
 
 import (
+	"fmt"
+	"os"
 	"testing"
 
 	"github.com/ryohidaka/go-pixiv"
@@ -9,6 +11,33 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
+
+func ExampleWebPixivAPI_UserLatestWorks() {
+	// Get the PHPSESSID used for authentication
+	phpsessid := os.Getenv("PHPSESSID")
+
+	// Create a new Pixiv Web API client
+	app, _ := pixiv.NewWebApp(phpsessid)
+
+	// Fetch the latest artworks of users.
+	works, _ := app.UserLatestWorks(11)
+
+	// Print the first illust title (no guaranteed order)
+	for _, illust := range works.Illusts {
+		if illust != nil {
+			fmt.Println("Illust:", illust.Title)
+			break
+		}
+	}
+
+	// Print the first novel title (no guaranteed order)
+	for _, novel := range works.Novels {
+		if novel != nil {
+			fmt.Println("Novel:", novel.Title)
+			break
+		}
+	}
+}
 
 func TestUserLatestWorks(t *testing.T) {
 	webtest.WithMockHTTP(t, func() {
