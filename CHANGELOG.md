@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.30.0](https://github.com/ryohidaka/go-pixiv/compare/v0.29.0...v0.30.0) (2025-06-08)
+
+
+### Features
+
+* **api:** Add UserBookmarksIllusts() ([853fae8](https://github.com/ryohidaka/go-pixiv/commit/853fae84f179f0b6742eb3adb750f94549c71022))
+
 ## [0.29.0](https://github.com/ryohidaka/go-pixiv/compare/v0.28.0...v0.29.0) (2025-06-08)
 
 
