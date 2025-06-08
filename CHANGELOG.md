@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.30.1](https://github.com/ryohidaka/go-pixiv/compare/v0.30.0...v0.30.1) (2025-06-08)
+
+
+### Bug Fixes
+
+* **api:** Remove "omitempty" from web api params. ([71954a0](https://github.com/ryohidaka/go-pixiv/commit/71954a0cd68c39a58d344b99ec3a3c815b7251b8))
+* **models:** Fix typo ([252d957](https://github.com/ryohidaka/go-pixiv/commit/252d9573168a401782856e5e596c5e9c81124df8))
+* **models:** Remove "BookmarkTags" from BookmarkedIllusts ([1d99331](https://github.com/ryohidaka/go-pixiv/commit/1d99331b77ad302de372072609559c7559698ead))
+
 ## [0.30.0](https://github.com/ryohidaka/go-pixiv/compare/v0.29.0...v0.30.0) (2025-06-08)
 
 
