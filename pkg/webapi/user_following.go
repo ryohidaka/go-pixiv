@@ -39,9 +39,8 @@ func (a *WebPixivAPI) UserFollowing(uid uint64, opts ...UserFollowingOptions) ([
 	}
 
 	path := fmt.Sprintf("user/%d/following", uid)
-	referer := fmt.Sprintf(AppHosts+"member.php?id=%d", uid)
 
-	res, err := Get[user.UserFolowingResponse](a, path, &referer, params)
+	res, err := Get[user.UserFolowingResponse](a, path, nil, params)
 	if err != nil {
 		return nil, 0, err
 	}
