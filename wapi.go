@@ -56,3 +56,12 @@ type WebUserFollowingOptions = webapi.UserFollowingOptions
 func (a *WebPixivAPI) UserFollowing(uid uint64, opts ...WebUserFollowingOptions) ([]user.FollowingUser, uint32, error) {
 	return a.WebPixivAPI.UserFollowing(uid, opts...)
 }
+
+type UserFollowersOptions = webapi.UserFollowersOptions
+
+// UserFollowers returns user's followers. ([Docs])
+//
+// [Docs]: https://github.com/daydreamer-json/pixiv-ajax-api-docs?tab=readme-ov-file#get-users-followers
+func (a *WebPixivAPI) UserFollowers(uid uint64, opts ...UserFollowersOptions) ([]user.FollowerUser, uint32, error) {
+	return a.WebPixivAPI.UserFollowers(uid, opts...)
+}
