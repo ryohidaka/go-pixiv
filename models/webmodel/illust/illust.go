@@ -18,7 +18,7 @@ type Illust struct {
 	Height                  int                          `json:"height"`
 	PageCount               int                          `json:"pageCount"`
 	IsBookmarkable          bool                         `json:"isBookmarkable"`
-	BookmarkData            interface{}                  `json:"bookmarkData"`
+	BookmarkData            *core.BookmarkData           `json:"bookmarkData"`
 	Alt                     string                       `json:"alt"`
 	TitleCaptionTranslation core.TitleCaptionTranslation `json:"titleCaptionTranslation"`
 	CreateDate              string                       `json:"createDate"`

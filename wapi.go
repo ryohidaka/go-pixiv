@@ -1,6 +1,7 @@
 package pixiv
 
 import (
+	"github.com/ryohidaka/go-pixiv/models/webmodel/bookmark"
 	"github.com/ryohidaka/go-pixiv/models/webmodel/core"
 	"github.com/ryohidaka/go-pixiv/models/webmodel/user"
 	"github.com/ryohidaka/go-pixiv/pkg/webapi"
@@ -71,4 +72,13 @@ func (a *WebPixivAPI) UserFollowers(uid uint64, opts ...UserFollowersOptions) ([
 // [Docs]: https://github.com/daydreamer-json/pixiv-ajax-api-docs?tab=readme-ov-file#get-user-latest-artworks
 func (a *WebPixivAPI) UserLatestWorks(uid uint64) (*user.UserWorks, error) {
 	return a.WebPixivAPI.UserLatestWorks(uid)
+}
+
+type UserBookmarksIllustsOptions = webapi.UserBookmarksIllustsOptions
+
+// UserLatestWorks returns bookmarks of users. ([Docs])
+//
+// [Docs]: https://github.com/daydreamer-json/pixiv-ajax-api-docs?tab=readme-ov-file#get-user-bookmarks
+func (a *WebPixivAPI) UserBookmarksIllusts(uid uint64, opts ...UserBookmarksIllustsOptions) (*bookmark.BookmarkedIllusts, uint32, error) {
+	return a.WebPixivAPI.UserBookmarksIllusts(uid, opts...)
 }
