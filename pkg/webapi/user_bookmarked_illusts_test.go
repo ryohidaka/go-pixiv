@@ -1,6 +1,8 @@
 package webapi_test
 
 import (
+	"fmt"
+	"os"
 	"testing"
 
 	"github.com/ryohidaka/go-pixiv"
@@ -9,6 +11,30 @@ import (
 	"github.com/ryohidaka/go-pixiv/testutil/webtest"
 	"github.com/stretchr/testify/assert"
 )
+
+func ExampleWebPixivAPI_UserBookmarksIllusts() {
+	// Get the PHPSESSID used for authentication
+	phpsessid := os.Getenv("PHPSESSID")
+
+	// Create a new Pixiv Web API client
+	app, _ := pixiv.NewWebApp(phpsessid)
+
+	opts := pixiv.UserBookmarksIllustsOptions{
+		Offset: 0,
+		Limit:  10,
+	}
+
+	// Fetch bookmarks of users.
+	data, total, _ := app.UserBookmarksIllusts(11, opts)
+
+	// Print the bookmark illusts title
+	for _, illust := range data.Works {
+		fmt.Println("Title: ", illust.Title)
+	}
+
+	// Print the total
+	fmt.Println("Total:", total)
+}
 
 func TestUserBookmarksIllusts(t *testing.T) {
 	webtest.WithMockHTTP(t, func() {
