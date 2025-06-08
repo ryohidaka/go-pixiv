@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.29.0](https://github.com/ryohidaka/go-pixiv/compare/v0.28.0...v0.29.0) (2025-06-08)
+
+
+### Features
+
+* **api:** Add UserLatestWorks() ([18c8f9e](https://github.com/ryohidaka/go-pixiv/commit/18c8f9e33d062abe966b97416b2b09a53530b1a7))
+
 ## [0.28.0](https://github.com/ryohidaka/go-pixiv/compare/v0.27.0...v0.28.0) (2025-06-08)
 
 
