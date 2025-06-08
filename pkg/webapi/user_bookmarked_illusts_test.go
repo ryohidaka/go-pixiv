@@ -64,22 +64,15 @@ func TestUserBookmarksIllusts(t *testing.T) {
 		expected := []struct {
 			id    string
 			title string
-			tag   string
 		}{
-			{"130967689", "comic POOL5月コミックス発売情報", "漫画"},
-			{"131093702", "マンガ投稿企画『ツキコミ〜裏を見ちゃった！〜』開催", "漫画"},
-			{"131202453", "pixivが大阪・関西万博で期間限定展示を開催", "公式企画"},
+			{"130967689", "comic POOL5月コミックス発売情報"},
+			{"131093702", "マンガ投稿企画『ツキコミ〜裏を見ちゃった！〜』開催"},
+			{"131202453", "pixivが大阪・関西万博で期間限定展示を開催"},
 		}
 
 		for i, exp := range expected {
 			assert.Equal(t, exp.id, data.Works[i].ID)
 			assert.Equal(t, exp.title, data.Works[i].Title)
-
-			tags, ok := data.BookmarkTags[exp.id]
-			assert.True(t, ok, "bookmark tags must exist for id "+exp.id)
-			assert.Greater(t, len(tags), 0)
-			assert.Equal(t, exp.tag, tags[0])
 		}
-
 	})
 }

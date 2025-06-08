@@ -12,7 +12,8 @@ type BookmarkedIllustsResponse struct {
 }
 
 type BookmarkedIllusts struct {
-	Works        []illust.Illust     `json:"works"`
-	Total        uint32              `json:"total"`
-	BookmarkTags map[string][]string `json:"bookmarkTags"`
+	Works []illust.Illust `json:"works"`
+	Total uint32          `json:"total"`
+	// NOTE: No response due to indefinite structure
+	// BookmarkTags []interface{}  `json:"bookmarkTags"`
 }
