@@ -1,21 +1,21 @@
-package apputils_test
+package webutils_test
 
 import (
 	"testing"
 
-	"github.com/ryohidaka/go-pixiv/internal/apputils"
-	"github.com/ryohidaka/go-pixiv/models"
+	"github.com/ryohidaka/go-pixiv"
+	"github.com/ryohidaka/go-pixiv/internal/webutils"
 )
 
 // TestGetRestrict tests the GetRestrict function.
 func TestGetRestrict(t *testing.T) {
-	public := models.Public
-	private := models.Restrict("private")
+	public := pixiv.Show
+	private := pixiv.WebRestrict("hide")
 
 	tests := []struct {
 		name     string
-		input    *models.Restrict
-		expected models.Restrict
+		input    *pixiv.WebRestrict
+		expected pixiv.WebRestrict
 	}{
 		{
 			name:     "nil input",
@@ -24,7 +24,7 @@ func TestGetRestrict(t *testing.T) {
 		},
 		{
 			name:     "empty string",
-			input:    func() *models.Restrict { r := models.Restrict(""); return &r }(),
+			input:    func() *pixiv.WebRestrict { r := pixiv.WebRestrict(""); return &r }(),
 			expected: public,
 		},
 		{
@@ -36,7 +36,7 @@ func TestGetRestrict(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := apputils.GetRestrict(tt.input)
+			result := webutils.GetRestrict(tt.input)
 			if result != tt.expected {
 				t.Errorf("GetRestrict() = %v, want %v", result, tt.expected)
 			}
