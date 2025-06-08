@@ -1,6 +1,8 @@
 package webapi_test
 
 import (
+	"fmt"
+	"os"
 	"testing"
 
 	"github.com/ryohidaka/go-pixiv"
@@ -9,6 +11,23 @@ import (
 	"github.com/ryohidaka/go-pixiv/testutil/webtest"
 	"github.com/stretchr/testify/assert"
 )
+
+func ExampleWebPixivAPI_UserFollowing() {
+	// Get the PHPSESSID used for authentication
+	phpsessid := os.Getenv("PHPSESSID")
+
+	// Create a new Pixiv Web API client
+	app, _ := pixiv.NewWebApp(phpsessid)
+
+	// Fetch following users.
+	users, total, _ := app.UserFollowing(11)
+
+	// Print the user
+	fmt.Println("User: ", users[0].UserName)
+
+	// Print the total
+	fmt.Println("Total:", total)
+}
 
 func TestUserFollowing(t *testing.T) {
 	webtest.WithMockHTTP(t, func() {
