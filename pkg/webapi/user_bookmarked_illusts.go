@@ -16,10 +16,10 @@ type UserBookmarksIllustsOptions struct {
 }
 
 type userBookmarksIllustsParams struct {
-	Tag      *string       `url:"tag,omitempty"`
-	Offset   uint16        `url:"offset,omitempty"`
-	Limit    uint8         `url:"limit,omitempty"`
-	Restrict core.Restrict `url:"rest,omitempty"`
+	Tag      *string       `url:"tag"`
+	Offset   uint16        `url:"offset"`
+	Limit    uint8         `url:"limit"`
+	Restrict core.Restrict `url:"rest"`
 }
 
 // UserLatestWorks returns bookmarks of users. ([Docs])

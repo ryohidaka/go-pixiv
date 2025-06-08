@@ -39,7 +39,7 @@ func ExampleWebPixivAPI_UserBookmarksIllusts() {
 func TestUserBookmarksIllusts(t *testing.T) {
 	webtest.WithMockHTTP(t, func() {
 		// Mock the user following response
-		url := webapi.ApiHosts + "user/11/illusts/bookmarks?limit=3&rest=show"
+		url := webapi.ApiHosts + "user/11/illusts/bookmarks?limit=3&offset=0&rest=show&tag="
 		err := webtest.MockResponseFromFile("GET", url, "user_bookmarked_illusts")
 		assert.NoError(t, err)
 

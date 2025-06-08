@@ -15,9 +15,9 @@ type UserFollowingOptions struct {
 }
 
 type userFollowingParams struct {
-	Offset   uint16        `url:"offset,omitempty"`
-	Limit    uint8         `url:"limit,omitempty"`
-	Restrict core.Restrict `url:"rest,omitempty"`
+	Offset   uint16        `url:"offset"`
+	Limit    uint8         `url:"limit"`
+	Restrict core.Restrict `url:"rest"`
 }
 
 // UserFollowing returns following users. ([Docs])

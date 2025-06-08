@@ -15,9 +15,9 @@ type UserFollowersOptions struct {
 }
 
 type userFollowersParams struct {
-	Offset   uint16        `url:"offset,omitempty"`
-	Limit    uint8         `url:"limit,omitempty"`
-	Restrict core.Restrict `url:"rest,omitempty"`
+	Offset   uint16        `url:"offset"`
+	Limit    uint8         `url:"limit"`
+	Restrict core.Restrict `url:"rest"`
 }
 
 // UserFollowers returns user's followers. ([Docs])
