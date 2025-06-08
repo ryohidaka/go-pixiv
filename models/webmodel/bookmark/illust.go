@@ -5,10 +5,10 @@ import (
 	"github.com/ryohidaka/go-pixiv/models/webmodel/illust"
 )
 
-type BookmarkedIllustsRespponse struct {
+type BookmarkedIllustsResponse struct {
 	core.WebAPIResponse
 
-	Body BookmarkedIllusts `json:"Body"`
+	Body BookmarkedIllusts `json:"body"`
 }
 
 type BookmarkedIllusts struct {

@@ -43,7 +43,7 @@ func (a *WebPixivAPI) UserBookmarksIllusts(uid uint64, opts ...UserBookmarksIllu
 
 	path := fmt.Sprintf("user/%d/illusts/bookmarks", uid)
 
-	res, err := Get[bookmark.BookmarkedIllustsRespponse](a, path, nil, params)
+	res, err := Get[bookmark.BookmarkedIllustsResponse](a, path, nil, params)
 	if err != nil {
 		return nil, 0, err
 	}
