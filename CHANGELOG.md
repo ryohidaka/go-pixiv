@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.30.2](https://github.com/ryohidaka/go-pixiv/compare/v0.30.1...v0.30.2) (2025-06-08)
+
+
+### Bug Fixes
+
+* **models:** Added custom Unmarshal types for Illustration ID and User ID ([d18110e](https://github.com/ryohidaka/go-pixiv/commit/d18110e3cb5d95cc3510748cf5360a512a3b1de8))
+
 ## [0.30.1](https://github.com/ryohidaka/go-pixiv/compare/v0.30.0...v0.30.1) (2025-06-08)
 
 
