@@ -4,8 +4,8 @@ go 1.24.2
 
 require (
 	github.com/google/go-querystring v1.1.0
-	github.com/jarcoal/httpmock v1.4.0
-	github.com/stretchr/testify v1.10.0
+	github.com/jarcoal/httpmock v1.4.1
+	github.com/stretchr/testify v1.11.0
 )
 
 require (
