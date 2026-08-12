@@ -60,7 +60,7 @@ func TestAppPixivAPIRequest(t *testing.T) {
 }
 
 // TestSetAcceptLanguage verifies that SetAcceptLanguage causes the Accept-Language
-// header to be sent on subsequent requests, so that Pixiv returns tag translations.
+// header to be present on the outgoing request.
 func TestSetAcceptLanguage(t *testing.T) {
 	apptest.WithMockHTTP(t, func() {
 		err := apptest.MockResponseFromFile("POST", appapi.AuthHosts+"auth/token", "auth_token")
