@@ -18,10 +18,18 @@ func ExampleAppPixivAPI_UserDetail() {
 	refreshToken := os.Getenv("PIXIV_REFRESH_TOKEN")
 
 	// Create a new Pixiv App API client
-	app, _ := pixiv.NewApp(refreshToken)
+	app, err := pixiv.NewApp(refreshToken)
+	if err != nil {
+		fmt.Println("NewApp error:", err)
+		return
+	}
 
 	// Fetch user details for user ID 11 (Pixiv official account)
-	user, _ := app.UserDetail(11)
+	user, err := app.UserDetail(11)
+	if err != nil {
+		fmt.Println("UserDetail error:", err)
+		return
+	}
 
 	// Print the user's name and account
 	fmt.Println("Name:", user.User.Name)
