@@ -15,8 +15,9 @@ import (
 
 // AppPixivAPI handles Pixiv App API operations using OAuth authentication.
 type AppPixivAPI struct {
-	httpClient *http.Client
-	auth       *AuthSession
+	httpClient        *http.Client
+	auth              *AuthSession
+	additionalHeaders map[string]string
 }
 
 // NewApp initializes and returns a new AppPixivAPI instance using the provided refresh token.
@@ -47,6 +48,23 @@ func NewApp(refreshToken string) (*AppPixivAPI, error) {
 		httpClient: http.DefaultClient,
 		auth:       auth,
 	}, nil
+}
+
+// SetAdditionalHeaders merges the given headers into every subsequent request.
+// Values for keys already set internally (e.g. Authorization) are overridden.
+func (a *AppPixivAPI) SetAdditionalHeaders(headers map[string]string) {
+	if a.additionalHeaders == nil {
+		a.additionalHeaders = make(map[string]string, len(headers))
+	}
+	for k, v := range headers {
+		a.additionalHeaders[k] = v
+	}
+}
+
+// SetAcceptLanguage sets the Accept-Language header sent with every request.
+// Pixiv uses it to localize fields such as Tag.TranslatedName.
+func (a *AppPixivAPI) SetAcceptLanguage(lang string) {
+	a.SetAdditionalHeaders(map[string]string{"Accept-Language": lang})
 }
 
 // Get sends a GET request to the specified path with query parameters,
@@ -105,6 +123,9 @@ func createRequest(a *AppPixivAPI, method string, reqURL *url.URL, body io.Reade
 	}
 	if body != nil && (method == "POST" || method == "PUT" || method == "PATCH") {
 		headers["Content-Type"] = "application/x-www-form-urlencoded"
+	}
+	for k, v := range a.additionalHeaders {
+		headers[k] = v
 	}
 	apputils.SetHeaders(req, headers)
 	return req, nil
