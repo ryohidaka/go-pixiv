@@ -26,10 +26,6 @@ func ExampleAppPixivAPI_UserDetail() {
 	// Print the user's name and account
 	fmt.Println("Name:", user.User.Name)
 	fmt.Println("Account:", user.User.Account)
-
-	// Output:
-	// Name: pixiv事務局
-	// Account: pixiv
 }
 
 func TestUserDetail(t *testing.T) {

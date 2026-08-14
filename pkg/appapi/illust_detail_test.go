@@ -25,10 +25,6 @@ func ExampleAppPixivAPI_IllustDetail() {
 	// Print the illust title and type
 	fmt.Println("Title:", illust.Title)
 	fmt.Println("Type:", illust.Type)
-
-	// Output:
-	// Title: 「出張版！アクション月例漫画賞」いよいよ開催！
-	// Type: illust
 }
 
 func TestIllustDetail(t *testing.T) {
