@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.31.0](https://github.com/ryohidaka/go-pixiv/compare/v0.30.2...v0.31.0) (2026-08-16)
+
+
+### Features
+
+* Adding support for Accept-Language header to aapi ([6103b12](https://github.com/ryohidaka/go-pixiv/commit/6103b1212ebf7311f77f13f7cb8422f4e5932c38))
+* Adding support for Accept-Language header to aapi ([9caace7](https://github.com/ryohidaka/go-pixiv/commit/9caace761a3640ea3d59825fe6e28d67c028a476))
+* Adding support for Accept-Language header to aapi ([f2645b8](https://github.com/ryohidaka/go-pixiv/commit/f2645b8a7a6d3076ce2289e312a61e41665cfe9f))
+* Adding support for Accept-Language header to aapi ([a6dd350](https://github.com/ryohidaka/go-pixiv/commit/a6dd3509fbf51bcdb8cd2195770a0bb1ecbad248))
+
 ## [0.30.2](https://github.com/ryohidaka/go-pixiv/compare/v0.30.1...v0.30.2) (2025-06-08)
 
 
