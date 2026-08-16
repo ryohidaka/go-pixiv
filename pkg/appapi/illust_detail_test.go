@@ -17,10 +17,18 @@ func ExampleAppPixivAPI_IllustDetail() {
 	refreshToken := os.Getenv("PIXIV_REFRESH_TOKEN")
 
 	// Create a new Pixiv App API client
-	app, _ := pixiv.NewApp(refreshToken)
+	app, err := pixiv.NewApp(refreshToken)
+	if err != nil {
+		fmt.Println("NewApp error:", err)
+		return
+	}
 
 	// Fetch illust details for illust ID 129899459
-	illust, _ := app.IllustDetail(129899459)
+	illust, err := app.IllustDetail(129899459)
+	if err != nil {
+		fmt.Println("IllustDetail error:", err)
+		return
+	}
 
 	// Print the illust title and type
 	fmt.Println("Title:", illust.Title)

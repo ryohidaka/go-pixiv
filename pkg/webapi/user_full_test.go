@@ -16,10 +16,18 @@ func ExampleWebPixivAPI_UserFull() {
 	phpsessid := os.Getenv("PHPSESSID")
 
 	// Create a new Pixiv Web API client
-	app, _ := pixiv.NewWebApp(phpsessid)
+	app, err := pixiv.NewWebApp(phpsessid)
+	if err != nil {
+		fmt.Println("NewWebApp error:", err)
+		return
+	}
 
 	// Fetch user for user ID 11 (Pixiv official account)
-	user, _ := app.UserFull(11)
+	user, err := app.UserFull(11)
+	if err != nil {
+		fmt.Println("UserFull error:", err)
+		return
+	}
 
 	// Print the user's name
 	fmt.Println("Name:", user.Name)
